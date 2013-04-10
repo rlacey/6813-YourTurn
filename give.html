@@ -10,12 +10,12 @@
 		<!-- Load style sheets -->
 	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 	    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-	    <link href="bootstrap/css/main.css" rel="stylesheet">
 	    <link href="index.css" rel="stylesheet">
 
 		<!-- Load any supplemental Javascript libraries here -->
 		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		<script type="text/javascript" src="give.js"></script>
 	</head>
 
 	<body>
@@ -49,8 +49,20 @@
 	    </div><!-- /.navbar-wrapper -->		
 
 
+	    <h1>Give</h1>
+
 		<!-- TOY FORM
 	    ================================================== -->
+<div class="tabbable tabs-left" id="domaintabs">
+	<ul class="nav nav-tabs">
+		<li id="toy1-Tab" class='tabb' onClick="switchTab(this.id)"><a href="#toy1" data-toggle="tab">toy1</a></li>
+		<li id="toy2-Tab" class='tabb' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li>
+	</ul>	   
+	<div class="tab-content">
+
+
+	<div class="tab-pane active" id="toy1">
+
         <div class="media">
 			<form class="form-horizontal pull-left">
 				<fieldset>
@@ -110,12 +122,29 @@
 				</fieldset>
 			</form>
 
-            <div class="media-body">
-                <h4 class="media-heading">something</h4>
-                MOAR
+            <div class="media-body">            	
+                <h4 class="media-heading">Image</h4>
+                <br>
+                <img src="http://s3.amazonaws.com/rapgenius/1346276201_450x329xmacklemoreRyanLewisTS-450x329.jpg.pagespeed.ic.GKlbbzKyYX.jpg" class="img-polaroid"  width="400" height="400">
+                <br>
+                <br>          
+				<div class="control-group">
+					<label class="control-label"></label>
+					<div class="controls">
+						<button id="buttonSubmitPhoto1" name="submitPhoto1" class="btn btn-default">Link to Image</button>
+						<button id="buttonSubmitPhoto1" name="submitPhoto1" class="btn btn-default">Upload a Photo</button>
+					</div>
+				</div>
             </div>
 		</div>
+</div>
 
+<div class="tab-pane fade" id="toy2">stuuff</div>
+
+
+
+</div>
+</div>
 
 	</body>
 </html>
