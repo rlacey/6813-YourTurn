@@ -1,0 +1,121 @@
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta name="description" content="">
+		<meta name="author" content="Ryan Lacey">
+
+		<title>Your Turn - Find and give used toys!</title>
+
+		<!-- Load style sheets -->
+	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+	    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	    <link href="bootstrap/css/main.css" rel="stylesheet">
+	    <link href="index.css" rel="stylesheet">
+
+		<!-- Load any supplemental Javascript libraries here -->
+		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	</head>
+
+	<body>
+
+		<!-- NAVBAR
+	    ================================================== -->
+	    <div class="navbar-wrapper">
+	    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+	    	<div class="container">
+	    		<div class="navbar navbar-inverse">
+	          		<div class="navbar-inner">
+			            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+			            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+			            </button>
+			            <a class="brand" href="index.html">Your Turn</a>
+			            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+			            <div class="nav-collapse collapse">
+					        <ul class="nav">
+						        <li><a href="index.html">Home</a></li>
+						        <li class="active"><a href="give.html">Give</a></li>
+						        <li><a href="#find">Find</a></li>
+						        <li><a href="#about">About</a></li>
+					        </ul>
+		            	</div><!--/.nav-collapse -->
+		        	</div><!-- /.navbar-inner -->
+		    	</div><!-- /.navbar -->
+	        </div> <!-- /.container -->
+	    </div><!-- /.navbar-wrapper -->		
+
+
+		<!-- TOY FORM
+	    ================================================== -->
+        <div class="media">
+			<form class="form-horizontal pull-left">
+				<fieldset>
+				<!-- Form Name -->
+				<legend>Toy 1</legend>
+
+				<!-- Text input-->
+				<div class="control-group">
+					<label class="control-label">Toy Name</label>
+					<div class="controls">
+						<input id="toyName" name="toyName" type="text" placeholder="" class="input-xlarge" required="">
+					</div>
+				</div>
+
+				<!-- Select Basic -->
+				<div class="control-group">
+					<label class="control-label">Age Range</label>
+					<div class="controls">
+						<select id="agrRange" name="agrRange" class="input-xlarge">
+							<option>All ages</option>
+							<option>0-3</option>
+							<option>4-7</option>
+							<option>8-12</option>
+							<option>13+</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Select Basic -->
+				<div class="control-group">
+					<label class="control-label">Condition</label>
+					<div class="controls">
+						<select id="consition" name="consition" class="input-xlarge">
+							<option>New</option>
+							<option>Lightly used</option>
+							<option>Heavily used</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Textarea -->
+				<div class="control-group">
+					<label class="control-label">Description</label>
+					<div class="controls">                     
+						<textarea id="description" name="description"></textarea>
+					</div>
+				</div>
+
+				<!-- Button -->
+				<div class="control-group">
+					<label class="control-label"></label>
+					<div class="controls">
+						<button id="addToy1" name="addToy1" class="btn btn-default">Add another toy</button>
+					</div>
+				</div>
+
+				</fieldset>
+			</form>
+
+            <div class="media-body">
+                <h4 class="media-heading">something</h4>
+                MOAR
+            </div>
+		</div>
+
+
+	</body>
+</html>
