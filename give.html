@@ -53,10 +53,10 @@
 
 		<!-- TOY FORM
 	    ================================================== -->
-<div class="tabbable tabs-left" id="domaintabs">
+<div class="tab-labelable tabs-left" id="domaintabs">
 	<ul class="nav nav-tabs">
-		<li id="toy1-Tab" class='tabb' onClick="switchTab(this.id)"><a href="#toy1" data-toggle="tab">toy1</a></li>
-		<li id="toy2-Tab" class='tabb' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li>
+		<li id="toy1-Tab" class='tab-label active' onClick="switchTab(this.id)"><a href="#toy1" data-toggle="tab">toy1</a></li>
+		<li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li>
 	</ul>	   
 	<div class="tab-content">
 
@@ -81,7 +81,7 @@
 				<div class="control-group">
 					<label class="control-label">Age Range</label>
 					<div class="controls">
-						<select id="agrRange" name="agrRange" class="input-xlarge">
+						<select id="ageRange" name="ageRange" class="input-xlarge">
 							<option>All ages</option>
 							<option>0-3</option>
 							<option>4-7</option>
@@ -131,8 +131,8 @@
 				<div class="control-group">
 					<label class="control-label"></label>
 					<div class="controls">
-						<button id="buttonSubmitPhoto1" name="submitPhoto1" class="btn btn-default">Link to Image</button>
-						<button id="buttonSubmitPhoto1" name="submitPhoto1" class="btn btn-default">Upload a Photo</button>
+						<button id="photo-url" name="linkToPhotoURL" class="btn btn-default">Link to Photo</button>
+						<button id="photo-upload" name="uploadPhotoFromFile" class="btn btn-default">Upload a Photo</button>
 					</div>
 				</div>
             </div>
