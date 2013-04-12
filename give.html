@@ -53,106 +53,122 @@
 	        </div> <!-- /.container -->
 	    </div><!-- /.navbar-wrapper -->		
 
+		<table class="table zebra-striped table-striped table-bordered">
+		  <tbody>
+		    <tr>
+		      <td class="span1">01</td>
+		      <td class="span1">02</td>
+		      <td class="span1">03</td>
+		      <td class="span1">04</td>
+		      <td class="span1">05</td>
+		      <td class="span1">06</td>
+		      <td class="span1">07</td>
+		      <td class="span1">08</td>
+		      <td class="span1">09</td>
+		      <td class="span1">10</td>
+		      <td class="span1">11</td>
+		      <td class="span1">12</td>
+		    </tr>
+		  </tbody>
+		<table>	    
 
-	    <h1>Give</h1>
-
+		<div class="row-fluid">
+	    	<h1 class="span1 offset6">Give</h1>
+    	</div>
 
 		<!-- =================================================
 
 		TOY FORM & TABS
 
 	    ================================================== -->
-		<div class="tabbable tabs-left">
-			<ul class="nav nav-tabs" id="tab-labels">
-				<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">Default Toy</a></li>
-				<!-- <li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li> -->
-			</ul>	   
-			<div class="tab-content" id="tab-content">
-				<div class="tab-pane active" id="content-toy">
-			        <div class="media">
-						<form class="form-horizontal pull-left">
-							<fieldset>
-							<!-- Form Name -->
-							<legend id='title-toy'>Toy</legend>
+	    
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs" id="tab-labels">
+					<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">Default Toy</a></li>
+					<!-- <li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li> -->
+				</ul>	   
+				<div class="tab-content" id="tab-content">
+					<div class="tab-pane active" id="content-toy">
+				        <div class="media">
+							<form class="form-horizontal pull-left">
+								<fieldset>
+								<!-- Form Name -->
+								<legend id='title-toy'>Toy</legend>
 
-							<!-- Text input-->
-							<div class="control-group">
-								<label class="control-label">Toy Name</label>
-								<div class="controls">
-									<input id="toyName" type="text" placeholder="" class="input-xlarge" required="">
+								<!-- Text input-->
+								<div class="control-group">
+									<label class="control-label">Toy Name</label>
+									<div class="controls">
+										<input id="toyName" type="text" placeholder="" class="input-xlarge" required="">
+									</div>
 								</div>
-							</div>
 
-							<!-- Select Basic -->
-							<div class="control-group">
-								<label class="control-label">Age Range</label>
-								<div class="controls">
-									<select id="ageRange" class="input-xlarge">
-										<option>All ages</option>
-										<option>0-3</option>
-										<option>4-7</option>
-										<option>8-12</option>
-										<option>13+</option>
-									</select>
+								<!-- Select Basic -->
+								<div class="control-group">
+									<label class="control-label">Age Range</label>
+									<div class="controls">
+										<select id="ageRange" class="input-xlarge">
+											<option>All ages</option>
+											<option>0-3</option>
+											<option>4-7</option>
+											<option>8-12</option>
+											<option>13+</option>
+										</select>
+									</div>
 								</div>
-							</div>
 
-							<!-- Select Basic -->
-							<div class="control-group">
-								<label class="control-label">Condition</label>
-								<div class="controls">
-									<select id="condition" class="input-xlarge">
-										<option>New</option>
-										<option>Lightly used</option>
-										<option>Heavily used</option>
-									</select>
+								<!-- Select Basic -->
+								<div class="control-group">
+									<label class="control-label">Condition</label>
+									<div class="controls">
+										<select id="condition" class="input-xlarge">
+											<option>New</option>
+											<option>Lightly used</option>
+											<option>Heavily used</option>
+										</select>
+									</div>
 								</div>
-							</div>
 
-							<!-- Textarea -->
-							<div class="control-group">
-								<label class="control-label">Description</label>
-								<div class="controls">                     
-									<textarea id="description"></textarea>
+								<!-- Textarea -->
+								<div class="control-group">
+									<label class="control-label">Description</label>
+									<div class="controls">                     
+										<textarea id="description"></textarea>
+									</div>
 								</div>
-							</div>
 
-							<!-- Button -->
-							<div class="control-group">
-								<label class="control-label"></label>
-								<div class="controls">
-									<button id="addToy" class="btn btn-primary" onClick="addAnotherToy()">Add another toy</button>
+								<!-- Button -->
+								<div class="control-group">
+									<label class="control-label"></label>
+									<div class="controls">
+										<button id="addToy" class="btn btn-primary" onClick="addAnotherToy()">Add another toy</button>
+									</div>
 								</div>
-							</div>
 
-							</fieldset>
-						</form>
+								</fieldset>
+							</form>
 
-			            <div class="media-body">  
-			            	<br> 
-			            	<br>         	
-			                <h4 class="media-heading">Image</h4>
-			                <br>
-			                <img src="http://s3.amazonaws.com/rapgenius/1346276201_450x329xmacklemoreRyanLewisTS-450x329.jpg.pagespeed.ic.GKlbbzKyYX.jpg" class="img-polaroid"  width="400" height="400">
-			                <br>
-			                <br>          
-							<div class="control-group">
-								<label class="control-label"></label>
-								<div class="controls">
-									<button class="btn" id="button-photo-url" onclick="linkToPhotoPrompt()">Link to Photo</button>
-									<button class="btn" id="button-photo-upload" onClick="uploadPhotoPrompt()">Upload a Photo</button>
-								</div> <!-- /controls -->
-							</div> <!-- /control group -->
-			            </div> <!-- /media body -->
-					</div> <!-- /media -->
-				</div> <!-- /tab pane -->
-
-<!-- 				<div class="tab-pane fade" id="toy2">
-					Some nice placeholder tab content here.
-				</div> --> <!-- /tab pane -->
-
-			</div> <!-- /tab content -->
-		</div> <!-- /tabbable -->
+				            <div class="media-body">  
+				            	<br> 
+				            	<br>         	
+				                <h4 class="media-heading">Image</h4>
+				                <br>
+				                <img src="http://s3.amazonaws.com/rapgenius/1346276201_450x329xmacklemoreRyanLewisTS-450x329.jpg.pagespeed.ic.GKlbbzKyYX.jpg" class="img-polaroid"  width="400" height="400">
+				                <br>
+				                <br>          
+								<div class="control-group">
+									<label class="control-label"></label>
+									<div class="controls">
+										<button class="btn" id="button-photo-url" onclick="linkToPhotoPrompt()">Link to Photo</button>
+										<button class="btn" id="button-photo-upload" onClick="uploadPhotoPrompt()">Upload a Photo</button>
+									</div> <!-- /controls -->
+								</div> <!-- /control group -->
+				            </div> <!-- /media body -->
+						</div> <!-- /media -->
+					</div> <!-- /tab pane -->
+				</div> <!-- /tab content -->
+			</div> <!-- /tabbable -->
+		
 
 
 		<!-- =================================================
