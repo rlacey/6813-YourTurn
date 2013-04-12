@@ -14,13 +14,18 @@
 
 		<!-- Load any supplemental Javascript libraries here -->
 		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		
+		<script src="bootstrap/js/bootstrap.js"></script>
+
 		<script type="text/javascript" src="give.js"></script>
 	</head>
 
 	<body>
 
-		<!-- NAVBAR
+		<!-- =================================================
+
+		NAVIGATION BAR
+
 	    ================================================== -->
 	    <div class="navbar-wrapper">
 	    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
@@ -51,100 +56,124 @@
 
 	    <h1>Give</h1>
 
-		<!-- TOY FORM
+
+		<!-- =================================================
+
+		TOY FORM & TABS
+
 	    ================================================== -->
-<div class="tab-labelable tabs-left" id="domaintabs">
-	<ul class="nav nav-tabs">
-		<li id="toy1-Tab" class='tab-label active' onClick="switchTab(this.id)"><a href="#toy1" data-toggle="tab">toy1</a></li>
-		<li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li>
-	</ul>	   
-	<div class="tab-content">
+		<div class="tabbable tabs-left">
+			<ul class="nav nav-tabs" id="tab-labels">
+				<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">Default Toy</a></li>
+				<!-- <li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li> -->
+			</ul>	   
+			<div class="tab-content" id="tab-content">
+				<div class="tab-pane active" id="content-toy">
+			        <div class="media">
+						<form class="form-horizontal pull-left">
+							<fieldset>
+							<!-- Form Name -->
+							<legend id='title-toy'>Toy</legend>
+
+							<!-- Text input-->
+							<div class="control-group">
+								<label class="control-label">Toy Name</label>
+								<div class="controls">
+									<input id="toyName" type="text" placeholder="" class="input-xlarge" required="">
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="control-group">
+								<label class="control-label">Age Range</label>
+								<div class="controls">
+									<select id="ageRange" class="input-xlarge">
+										<option>All ages</option>
+										<option>0-3</option>
+										<option>4-7</option>
+										<option>8-12</option>
+										<option>13+</option>
+									</select>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="control-group">
+								<label class="control-label">Condition</label>
+								<div class="controls">
+									<select id="condition" class="input-xlarge">
+										<option>New</option>
+										<option>Lightly used</option>
+										<option>Heavily used</option>
+									</select>
+								</div>
+							</div>
+
+							<!-- Textarea -->
+							<div class="control-group">
+								<label class="control-label">Description</label>
+								<div class="controls">                     
+									<textarea id="description"></textarea>
+								</div>
+							</div>
+
+							<!-- Button -->
+							<div class="control-group">
+								<label class="control-label"></label>
+								<div class="controls">
+									<button id="addToy" class="btn btn-primary" onClick="addAnotherToy()">Add another toy</button>
+								</div>
+							</div>
+
+							</fieldset>
+						</form>
+
+			            <div class="media-body">  
+			            	<br> 
+			            	<br>         	
+			                <h4 class="media-heading">Image</h4>
+			                <br>
+			                <img src="http://s3.amazonaws.com/rapgenius/1346276201_450x329xmacklemoreRyanLewisTS-450x329.jpg.pagespeed.ic.GKlbbzKyYX.jpg" class="img-polaroid"  width="400" height="400">
+			                <br>
+			                <br>          
+							<div class="control-group">
+								<label class="control-label"></label>
+								<div class="controls">
+									<button class="btn" id="button-photo-url" onclick="linkToPhotoPrompt()">Link to Photo</button>
+									<button class="btn" id="button-photo-upload" onClick="uploadPhotoPrompt()">Upload a Photo</button>
+								</div> <!-- /controls -->
+							</div> <!-- /control group -->
+			            </div> <!-- /media body -->
+					</div> <!-- /media -->
+				</div> <!-- /tab pane -->
+
+<!-- 				<div class="tab-pane fade" id="toy2">
+					Some nice placeholder tab content here.
+				</div> --> <!-- /tab pane -->
+
+			</div> <!-- /tab content -->
+		</div> <!-- /tabbable -->
 
 
-	<div class="tab-pane active" id="toy1">
+		<!-- =================================================
 
-        <div class="media">
-			<form class="form-horizontal pull-left">
-				<fieldset>
-				<!-- Form Name -->
-				<legend>Toy 1</legend>
+		MODAL - PHOTO LINK TO URL
 
-				<!-- Text input-->
-				<div class="control-group">
-					<label class="control-label">Toy Name</label>
-					<div class="controls">
-						<input id="toyName" name="toyName" type="text" placeholder="" class="input-xlarge" required="">
-					</div>
-				</div>
+	    ================================================== -->
+		<div id="modal-photo-url" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true" style="display: none;">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 id="photoURLPrompt">Enter the URL of a photo of your toy.</h3>
+			</div>
+			<div class="modal-body">				
+				<input id="photo-url-input" type="text" placeholder="http://www.mit.edu/img/BackImage.jpg">
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+				<a href="#" class="btn btn-primary" onclick="linkToPhotoSubmit(this.parentNode.parentNode.id)">Submit</a>
+			</div>
+		</div>		
 
-				<!-- Select Basic -->
-				<div class="control-group">
-					<label class="control-label">Age Range</label>
-					<div class="controls">
-						<select id="ageRange" name="ageRange" class="input-xlarge">
-							<option>All ages</option>
-							<option>0-3</option>
-							<option>4-7</option>
-							<option>8-12</option>
-							<option>13+</option>
-						</select>
-					</div>
-				</div>
-
-				<!-- Select Basic -->
-				<div class="control-group">
-					<label class="control-label">Condition</label>
-					<div class="controls">
-						<select id="consition" name="consition" class="input-xlarge">
-							<option>New</option>
-							<option>Lightly used</option>
-							<option>Heavily used</option>
-						</select>
-					</div>
-				</div>
-
-				<!-- Textarea -->
-				<div class="control-group">
-					<label class="control-label">Description</label>
-					<div class="controls">                     
-						<textarea id="description" name="description"></textarea>
-					</div>
-				</div>
-
-				<!-- Button -->
-				<div class="control-group">
-					<label class="control-label"></label>
-					<div class="controls">
-						<button id="addToy1" name="addToy1" class="btn btn-default">Add another toy</button>
-					</div>
-				</div>
-
-				</fieldset>
-			</form>
-
-            <div class="media-body">            	
-                <h4 class="media-heading">Image</h4>
-                <br>
-                <img src="http://s3.amazonaws.com/rapgenius/1346276201_450x329xmacklemoreRyanLewisTS-450x329.jpg.pagespeed.ic.GKlbbzKyYX.jpg" class="img-polaroid"  width="400" height="400">
-                <br>
-                <br>          
-				<div class="control-group">
-					<label class="control-label"></label>
-					<div class="controls">
-						<button id="photo-url" name="linkToPhotoURL" class="btn btn-default">Link to Photo</button>
-						<button id="photo-upload" name="uploadPhotoFromFile" class="btn btn-default">Upload a Photo</button>
-					</div>
-				</div>
-            </div>
-		</div>
-</div>
-
-<div class="tab-pane fade" id="toy2">stuuff</div>
-
-
-
-</div>
-</div>
 
 	</body>
 </html>
