@@ -30,18 +30,39 @@ $(document).ready(function() {
 function addAnotherToy() {
 	numToys++;
 
+	// Tab is the label that a user clicks
 	var tab = defaultTab.clone();
 	var tabID = defaultTab.attr('id') + numToys;
 	tab.attr('id', tabID);
 	tab.html('<a href="#toy" data-toggle="tab">Toy '+ numToys + '</a>');
 
+	// Content is what the tab displays
 	var content = defaultContent.clone();
 	var contentID = defaultContent.attr('id') + numToys;
 	content.attr('id', contentID);
-	var title = $('#'+contentID).find('title-toy');
-	title.html('HI');
+
+	// Add tab to tabs list
 	$('#tab-labels').append(tab);
 	$('#tab-content').append(content);	
+
+	// Update title to default name (toy number) and titleID
+	var legend = $('#'+contentID).find('#title-toy');
+	legend.attr('id', 'title-toy'+numToys);
+	legend.html("Toy "+numToys);
+
+	// Update form IDs
+	var toyName = $('#'+contentID).find('#toyName');
+	toyName.attr('id', 'toyName'+numToys);
+	var ageRange = $('#'+contentID).find('#ageRange');
+	ageRange.attr('id', 'ageRange'+numToys);	
+	var condition = $('#'+contentID).find('#condition');
+	condition.attr('id', 'condition'+numToys);
+	var description = $('#'+contentID).find('#description');
+	description.attr('id', 'description'+numToys);	
+	var photo = $('#'+contentID).find('#toy-image');
+	photo.attr('id', 'toy-image'+numToys);	
+	var photoLinkButton = $('#'+contentID).find('#button-photo-url');
+	photoLinkButton.attr('id', 'button-photo-url'+numToys);		
 
 	switchTab(tabID);
 }
@@ -57,9 +78,14 @@ function linkToPhotoPrompt() {
  * Parse url and close prompt
  */
 function linkToPhotoSubmit(modalID) {
-	var input = $("#photo-url-input").val();
-	alert("input url: "+input);
-	$("#photo-url-input").val("");
+	alert(photoButtonID);
+	var photo = $("#"+photoID);
+	var input = photo.val();
+	// Update picture from user input]
+	photo.attr('src', input);
+	// Clear input field
+	photo.val("");
+
 	closeModal(modalID);
 }
 
@@ -75,6 +101,10 @@ function closeModal(modalID) {
  */
 function uploadPhotoPrompt() {
 	alert('This function is not yet implemented. Sorry!');
+}
+
+function submitToyForms() {
+	alert('This function is not implemented yet. Sorry!');
 }
 
 /*
