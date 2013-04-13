@@ -4,6 +4,8 @@
  */
 
 var numToys = 0;
+var currentTabNumber = 0;
+var toyIDs = new Array();
 var defaultTab;
 var defaultContent;
 
@@ -29,6 +31,7 @@ $(document).ready(function() {
  */
 function addAnotherToy() {
 	numToys++;
+	toyIDs.push(numToys);
 
 	// Tab is the label that a user clicks
 	var tab = defaultTab.clone();
@@ -64,6 +67,11 @@ function addAnotherToy() {
 	var photoLinkButton = $('#'+contentID).find('#button-photo-url');
 	photoLinkButton.attr('id', 'button-photo-url'+numToys);		
 
+	// Update tab label to toy name
+	if ($('#toyName'+currentTabNumber).val()!=='') {
+		$('#tab-toy'+currentTabNumber).html('<a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
+	}
+
 	switchTab(tabID);
 }
 
@@ -78,13 +86,13 @@ function linkToPhotoPrompt() {
  * Parse url and close prompt
  */
 function linkToPhotoSubmit(modalID) {
-	alert(photoButtonID);
-	var photo = $("#"+photoID);
-	var input = photo.val();
+	console.log($('#photo-url-input').val());
+	var input = $('#photo-url-input');
+	var photo = $("#toy-image"+currentTabNumber);
 	// Update picture from user input]
-	photo.attr('src', input);
+	photo.attr('src', input.val());
 	// Clear input field
-	photo.val("");
+	input.val("");
 
 	closeModal(modalID);
 }
@@ -104,7 +112,16 @@ function uploadPhotoPrompt() {
 }
 
 function submitToyForms() {
-	alert('This function is not implemented yet. Sorry!');
+	for (var i=1; i<=toyIDs.length; i++) {
+		var toyName = $('#toyName'+i).val();
+		var ageRange = $('#ageRange'+i).val();
+		var condition = $('#condition'+i).val();
+		var description = $('#description'+i).val();
+		console.log(toyName);
+		console.log(ageRange);
+		console.log(condition);
+		console.log(description);
+	}
 }
 
 /*
@@ -114,6 +131,7 @@ function submitToyForms() {
  */
 function switchTab(tab) {
 	var tabID = tab.split("-")[1];
+	currentTabNumber = tabID.substring(3);
 	// Remove active state from all tab labels and assign clicked label to be new active tab
 	$('.tab-label').attr('class', 'tab-label');
 	$('#tab-'+tabID).attr('class', 'tab-label active');
