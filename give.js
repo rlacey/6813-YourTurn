@@ -67,11 +67,6 @@ function addAnotherToy() {
 	var photoLinkButton = $('#'+contentID).find('#button-photo-url');
 	photoLinkButton.attr('id', 'button-photo-url'+numToys);		
 
-	// Update tab label to toy name
-	if ($('#toyName'+currentTabNumber).val()!=='') {
-		$('#tab-toy'+currentTabNumber).html('<a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
-	}
-
 	switchTab(tabID);
 }
 
@@ -86,7 +81,6 @@ function linkToPhotoPrompt() {
  * Parse url and close prompt
  */
 function linkToPhotoSubmit(modalID) {
-	console.log($('#photo-url-input').val());
 	var input = $('#photo-url-input');
 	var photo = $("#toy-image"+currentTabNumber);
 	// Update picture from user input]
@@ -122,6 +116,7 @@ function submitToyForms() {
 		console.log(condition);
 		console.log(description);
 	}
+	$("#modal-submit-confirmation").modal ("show");
 }
 
 /*
@@ -130,8 +125,13 @@ function submitToyForms() {
  *  Tabs only shown if more than one toy in listing. 
  */
 function switchTab(tab) {
+	if ($('#toyName'+currentTabNumber).val()!=='') {
+		$('#tab-toy'+currentTabNumber).html('<a href="#toy" data-toggle="tab"><h4>'+ $('#toyName'+currentTabNumber).val() + '</h4></a>');
+	}
+
 	var tabID = tab.split("-")[1];
 	currentTabNumber = tabID.substring(3);
+		// Update tab label to toy name
 	// Remove active state from all tab labels and assign clicked label to be new active tab
 	$('.tab-label').attr('class', 'tab-label');
 	$('#tab-'+tabID).attr('class', 'tab-label active');

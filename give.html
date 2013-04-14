@@ -5,7 +5,7 @@
     	<meta name="description" content="">
 		<meta name="author" content="Ryan Lacey">
 
-		<title>Your Turn - Find and give used toys!</title>
+		<title>Give · YourTurn</title>
 
 		<!-- Load style sheets -->
 	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -19,6 +19,7 @@
 		<script type="text/javascript" src="give.js"></script>
 
 	    <style type="text/css">
+
 		    .center {
 			    display: block;
 			    margin-left: auto;
@@ -26,13 +27,26 @@
 		    }
 
 		    .well {
-		    	background-color: #C4CBE8;
+		    	
+		    }
+
+		    .control-label {
+		    	font-size: 24px;
+		    }
+
+		    legend {
+		    	font-size: 36px;
 		    }
 
 		    #page-title {
 		    	text-align: center;
-		    	color:#435299;
-		    }
+		    }	
+
+		    .img-polaroid {
+		    	max-width:350px;
+		    	max-height:350px;
+		    	margin-top:20%;		    	
+		    }	    
 	    </style>
 	</head>
 
@@ -47,7 +61,7 @@
 	    <div class="navbar-wrapper">
 	    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
 	    	<div class="container">
-	    		<div class="navbar navbar-inverse" >
+	    		<div class="navbar navbar-inverse">
 	          		<div class="navbar-inner">
 			            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
 			            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -55,7 +69,7 @@
 				            <span class="icon-bar"></span>
 				            <span class="icon-bar"></span>
 			            </button>
-			            <div class="offset3"><a class="brand" href="index.html">Your Turn</a></div>
+			            <div class="offset3"><a class="brand" href="index.html">YourTurn</a></div>
 			            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 			            <div class="nav-collapse collapse">
 					        <ul class="nav">
@@ -65,11 +79,16 @@
 						        <li><a href="#about">About</a></li>
 					        </ul>
 		            	</div><!--/.nav-collapse -->
+			            <div class="nav-collapse collapse pull-right">
+					        <ul class="nav">
+						        <li><a href="#"><i class="icon-envelope"></i> Messages</a></li>
+						        <li><a href="#"><i class="icon-user"></i> Username</a></li>
+					        </ul>
+		            	</div><!--/.nav-collapse -->		            	
 		        	</div><!-- /.navbar-inner -->
 		    	</div><!-- /.navbar -->
 	        </div> <!-- /.container -->
 	    </div><!-- /.navbar-wrapper -->		
-
 
 
 		<!-- =================================================
@@ -104,7 +123,7 @@
 								<div class="control-group">
 									<label class="control-label">Toy Name</label>
 									<div class="controls">
-										<input id="toyName" type="text" placeholder="" class="input-xlarge" required="">
+										<input id="toyName" type="text" placeholder="" class="input-xlarge text-form" required="">
 									</div>
 								</div>
 
@@ -112,7 +131,7 @@
 								<div class="control-group">
 									<label class="control-label">Age Range</label>
 									<div class="controls">
-										<select id="ageRange" class="input-xlarge">
+										<select id="ageRange" class="input-xlarge" style="width:30%;">
 											<option>All ages</option>
 											<option>0-3</option>
 											<option>4-7</option>
@@ -126,7 +145,7 @@
 								<div class="control-group">
 									<label class="control-label">Condition</label>
 									<div class="controls">
-										<select id="condition" class="input-xlarge">
+										<select id="condition" class="input-xlarge" style="width:30%;">
 											<option>New</option>
 											<option>Lightly used</option>
 											<option>Heavily used</option>
@@ -138,22 +157,22 @@
 								<div class="control-group">
 									<label class="control-label">Description</label>
 									<div class="controls">                     
-										<textarea id="description"></textarea>
+										<textarea id="description" class="text-form"></textarea>
 									</div>
 								</div>
 
-															<!-- Button -->
+								<!-- Button -->
 								<div class="control-group">
 									<label class="control-label"></label>
 									<div class="controls">
-										<button id="addToy" class="btn btn-primary" onClick="addAnotherToy()">Add another toy</button>
+										<button id="addToy" class="btn" onClick="addAnotherToy()">Add another toy</button>
 									</div>
 								</div>						
 								</fieldset>
 							</div> <!-- /span6 -->
 
 							<div class="span5">
-				                <img id="toy-image" src="http://s3.amazonaws.com/rapgenius/1346276201_450x329xmacklemoreRyanLewisTS-450x329.jpg.pagespeed.ic.GKlbbzKyYX.jpg" class="img-polaroid"  width="400" height="400">
+				                <img id="toy-image" src="images\original.png" class="img-polaroid">
 								<div class="control-group">
 									<label class="control-label"></label>
 									<div class="controls">
@@ -178,16 +197,35 @@
 		<div id="modal-photo-url" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true" style="display: none;">
 			<div class="modal-header">
 				<a href="#" class="close" data-dismiss="modal">&times;</a>
-				<h3 id="photoURLPrompt">Enter the URL of a photo of your toy.</h3>
+				<h3>Enter the URL of a photo of your toy.</h3>
 			</div>
 			<div class="modal-body">				
-				<input id="photo-url-input" type="text" placeholder="http://www.mit.edu/img/BackImage.jpg">
+				<input id="photo-url-input" type="text" placeholder="http://www.mit.edu/img/BackImage.jpg" style="width:100%">
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 				<a href="#" class="btn btn-primary" onclick="linkToPhotoSubmit(this.parentNode.parentNode.id)">Submit</a>
 			</div>
-		</div>		
+		</div>	
+
+
+		<!-- =================================================
+
+		MODAL - SUBMIT CONFIRMATION
+
+	    ================================================== -->
+		<div id="modal-submit-confirmation" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true" style="display: none;">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3>Thank you for your dontation!</h3>
+			</div>
+			<div class="modal-body">				
+				You will now be taken back to the YourTurn homepage.
+			</div>
+			<div class="modal-footer">
+				<a href="index.html" class="btn btn-primary" onclick="closeModal(this.parentNode.parentNode.id)">OK</a>
+			</div>
+		</div>				
 
 
 		<!-- =================================================
