@@ -4,6 +4,8 @@
  */
 
 var numToys = 0;
+var currentTabNumber = 0;
+var toyIDs = new Array();
 var defaultTab;
 var defaultContent;
 
@@ -29,6 +31,7 @@ $(document).ready(function() {
  */
 function addAnotherToy() {
 	numToys++;
+	toyIDs.push(numToys);
 
 	// Tab is the label that a user clicks
 	var tab = defaultTab.clone();
@@ -78,13 +81,12 @@ function linkToPhotoPrompt() {
  * Parse url and close prompt
  */
 function linkToPhotoSubmit(modalID) {
-	alert(photoButtonID);
-	var photo = $("#"+photoID);
-	var input = photo.val();
+	var input = $('#photo-url-input');
+	var photo = $("#toy-image"+currentTabNumber);
 	// Update picture from user input]
-	photo.attr('src', input);
+	photo.attr('src', input.val());
 	// Clear input field
-	photo.val("");
+	input.val("");
 
 	closeModal(modalID);
 }
@@ -104,7 +106,17 @@ function uploadPhotoPrompt() {
 }
 
 function submitToyForms() {
-	alert('This function is not implemented yet. Sorry!');
+	for (var i=1; i<=toyIDs.length; i++) {
+		var toyName = $('#toyName'+i).val();
+		var ageRange = $('#ageRange'+i).val();
+		var condition = $('#condition'+i).val();
+		var description = $('#description'+i).val();
+		console.log(toyName);
+		console.log(ageRange);
+		console.log(condition);
+		console.log(description);
+	}
+	$("#modal-submit-confirmation").modal ("show");
 }
 
 /*
@@ -113,13 +125,19 @@ function submitToyForms() {
  *  Tabs only shown if more than one toy in listing. 
  */
 function switchTab(tab) {
+	if ($('#toyName'+currentTabNumber).val()!=='') {
+		$('#tab-toy'+currentTabNumber).html('<a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
+	}
+
 	var tabID = tab.split("-")[1];
+	currentTabNumber = tabID.substring(3);
+		// Update tab label to toy name
 	// Remove active state from all tab labels and assign clicked label to be new active tab
 	$('.tab-label').attr('class', 'tab-label');
 	$('#tab-'+tabID).attr('class', 'tab-label active');
 	// Remove active state from all tab pages and assign clicked tab to be new active tab
 	$('.tab-pane').attr('class', 'tab-pane');
-	$('#content-'+tabID).attr('class', 'tab-pane active');
+	$('#content-'+tabID).attr('class', 'tab-pane  active');
 	// Don't display tabs until >1 toys are listed
 	if (numToys<=1) {
 		$('.tab-label').hide();
