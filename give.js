@@ -126,7 +126,7 @@ function submitToyForms() {
  */
 function switchTab(tab) {
 	if ($('#toyName'+currentTabNumber).val()!=='') {
-		$('#tab-toy'+currentTabNumber).html('<a href="#toy" data-toggle="tab"><h4>'+ $('#toyName'+currentTabNumber).val() + '</h4></a>');
+		$('#tab-toy'+currentTabNumber).html('<a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
 	}
 
 	var tabID = tab.split("-")[1];
@@ -137,7 +137,7 @@ function switchTab(tab) {
 	$('#tab-'+tabID).attr('class', 'tab-label active');
 	// Remove active state from all tab pages and assign clicked tab to be new active tab
 	$('.tab-pane').attr('class', 'tab-pane');
-	$('#content-'+tabID).attr('class', 'tab-pane active');
+	$('#content-'+tabID).attr('class', 'tab-pane  active');
 	// Don't display tabs until >1 toys are listed
 	if (numToys<=1) {
 		$('.tab-label').hide();

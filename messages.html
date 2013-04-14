@@ -14,12 +14,32 @@
 		<!-- Load any supplemental Javascript libraries here -->
 		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
+		<style>
+			#contacts-pane {
+				background-color: blue;
+				height: 85%;
+				border: solid 3px;
+			}
+
+			.contact {
+				margin: 5px;
+				background-color: white;
+			}
+
+			hr {
+				color: black;
+			}
+		</style>
 	</head>
 
 	<body>
 		<div id="wrapepr">
 			<div id="content">
-				<!-- NAVBAR
+				<!-- =================================================
+
+				NAVIGATION BAR
+
 			    ================================================== -->
 			    <div class="navbar-wrapper">
 			    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
@@ -52,6 +72,22 @@
 				    	</div><!-- /.navbar -->
 			        </div> <!-- /.container -->
 			    </div><!-- /.navbar-wrapper -->	
+
+
+				<!-- =================================================
+
+				CONTACTS PANE
+
+			    ================================================== -->
+			    <div class="row-fluid">
+				    <div id="contacts-pane" class="span3 offset1">
+				    	<div id="default-contact" class="contact">
+				    		<h4 class"center">Name</h4>
+				    		This is the message content.
+				    		<hr>
+				    	</div>
+				    </div>
+
 		    </div><!-- content -->
 
 
