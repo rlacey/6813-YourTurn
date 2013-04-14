@@ -6182,3 +6182,35 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+
+
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
+#wrapper {
+  min-height:100%;
+  position:relative;
+}
+#header {
+  padding:10px;
+  background:#5ee;
+}
+#content {
+  padding-bottom:100px;   /* Height of the footer element */
+}
+#footer {
+  width:100%;
+  height:100px;
+  position:absolute;
+  bottom:0;
+}
