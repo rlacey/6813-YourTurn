@@ -26,7 +26,17 @@
 		    	max-width:350px;
 		    	max-height:350px;
 		    	margin-top:30%;	   	
-		    }	   
+		    }	 
+
+		    .tab-label-inner {
+		    	display: inline-block;
+		    	vertical-align: top;
+		    }  
+
+		    .remove {
+		    	margin-left: 8px;
+		    	margin-right: 5px;
+		    }
 	    </style>
 	</head>
 
@@ -87,7 +97,7 @@
 			    <div class="row-fluid">
 					<div class="well tabbable tabs-left span6 offset3">
 						<ul class="nav nav-tabs" id="tab-labels">
-							<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">Default Toy</a></li>
+							<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><p class="tab-label-inner"><a href="#toy" data-toggle="tab">Default Toy <a href="#"></a></p></li>
 							<!-- <li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li> -->
 						</ul>	   
 						<div class="tab-content" id="tab-content">

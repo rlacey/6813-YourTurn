@@ -37,7 +37,7 @@ function addAnotherToy() {
 	var tab = defaultTab.clone();
 	var tabID = defaultTab.attr('id') + numToys;
 	tab.attr('id', tabID);
-	tab.html('<a href="#toy" data-toggle="tab">Toy '+ numToys + '</a>');
+	tab.html('<h5 class="tab-label-inner"><a href="#toy" data-toggle="tab">Toy '+ numToys + '</a> &times; </h5>');
 
 	// Content is what the tab displays
 	var content = defaultContent.clone();
