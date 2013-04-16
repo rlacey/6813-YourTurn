@@ -11,15 +11,19 @@
  var activePhoto=null;
 
 $(document).ready(function(){
-	var toy1= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/original.png");
+	var toy1= new toy(1,'abc','1-4','new',['cat1','cat2'],'desc',"images/original.png");
 	var toy2= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/logo_black.png");
-	var toy3= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/logo_inverted.png");
+	var toy3= new toy(1,'ghi','1-4','new',['cat1','cat2'],'desc',"images/logo_inverted.png");
 	addNewToy(toy1);
 	addNewToy(toy2);
 	addNewToy(toy3);
 	addNewToy(toy1);
 	addNewToy(toy2);
 
+	//Register handler to clean the cart
+	$('#modalCart').on('hidden', function () {
+    	clearCart();
+	})
 });
 
 function addNewToy(toy){
@@ -90,9 +94,71 @@ function addToCart(){
 }
 
 function viewCart(){
+	var cartList=$('#cartList');
+	for (i=0;i<cart.length;i++){
+		var newEntry=$('<li>',{id:'cart'+cart[i].name.replace(/\s/g, '')});
+		var newRow=$('<div>',{class:'row-fluid'});
+		//Fill picture column
+		var picCol =$('<div>',{class:'span2'});
+		var pic=$('<img>',{src:cart[i].photo});
+		picCol.append(pic);
+		newRow.append(picCol);
+		console.log(newRow);
+
+		//Fill in toy name
+		console.log('toyName i: '+i)
+		var nameCol=$('<div>',{class:'span5 vertical'});
+		nameCol.html(cart[i].name);
+		newRow.append(nameCol);
+
+		//Fill in x button
+		console.log('xbutton i: '+i)
+		var buttonCol=$('<div>',{class:'span1 offset4 pull-right vertical'});
+		var xbutton = $('<button>',{type:"button",class:"close",html:'&times'}); //data-dismiss:"alert", 
+		buttonCol.append(xbutton);
+		newRow.append(buttonCol);
+		xbutton.click(assignClick(cart[i].name, i));
+		console.log('after registering click i: '+i)
+		//put row in li entry
+		newEntry.append(newRow);
+		//Put li in UL
+		cartList.append(newEntry);
+
+		if(i!=cart.length-1){
+			var divider=$('<li>', {class:'divider'});
+			cartList.append(divider);
+		}
+		console.log('done i: '+i)
+	}
 	$('#modalCart').modal({});
 }
 
+
+//Click helper
+function assignClick(toyName,i){
+	return function(event){
+		removeFromCart(toyName,i);
+	}
+}
+
+function removeFromCart(toyName,row){
+	cartSize=cart.length;
+	console.log(row);
+	console.log(toyName);
+	var rowToDelete=$('#cart'+toyName.replace(/\s/g, ''));
+	if (row != cartSize-1){
+		$('#cart'+toyName.replace(/\s/g, '') +'~ .divider:first').remove();
+	}
+	//remove list entry with toy
+	rowToDelete.remove();
+	cart.splice(row,1);
+	//finished splicing
+}
+
+
+function clearCart(){
+	$('#cartList').children().remove();
+}
 
 function checkout(){
 	alert('not implemented');
