@@ -5,20 +5,24 @@
 
  var numRows=1;
  var capPerRow=3;
- var numPerRow={1:0}
+ var numPerRow={1:0};
+ var cart=[];
+ var activeName=null;
+ var activePhoto=null;
 
 $(document).ready(function(){
-	var toy1= new toy(1,'badddddddddddddddddddddddddddddddddddddddddd','1-4','new','cat1','desc',"images/original.png");
+	var toy1= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/original.png");
+	var toy2= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/logo_black.png");
+	var toy3= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/logo_inverted.png");
 	addNewToy(toy1);
+	addNewToy(toy2);
+	addNewToy(toy3);
 	addNewToy(toy1);
-	addNewToy(toy1);
-	addNewToy(toy1);
-	addNewToy(toy1);
+	addNewToy(toy2);
 
 });
 
 function addNewToy(toy){
-	console.log('in add new toy')
 	if (numPerRow[numRows] + 1 <= capPerRow){
 		numPerRow[numRows] += 1;
 	}
@@ -43,12 +47,11 @@ function addNewToy(toy){
 
 
 	var pic= $('<img>',{src:toy.photo, class:'img-polaroid', style:"cursor:hand;cursor:pointer"});
-	console.log(pic);
 	colDiv.append(pic);
 
 	//Register click on image bringing modal
-	pic.click(function(toy){
-		moreDetails(toy)
+	pic.click({'toy':toy},function(e){
+		moreDetails(e);
 	});
 
 
@@ -66,6 +69,31 @@ function toy(id, name, ageRange, condition, categories, description, photo){
 	this.photo=photo;
 }
 
-function moreDetails(toy){
-	alert('sup')
+function moreDetails(e){
+	$('#cartConfirmation').hide();
+	toy=e.data.toy;
+	console.log(toy);
+	$('#modalToyImage').attr('src',toy.photo);
+	$('#modalToyTitle').html(toy.name);
+	$('#modalToyCats').html('<strong>Categories: </strong>'+toy.categories.join());
+	$('#modalToyCondition').html('<strong>Condition: </strong>'+toy.condition);
+	$('#modalToyDesc').html('<strong>Description: </strong>'+toy.description);
+	$('#modalToy').modal({});
+	activePhoto=toy.photo;
+	activeName=toy.name;
+}
+
+function addToCart(){
+	cart.push({name:activeName,photo:activePhoto});
+	$('#modalToy').modal('hide');
+	$('#cartConfirmation').show();
+}
+
+function viewCart(){
+	$('#modalCart').modal({});
+}
+
+
+function checkout(){
+	alert('not implemented');
 }

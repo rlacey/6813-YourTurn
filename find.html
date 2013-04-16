@@ -27,7 +27,8 @@
 
 		<!-- Load any supplemental Javascript libraries here -->
 		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.js"></script>
+
 		<script src='find.js'></script>
 	</head>
 
@@ -81,12 +82,13 @@
 			    	<div class='span8 offset2'>
 			    		<div class='row-fluid'>
 			    			<div style='float:right'>
-			    				<form class='form-inline' id='cartForm'>
-				    				<label class='control-label' for='cart'> View Cart</label>
-				    				<i id='cart' class='icon-shopping-cart'></i>
-				    			</form>
+			    				<a id='cart' href='#' class='btn btn-link' onclick='viewCart()'>View Cart <i class='icon-shopping-cart'></i></a>
 		    				</div>
 		    			</div>
+		    			<div id='cartConfirmation' class='alert alert-success' style='display:none'>
+	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Congratulations!</strong> Your cart has been updated.
+	    				</div>
 			    		<div class='row-fluid'>
 					    	<div class='span3'>
 						    	<ul class='nav nav-list'>
@@ -151,8 +153,66 @@
 							</div>
 						</div>
 					</div>
+				</div> <!--row fluid>
+			<!-- ================================================
+
+			TOY DETAILS MODAL
+
+			===================================================== -->
+
+				<div id="modalToy" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
+					<div class="modal-header">
+					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					    <h3 id='modalToyTitle'></h3>
+				    </div>
+				    <div class='modal-body'>
+				    	<div id='modalToyImageWrapper' class='text-center'>
+				    		<img id='modalToyImage'></img>
+			    		</div>
+			    		<div>
+			    			<p id='modalToyCats'></p>
+		    			</div>
+		    			<div>
+			    			<p id='modalToyCondition'></p>
+		    			</div>
+		    			<div>
+			    			<p id='modalToyDesc'></p>
+		    			</div>
+	    			</div>
+	    			<div class='modal-footer'>
+	    				<a href='#' onclick="$('#modalToy').modal('hide')" class='btn'>Cancel</a>
+	    				<a href='#' class='btn'>Message Owner</a>
+	    				<a href='#' onclick='addToCart()' class='btn'>Add to Cart</a>
+					</div>
 				</div>
-			</div>	
+
+
+
+
+			<!-- ================================================
+
+			Cart Modal
+
+			===================================================== -->
+
+				<div id="modalCart" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
+					<div class="modal-header">
+					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					    <h3 id='Cart'>Your Cart</h3>
+				    </div>
+				    <div class='modal-body'>
+				    	
+	    			</div>
+	    			<div class='modal-footer'>
+	    				<a href='#' onclick="$('#modalCart').modal('hide')" class='btn'>Cancel</a>
+	    				<a href='#' onclick='checkout()' class='btn'>Checkout</a>
+					</div>
+				</div>
+
+			</div>	<!--content-->
+
+
+
 			<!-- =================================================
 
 			FOOTER
