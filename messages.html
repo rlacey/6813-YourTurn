@@ -17,19 +17,32 @@
 
 		<style>
 			#contacts-pane {
-				background-color: blue;
+				background-color: white;
 				height: 80%;
-				border: solid 3px;
+				overflow: auto;				
 			}
+
+			#messages-pane {
+				background-color: white;
+				height: 80%;
+				overflow: auto;				
+			}		
 
 			.contact {
-				margin: 5px;
-				background-color: white;
+				padding-top: 1px;
+				padding-bottom: 1px;
+				padding-left: 5px;
+				padding-right: 5px;
 			}
 
-			hr {
-				color: black;
+			.selected {
+				background-color: #00FFFF;
 			}
+
+			ul {
+			    list-style-type: none;
+			}
+
 		</style>
 	</head>
 
@@ -58,7 +71,7 @@
 							        <ul class="nav">
 								        <li><a href="index.html"><i class="icon-home"></i> Home</a></li>
 								        <li><a href="give.html"><i class="icon-heart"></i> Give</a></li>
-								        <li><a href="#find"><i class="icon-search"></i> Find</a></li>
+								        <li><a href="find.html"><i class="icon-search"></i> Find</a></li>
 								        <li><a href="#about"><i class="icon-question-sign"></i> About</a></li>
 							        </ul>
 				            	</div><!--/.nav-collapse -->
@@ -80,10 +93,53 @@
 
 			    ================================================== -->
 			    <div class="row-fluid">
-				    <div id="contacts-pane" class="span3 offset1">
-				    	<div id="default-contact" class="contact">
-				    		<h4 class"center">Name</h4>
-				    		This is the message content.
+				    <div id="contacts-pane" class="span2 offset3">
+				    	<ul>
+							<li>
+						    	<div id="default-contact" class="contact">
+						    		<h4 class"center">Name</h4>
+						    		This is the message content.
+					    		</div>
+							</li>
+						    	<div id="default-contact" class="contact selected">
+						    		<h4 class"center">Name</h4>
+						    		This is the message content.
+					    		</div>
+							</li>
+							
+						    	<div id="default-contact" class="contact">
+						    		<h4 class"center">Name</h4>
+						    		This is the message content.
+					    		</div>
+							</li>
+							
+						    	<div id="default-contact" class="contact">
+						    		<h4 class"center">Name</h4>
+						    		This is the message content.
+					    		</div>
+							</li>
+							
+						    	<div id="default-contact" class="contact">
+						    		<h4 class"center">Name</h4>
+						    		This is the message content.
+					    		</div>
+							</li>												
+						</ul>
+
+
+				    	
+				    </div>
+				    <div id="messages-pane" class="span5">
+				    	<div id="message" class="contact">
+				    		This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. 
+				    		<hr>
+				    	</div>
+				    	<div id="message" class="contact">
+				    		This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. 
+				    		<hr>
+				    	</div>
+					    	<div id="message" class="contact">
+				    		This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. 
 				    		<hr>
 				    	</div>
 				    </div>
