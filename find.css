@@ -9,3 +9,10 @@
 	word-wrap: break-word;
 	text-align: left;
 }
+
+.vertical{
+	position:relative;
+	top:5;
+	width:100%;
+	left:0%;
+}
