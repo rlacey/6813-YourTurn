@@ -4,7 +4,7 @@
  */
 
  var numRows=1;
- var capPerRow=4;
+ var capPerRow=3;
  var numPerRow={1:0}
 
 $(document).ready(function(){
@@ -33,13 +33,24 @@ function addNewToy(toy){
 		$('#toyWrapper').append(newRow);
 	}
 	var row= $('#row'+numRows);
-	var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry'});
+	if (col!=1){
+		var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry offset1'});
+	}
+	else{
+		var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry'});
+	}
 	row.append(colDiv);
 
 
-	var pic= $('<img>',{src:toy.photo, class:'img-polaroid text-center'});
+	var pic= $('<img>',{src:toy.photo, class:'img-polaroid', style:"cursor:hand;cursor:pointer"});
 	console.log(pic);
 	colDiv.append(pic);
+
+	//Register click on image bringing modal
+	pic.click(function(toy){
+		moreDetails(toy)
+	});
+
 
 	var text=$('<p>',{class:'toyBrief', html:'<strong>Name</strong>:'+toy.name+'<br><strong>Condition</strong>:'+toy.condition});
 	colDiv.append(text);
@@ -53,4 +64,8 @@ function toy(id, name, ageRange, condition, categories, description, photo){
 	this.condition=condition;
 	this.description=description;
 	this.photo=photo;
+}
+
+function moreDetails(toy){
+	alert('sup')
 }

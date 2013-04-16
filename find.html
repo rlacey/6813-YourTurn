@@ -78,77 +78,77 @@
 			    ================================================== -->
 			    <h1 id="page-title">Find Free Toys</h1><br>
 			    <div class='row-fluid'>
-			    	<div class='span3'>
-				    	<ul class='nav nav-list'>
-				    		<li class='nav-header'></li>
-				    		<li> <div class='row-fluid'>
-				    			<button class='btn btn-primary' style='margin-right:1em'>Check All Filters</button>
-				    			<button class='btn btn-warning'>Clear All Filters</button>
-				    		 </div></li>
-				    		<li class='divider'></li>
-
-				    		<li class='nav-header'></li>
-			    			<li> 
-			    				<form class="form-search">
-									<div class="input-prepend">
-									<button id='searchSubmit' type="submit" class="btn">Search</button>
-									<input id='searchFilter' type="text" class="span10 search-query">
-									</div>
-								</form>
-							</li>
-							<li class='divider'></li>
-							<li class='nav-header'>Toy Age Range</li>
-							<li> <input id='ageFrom' class="input-mini" type="text" style='margin-right:1em'> to <input id='ageTo' class="input-mini" type="text" style='margin-left:1em'> </li>
-							<li class='divider'></li>
-							<li class='nav-header'>Categories</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='actionFigures'> Action Figures</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='tradingCards'> Trading Cards</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='dolls'> Dolls</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='boardGames'> Board Games</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='puzzles'> Puzzles</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='videoGames'> Video Games</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='instruments'> Instruments</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='bikes'> Bikes</li>
-							<li> <label class='checkbox'> <input type='checkbox' value='' id='toyCars'> Toy Cars</li>
-						</ul>
-
-			    	</div>
-			    	<div class='span9'>
+			    	<div class='span8 offset2'>
 			    		<div class='row-fluid'>
-					    	<div class='span2'>
-							    <form class='form-horizontal' id="sortByForm">
-							    	<fieldset>
-							    		<div class='control-group'>
-							    			<label class='control-label' for='sortBy'> Sort By:</label>
-							    			<div class='controls'>
-									    		<select id="sortBy">
-									    			<option>Name</option>
-									    			<option>Date</Date>
-												</select>
-											</div>
-										</div>
-									</fieldset>
-						    	</form>
-					    	</div>
-					    	<div class='span2 offset5'>
-							    <form class='form-horizontal' id="numPerPageForm">
-							    	<fieldset>
-							    		<div class='control-group'>
-							    			<label class='control-label' for='numPer'> Results Per Page:</label>
-							    			<div class='controls'>
-									    		<select id="numPer">
-									    			<option>12</option>
-									    			<option>20</Date>
-									    			<option>40</option>
-												</select>
-											</div>
-										</div>
-									</fieldset>
-						    	</form>
-							</div>
-						</div>
-						<div class='row-fluid' id='toyWrapper'>
+			    			<div style='float:right'>
+			    				<form class='form-inline' id='cartForm'>
+				    				<label class='control-label' for='cart'> View Cart</label>
+				    				<i id='cart' class='icon-shopping-cart'></i>
+				    			</form>
+		    				</div>
+		    			</div>
+			    		<div class='row-fluid'>
+					    	<div class='span3'>
+						    	<ul class='nav nav-list'>
+						    		<li class='nav-header'></li>
+						    		<li> <div class='row-fluid'>
+						    			<button class='btn btn-mini btn-primary' style='margin-right:0.5em'>Check Filters</button>
+						    			<button class='btn btn-warning btn-mini'>Clear Filters</button>
+						    		 </div></li>
+						    		<li class='divider'></li>
 
+						    		<li class='nav-header'></li>
+					    			<li> 
+					    				<form class="form-search">
+											<div class="input-prepend">
+											<button id='searchSubmit' type="submit" class="btn">Search</button>
+											<input id='searchFilter' type="text" class="span5 search-query">
+											</div>
+										</form>
+									</li>
+									<li class='divider'></li>
+									<li class='nav-header'>Toy Age Range</li>
+									<li> <input id='ageFrom' class="input-mini" type="text" style='margin-right:1em'> to <input id='ageTo' class="input-mini" type="text" style='margin-left:1em'> </li>
+									<li class='divider'></li>
+									<li class='nav-header'>Categories</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='actionFigures'> Action Figures</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='tradingCards'> Trading Cards</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='dolls'> Dolls</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='boardGames'> Board Games</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='puzzles'> Puzzles</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='videoGames'> Video Games</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='instruments'> Instruments</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='bikes'> Bikes</li>
+									<li> <label class='checkbox'> <input type='checkbox' value='' id='toyCars'> Toy Cars</li>
+								</ul>
+
+					    	</div>
+					    	<div class='span9'>
+					    		<div class='row-fluid'>
+							    	<div class='span4'>
+									    <form class='form-inline' id="sortByForm">
+							    			<label class='control-label' for='sortBy'> Sort By:</label>
+								    		<select id="sortBy" style='width:100px'>
+								    			<option>Name</option>
+								    			<option>Date</option>
+											</select>
+								    	</form>
+							    	</div>
+							    	<div style='float:right'>
+									    <form class='form-inline' id="numPerPageForm">
+							    			<label class='control-label' for='numPer'> Results Per Page:</label>
+								    		<select id="numPer" style='width:75px'>
+								    			<option>12</option>
+								    			<option>20</Date>
+								    			<option>40</option>
+											</select>
+								    	</form>
+									</div>
+								</div>
+								<div class='row-fluid' id='toyWrapper'>
+
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
