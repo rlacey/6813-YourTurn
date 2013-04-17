@@ -39,7 +39,8 @@ function addAnotherToy() {
 	var tab = defaultTab.clone();
 	var tabID = defaultTab.attr('id') + numToys;
 	tab.attr('id', tabID);
-	tab.html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button> <a href="#toy" data-toggle="tab">Toy '+ numToys + '</a>');
+	tab.html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
+		+ ' <a href="#toy" data-toggle="tab"><strong>Toy '+ numToys + '</strong></a>');
 
 	// Content is what the tab displays
 	var content = defaultContent.clone();
@@ -129,7 +130,8 @@ function submitToyForms() {
 function switchTab(tab) {
 	console.log("running... tabID="+tab);
 	if ($('#toyName'+currentTabNumber).val()!=='') {
-		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button> <a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
+		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
+			+ ' <a href="#toy" data-toggle="tab"><strong>'+ $('#toyName'+currentTabNumber).val() + '</strong></a>');
 	}
 
 	var tabID = tab.split("-")[1];
