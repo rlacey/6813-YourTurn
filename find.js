@@ -4,7 +4,7 @@
  */
 
  var numRows=1;
- var capPerRow=3;
+ var capPerRow=4;
  var numPerRow={1:0};
  var cart=[];
  var activeName=null;
@@ -41,16 +41,12 @@ function addNewToy(toy){
 		$('#toyWrapper').append(newRow);
 	}
 	var row= $('#row'+numRows);
-	if (col!=1){
-		var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry offset1'});
-	}
-	else{
-		var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry'});
-	}
+	
+	var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry'});
 	row.append(colDiv);
 
 
-	var pic= $('<img>',{src:toy.photo, class:'img-polaroid', style:"cursor:hand;cursor:pointer"});
+	var pic= $('<img>',{src:toy.photo, class:'img-polaroid', style:"cursor:hand;cursor:pointer; max-width:300px; width: 90%; height: 10em;" });
 	colDiv.append(pic);
 
 	//Register click on image bringing modal
@@ -59,7 +55,7 @@ function addNewToy(toy){
 	});
 
 
-	var text=$('<p>',{class:'toyBrief', html:'<strong>Name</strong>:'+toy.name+'<br><strong>Condition</strong>:'+toy.condition});
+	var text=$('<p>',{class:'toyBrief', html:toy.name});
 	colDiv.append(text);
 }
 
@@ -76,7 +72,6 @@ function toy(id, name, ageRange, condition, categories, description, photo){
 function moreDetails(e){
 	$('#cartConfirmation').hide();
 	toy=e.data.toy;
-	console.log(toy);
 	$('#modalToyImage').attr('src',toy.photo);
 	$('#modalToyTitle').html(toy.name);
 	$('#modalToyCats').html('<strong>Categories: </strong>'+toy.categories.join());
@@ -88,47 +83,60 @@ function moreDetails(e){
 }
 
 function addToCart(){
-	cart.push({name:activeName,photo:activePhoto});
+	$('#finalCheckoutConfirmation').hide();
+	if (cart.length<5){
+		cart.push({name:activeName,photo:activePhoto});
+		$('#cartConfirmation').show();
+	}
+	else{
+		$('#cartFullAlert').show();
+	}
 	$('#modalToy').modal('hide');
-	$('#cartConfirmation').show();
+
+	
 }
 
 function viewCart(){
+	$('#cartConfirmation').hide();
 	var cartList=$('#cartList');
-	for (i=0;i<cart.length;i++){
-		var newEntry=$('<li>',{id:'cart'+cart[i].name.replace(/\s/g, '')});
-		var newRow=$('<div>',{class:'row-fluid'});
-		//Fill picture column
-		var picCol =$('<div>',{class:'span2'});
-		var pic=$('<img>',{src:cart[i].photo});
-		picCol.append(pic);
-		newRow.append(picCol);
-		console.log(newRow);
+	if (cart.length==0){
+		$('#emptyCart').show();
+ 		$('#checkoutButton').attr("disabled", true);
 
-		//Fill in toy name
-		console.log('toyName i: '+i)
-		var nameCol=$('<div>',{class:'span5 vertical'});
-		nameCol.html(cart[i].name);
-		newRow.append(nameCol);
+	}
+	else{
+		$('#emptyCart').hide();
+		$('#checkoutButton').attr("disabled", false);
+		for (i=0;i<cart.length;i++){
+			var newEntry=$('<li>',{id:'cart'+cart[i].name.replace(/\s/g, '')});
+			var newRow=$('<div>',{class:'row-fluid'});
+			//Fill picture column
+			var picCol =$('<div>',{class:'span2'});
+			var pic=$('<img>',{src:cart[i].photo});
+			picCol.append(pic);
+			newRow.append(picCol);
 
-		//Fill in x button
-		console.log('xbutton i: '+i)
-		var buttonCol=$('<div>',{class:'span1 offset4 pull-right vertical'});
-		var xbutton = $('<button>',{type:"button",class:"close",html:'&times'}); //data-dismiss:"alert", 
-		buttonCol.append(xbutton);
-		newRow.append(buttonCol);
-		xbutton.click(assignClick(cart[i].name, i));
-		console.log('after registering click i: '+i)
-		//put row in li entry
-		newEntry.append(newRow);
-		//Put li in UL
-		cartList.append(newEntry);
+			//Fill in toy name
+			var nameCol=$('<div>',{class:'span5 vertical'});
+			nameCol.html(cart[i].name);
+			newRow.append(nameCol);
 
-		if(i!=cart.length-1){
-			var divider=$('<li>', {class:'divider'});
-			cartList.append(divider);
+			//Fill in x button
+			var buttonCol=$('<div>',{class:'span1 offset4 pull-right vertical'});
+			var xbutton = $('<button>',{type:"button",class:"close",html:'&times'}); //data-dismiss:"alert", 
+			buttonCol.append(xbutton);
+			newRow.append(buttonCol);
+			xbutton.click(assignClick(cart[i].name, i));
+			//put row in li entry
+			newEntry.append(newRow);
+			//Put li in UL
+			cartList.append(newEntry);
+
+			if(i!=cart.length-1){
+				var divider=$('<li>', {class:'divider'});
+				cartList.append(divider);
+			}
 		}
-		console.log('done i: '+i)
 	}
 	$('#modalCart').modal({});
 }
@@ -143,8 +151,6 @@ function assignClick(toyName,i){
 
 function removeFromCart(toyName,row){
 	cartSize=cart.length;
-	console.log(row);
-	console.log(toyName);
 	var rowToDelete=$('#cart'+toyName.replace(/\s/g, ''));
 	if (row != cartSize-1){
 		$('#cart'+toyName.replace(/\s/g, '') +'~ .divider:first').remove();
@@ -153,6 +159,11 @@ function removeFromCart(toyName,row){
 	rowToDelete.remove();
 	cart.splice(row,1);
 	//finished splicing
+
+	if(cart.length==0){
+		$('#emptyCart').show();
+		 $('#checkoutButton').attr("disabled", true);
+	}
 }
 
 
@@ -161,5 +172,66 @@ function clearCart(){
 }
 
 function checkout(){
-	alert('not implemented');
+	$('#modalCart').modal('hide');
+	$('#checkoutMessageConfirmation').hide();
+	for(i=0;i<cart.length;i++){
+		//Create the tab
+		if (i==0){
+			var ownerEntry= $('<li>',{class:'active'});
+		}
+		else{
+			var ownerEntry= $('<li>');
+		}
+		var owner = $('<a>',{href:'#message'+i,text:cart[i].name});
+		owner.attr('data-toggle','tab');
+		ownerEntry.append(owner);
+		$('#ownerList').append(ownerEntry);
+
+		//Create message body
+		if (i==0){
+			var tabPane=$('<div>',{class:'tab-pane active',id:'message'+i});
+		}
+		else{
+			var tabPane=$('<div>',{class:'tab-pane',id:'message'+i});
+		}
+		var message = $('<textarea>', {style:"width:28em;height:13em", id:'messageText'+i});
+		tabPane.append(message);
+		$('#ownerMessages').prepend(tabPane)
+	}
+	$('#modalCheckout').modal({});
+}
+//Send a message to the owner and close the tab and message content for the toy
+function requestToy(){
+	var activeTab = $('#ownerList li.active');
+	var tabBodyID = $('ul#ownerList li.active a').attr('href');
+	var activeTabBody= $(tabBodyID);
+	var tabNum = tabBodyID.split('message')[1];
+
+	if ($('#ownerList li').length!=1){
+		//is it the first tab in the row
+		if (tabNum==$('#ownerList li:first a').attr('href').split('message')[1]){
+			console.log(' not first tab');
+			//Set next tab to active
+			$('#ownerList li.active').next().addClass('active');
+			//Set next tab body to active
+			$('#message'+(tabNum+1)).addClass('active');
+		}
+		else{
+			//Set previous tab to active
+			$('#ownerList li.active').prev().addClass('active');
+			//Set previous tab body to active
+			$('#message'+(tabNum-1)).addClass('active');
+		}
+		activeTab.remove();
+		activeTabBody.remove();
+		$('#checkoutMessageConfirmation').show();
+	}
+	//Last message to toy owner
+	else{
+		$('#modalCheckout').modal('hide');
+		$('#finalCheckoutConfirmation').show();
+	}
+
+	//Remove item from cart
+	cart.splice(tabBodyID,1);
 }
