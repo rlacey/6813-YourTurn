@@ -6170,6 +6170,10 @@ body {
   margin:0;
   padding:0;
   height:100%;
+  /*font-family: 'Crafty Girls', cursive;*/
+  /*font-family: 'The Girl Next Door', cursive;*/
+  font-family: 'Permanent Marker', cursive;
+  /*font-family: 'Rock Salt', cursive;*/
 }
 
 #wrapper {
