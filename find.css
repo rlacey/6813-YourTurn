@@ -7,7 +7,8 @@
 }
 .toyBrief {
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
+	font-size:large;
 }
 
 .vertical{
@@ -15,4 +16,9 @@
 	top:5;
 	width:100%;
 	left:0%;
+}
+
+.modal-body{
+	max-height:300px;
+	overflow-y:auto;
 }
