@@ -12,15 +12,17 @@
 	    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	    <link href="find.css" rel="stylesheet">
 
-	    <!-- <link href='http://fonts.googleapis.com/css?family=Crafty+Girls' rel='stylesheet' type='text/css'> -->
-	    <!-- <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'> -->
-	    <!-- <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'> -->
-	    <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>	    
 
 	    <style type="text/css">
+		    .center {
+			    display: block;
+			    margin-left: auto;
+			    margin-right: auto
+		    }
 
 		    #page-title {
 		    	text-align: center;
+		    	color:#435299;
 		    }
 	    </style>
 
@@ -81,12 +83,20 @@
 			    	<div class='span8 offset2'>
 			    		<div class='row-fluid'>
 			    			<div style='float:right'>
-			    				<a id='cart' href='#' class='btn btn-link' onclick='viewCart()'>View Cart <i class='icon-shopping-cart'></i></a>
+			    				<a id='cart' href='#' class='btn btn-link' style='font-size:medium' onclick='viewCart()'>View Cart <i class='icon-shopping-cart'></i></a>
 		    				</div>
 		    			</div>
 		    			<div id='cartConfirmation' class='alert alert-success' style='display:none'>
 	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Congratulations!</strong> Your cart has been updated.
+	    				</div>
+	    				<div id='cartFullAlert' class='alert alert-error' style='display:none'>
+	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Sorry!</strong> You can only have five items in your cart :(.
+	    				</div>
+	    				<div id='finalCheckoutConfirmation' class='alert alert-info' style='display:none'>
+	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Last request has been sent!</strong>
 	    				</div>
 			    		<div class='row-fluid'>
 					    	<div class='span3'>
@@ -200,29 +210,58 @@
 					    <h3 id='Cart'>Your Cart</h3>
 				    </div>
 				    <div class='modal-body'>
+				    	<div id='emptyCart' style='display:none'>Your cart is empty. Find some toys to add!</div>
 			    		<ul id='cartList' class='nav nav-list'>
-				    			<!--<li> <div class='row-fluid'>
-				    				<div class='span2'>
-				    					<img src="images\original.png"> 
-			    					</div>
-			    					<div class='span5 vertical'>
-			    						Item Name Here!
-		    						</div>
-		    						<div class='span1 offset4 pull-right vertical'>
-		    							<button type="button" class="close" data-dismiss="alert">&times;</button>
-	    							</div>
-				    			</div></li>
-				    			<li class='divider'></li>
-				    			<li> item 2</li>
-				    			<li class='divider'></li>
-				    			<li> item 3</li> !-->
-				    			
 			    		</ul>
 	    			</div>
 	    			<div class='modal-footer'>
 	    				<a href='#' onclick="$('#modalCart').modal('hide');" class='btn'>Cancel</a>
-	    				<a href='#' onclick='checkout()' class='btn'>Checkout</a>
+	    				<button id='checkoutButton' onclick='checkout();' class='btn'>Checkout</a>
 					</div>
+				</div>
+
+
+
+			<!-- ================================================
+
+			Checkout Modal
+
+			===================================================== -->
+
+				<div id="modalCheckout" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
+					<div class="modal-header">
+					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+					    <h3>Message the toy owners</h3>
+				    </div>
+				    <div class='modal-body'>
+		    			<div id='checkoutMessageConfirmation' class='alert alert-info' style='display:none'>
+	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Your message has been sent!</strong>
+	    				</div>
+				    	<div class='tabbable tabs-left'>
+			    			<ul id='ownerList' class='nav nav-tabs'>
+			    				<!-- <li class='active'><a href='#1A' data-toggle='tab'> tab 1</a></li>
+			    				<li><a href='#2A' data-toggle='tab'> tab 2</a></li>
+			    				<li><a href='#3A' data-toggle='tab'> tab 3</a></li>
+			    				<li><a href='#4A' data-toggle='tab'> tab 4</a></li>
+			    				<li><a href='#5A' data-toggle='tab'> tab 5</a></li> -->
+			    			</ul>
+			    			<div id='ownerMessages'class='tab-content' style='position:relative'>
+			    				<!-- <div class='tab-pane active' id='1A'>
+			    					<textarea style="width:28em; height:14em"></textarea>
+			    				</div> -->
+				    			<div class='row-fluid' id='checkoutButtonRow'>
+				    				<div class='span1 offset6'>
+					    				<button type='button' class='btn' onclick="$('#modalCheckout').modal('hide')">Cancel</button>
+				    				</div>
+				    				<div class='span1 offset2'>
+				    					<button type='button' class='btn btn-primary' onclick='requestToy();'>Send</button>
+				    				</div>
+			    				</div>
+			    			</div>
+
+			    		</div>
+	    			</div>
 				</div>
 
 			</div>	<!--content-->
