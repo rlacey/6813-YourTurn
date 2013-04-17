@@ -23,7 +23,10 @@ $(document).ready(function(){
 	//Register handler to clean the cart
 	$('#modalCart').on('hidden', function () {
     	clearCart();
-	})
+	});
+	$('#modalCheckout').on('hidden', function () {
+    	clearCheckout();
+	});
 });
 
 function addNewToy(toy){
@@ -195,6 +198,7 @@ function checkout(){
 			var tabPane=$('<div>',{class:'tab-pane',id:'message'+i});
 		}
 		var message = $('<textarea>', {style:"width:28em;height:13em", id:'messageText'+i});
+		message.focus();
 		tabPane.append(message);
 		$('#ownerMessages').prepend(tabPane)
 	}
@@ -210,20 +214,18 @@ function requestToy(){
 	if ($('#ownerList li').length!=1){
 		//is it the first tab in the row
 		if (tabNum==$('#ownerList li:first a').attr('href').split('message')[1]){
-			console.log(' not first tab');
+			console.log('first tab');
 			//Set next tab to active
 			$('#ownerList li.active').next().addClass('active');
 			//Set next tab body to active
-			$('#message'+(tabNum+1)).addClass('active');
+			$('#message'+(tabNum+1).toString()).addClass('active');
 		}
 		else{
 			//Set previous tab to active
 			$('#ownerList li.active').prev().addClass('active');
 			//Set previous tab body to active
-			$('#message'+(tabNum-1)).addClass('active');
+			$('#message'+(tabNum-1).toString()).addClass('active');
 		}
-		activeTab.remove();
-		activeTabBody.remove();
 		$('#checkoutMessageConfirmation').show();
 	}
 	//Last message to toy owner
@@ -231,7 +233,14 @@ function requestToy(){
 		$('#modalCheckout').modal('hide');
 		$('#finalCheckoutConfirmation').show();
 	}
+	activeTab.remove();
+	activeTabBody.remove();
 
 	//Remove item from cart
 	cart.splice(tabBodyID,1);
+}
+
+function clearCheckout(){
+	$('#ownerList').children().remove();
+	$('#ownerMessages').children('.tab-pane').remove();
 }
