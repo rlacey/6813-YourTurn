@@ -198,7 +198,6 @@ function checkout(){
 			var tabPane=$('<div>',{class:'tab-pane',id:'message'+i});
 		}
 		var message = $('<textarea>', {style:"width:28em;height:13em", id:'messageText'+i});
-		message.focus();
 		tabPane.append(message);
 		$('#ownerMessages').prepend(tabPane)
 	}
@@ -218,13 +217,15 @@ function requestToy(){
 			//Set next tab to active
 			$('#ownerList li.active').next().addClass('active');
 			//Set next tab body to active
-			$('#message'+(tabNum+1).toString()).addClass('active');
+			var nextTab=parseInt(tabNum)+1;
+			$('#message'+nextTab).addClass('active');
 		}
 		else{
 			//Set previous tab to active
 			$('#ownerList li.active').prev().addClass('active');
 			//Set previous tab body to active
-			$('#message'+(tabNum-1).toString()).addClass('active');
+			var prevTab=parseInt(tabNum)-1;
+			$('#message'+prevtab).addClass('active');
 		}
 		$('#checkoutMessageConfirmation').show();
 	}
