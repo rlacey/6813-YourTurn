@@ -60,6 +60,8 @@ function addAnotherToy() {
 	ageRange.attr('id', 'ageRange'+numToys);	
 	var condition = $('#'+contentID).find('#condition');
 	condition.attr('id', 'condition'+numToys);
+	var category = $('#'+contentID).find('#category');
+	category.attr('id', 'category'+numToys);	
 	var description = $('#'+contentID).find('#description');
 	description.attr('id', 'description'+numToys);	
 	var photo = $('#'+contentID).find('#toy-image');
@@ -110,10 +112,12 @@ function submitToyForms() {
 		var toyName = $('#toyName'+i).val();
 		var ageRange = $('#ageRange'+i).val();
 		var condition = $('#condition'+i).val();
+		var category = $('#catgory'+i).val();
 		var description = $('#description'+i).val();
 		console.log(toyName);
 		console.log(ageRange);
 		console.log(condition);
+		console.log(category);
 		console.log(description);
 	}
 	$("#modal-submit-confirmation").modal ("show");
