@@ -13,15 +13,9 @@
 	    <link href="find.css" rel="stylesheet">
 
 	    <style type="text/css">
-		    .center {
-			    display: block;
-			    margin-left: auto;
-			    margin-right: auto
-		    }
 
 		    #page-title {
 		    	text-align: center;
-		    	color:#435299;
 		    }
 	    </style>
 
@@ -94,8 +88,8 @@
 						    	<ul class='nav nav-list'>
 						    		<li class='nav-header'></li>
 						    		<li> <div class='row-fluid'>
-						    			<button class='btn btn-mini btn-primary' style='margin-right:0.5em' onclick="$(':checkbox').attr('checked',true);">Check Filters</button>
-						    			<button class='btn btn-warning btn-mini' onclick="$(':checkbox').attr('checked',false);">Clear Filters</button>
+						    			<button class='btn btn-mini btn-primary' style='margin-right:0.5em' onclick="$(':checkbox').prop('checked',true);">Check Filters</button>
+						    			<button class='btn btn-mini btn-warning' onclick="$(':checkbox').prop('checked',false);">Clear Filters</button>
 						    		 </div></li>
 						    		<li class='divider'></li>
 

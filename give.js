@@ -37,7 +37,7 @@ function addAnotherToy() {
 	var tab = defaultTab.clone();
 	var tabID = defaultTab.attr('id') + numToys;
 	tab.attr('id', tabID);
-	tab.html('<h5 class="tab-label-inner"><a href="#toy" data-toggle="tab">Toy '+ numToys + '</a> &times; </h5>');
+	tab.html('<a href="#toy" data-toggle="tab">Toy '+ numToys + '</a>');
 
 	// Content is what the tab displays
 	var content = defaultContent.clone();
@@ -60,6 +60,8 @@ function addAnotherToy() {
 	ageRange.attr('id', 'ageRange'+numToys);	
 	var condition = $('#'+contentID).find('#condition');
 	condition.attr('id', 'condition'+numToys);
+	var category = $('#'+contentID).find('#category');
+	category.attr('id', 'category'+numToys);	
 	var description = $('#'+contentID).find('#description');
 	description.attr('id', 'description'+numToys);	
 	var photo = $('#'+contentID).find('#toy-image');
@@ -110,10 +112,12 @@ function submitToyForms() {
 		var toyName = $('#toyName'+i).val();
 		var ageRange = $('#ageRange'+i).val();
 		var condition = $('#condition'+i).val();
+		var category = $('#catgory'+i).val();
 		var description = $('#description'+i).val();
 		console.log(toyName);
 		console.log(ageRange);
 		console.log(condition);
+		console.log(category);
 		console.log(description);
 	}
 	$("#modal-submit-confirmation").modal ("show");

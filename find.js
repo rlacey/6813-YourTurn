@@ -4,7 +4,7 @@
  */
 
  var numRows=1;
- var capPerRow=3;
+ var capPerRow=4;
  var numPerRow={1:0};
  var cart=[];
  var activeName=null;
@@ -12,7 +12,7 @@
 
 $(document).ready(function(){
 	var toy1= new toy(1,'abc','1-4','new',['cat1','cat2'],'desc',"images/original.png");
-	var toy2= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/logo_black.png");
+	var toy2= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/wallpaper.jpg");
 	var toy3= new toy(1,'ghi','1-4','new',['cat1','cat2'],'desc',"images/logo_inverted.png");
 	addNewToy(toy1);
 	addNewToy(toy2);
@@ -42,7 +42,7 @@ function addNewToy(toy){
 	}
 	var row= $('#row'+numRows);
 	if (col!=1){
-		var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry offset1'});
+		var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry '});
 	}
 	else{
 		var colDiv= $('<div>', {id:'row'+numRows+'col'+col,class:'span3 toyEntry'});
@@ -50,7 +50,7 @@ function addNewToy(toy){
 	row.append(colDiv);
 
 
-	var pic= $('<img>',{src:toy.photo, class:'img-polaroid', style:"cursor:hand;cursor:pointer"});
+	var pic= $('<img>',{src:toy.photo, class:'img-polaroid', style:"cursor:hand;cursor:pointer; max-width:300px; width: 90%; height: 10em;" });
 	colDiv.append(pic);
 
 	//Register click on image bringing modal
