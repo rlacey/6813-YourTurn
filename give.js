@@ -4,6 +4,7 @@
  */
 
 var numToys = 0;
+var trackedToys = 0;
 var currentTabNumber = 0;
 var toyIDs = new Array();
 var defaultTab;
@@ -31,13 +32,14 @@ $(document).ready(function() {
  */
 function addAnotherToy() {
 	numToys++;
-	toyIDs.push(numToys);
+	trackedToys++;
+	toyIDs.push(numToys.toString());
 
 	// Tab is the label that a user clicks
 	var tab = defaultTab.clone();
 	var tabID = defaultTab.attr('id') + numToys;
 	tab.attr('id', tabID);
-	tab.html('<a href="#toy" data-toggle="tab">Toy '+ numToys + '</a>');
+	tab.html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button> <a href="#toy" data-toggle="tab">Toy '+ numToys + '</a>');
 
 	// Content is what the tab displays
 	var content = defaultContent.clone();
@@ -47,11 +49,6 @@ function addAnotherToy() {
 	// Add tab to tabs list
 	$('#tab-labels').append(tab);
 	$('#tab-content').append(content);	
-
-	// Update title to default name (toy number) and titleID
-	var legend = $('#'+contentID).find('#title-toy');
-	legend.attr('id', 'title-toy'+numToys);
-	legend.html("Toy "+numToys);
 
 	// Update form IDs
 	var toyName = $('#'+contentID).find('#toyName');
@@ -108,17 +105,19 @@ function uploadPhotoPrompt() {
 }
 
 function submitToyForms() {
-	for (var i=1; i<=toyIDs.length; i++) {
-		var toyName = $('#toyName'+i).val();
-		var ageRange = $('#ageRange'+i).val();
-		var condition = $('#condition'+i).val();
-		var category = $('#catgory'+i).val();
-		var description = $('#description'+i).val();
-		console.log(toyName);
-		console.log(ageRange);
-		console.log(condition);
-		console.log(category);
-		console.log(description);
+	console.log(toyIDs);
+	for (var i=0; i<toyIDs.length; i++) {
+		var toyName = $('#toyName'+toyIDs[i]).val();
+		var ageRange = $('#ageRange'+toyIDs[i]).val();
+		var condition = $('#condition'+toyIDs[i]).val();
+		var category = $('#catgory'+toyIDs[i]).val();
+		var description = $('#description'+toyIDs[i]).val();
+		console.log(toyName+ " "+ i);
+		// console.log(toyName);
+		// console.log(ageRange);
+		// console.log(condition);
+		// console.log(category);
+		// console.log(description);
 	}
 	$("#modal-submit-confirmation").modal ("show");
 }
@@ -129,8 +128,9 @@ function submitToyForms() {
  *  Tabs only shown if more than one toy in listing. 
  */
 function switchTab(tab) {
+	console.log("running... tabID="+tab);
 	if ($('#toyName'+currentTabNumber).val()!=='') {
-		$('#tab-toy'+currentTabNumber).html('<a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
+		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button> <a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
 	}
 
 	var tabID = tab.split("-")[1];
@@ -143,10 +143,28 @@ function switchTab(tab) {
 	$('.tab-pane').attr('class', 'tab-pane');
 	$('#content-'+tabID).attr('class', 'tab-pane  active');
 	// Don't display tabs until >1 toys are listed
-	if (numToys<=1) {
+	if (trackedToys<=1) {
 		$('.tab-label').hide();
 	} else {
 		$('.tab-label').show();
+	}
+}
+
+function closeTab(e, tab) {
+	e.stopPropagation();
+	var sibling = $('#'+tab).prev();
+	console.log(sibling);
+	var tab_tail = tab.split("-")[1];
+	var tabID = tab_tail.substring(3);
+	$('#'+tab).remove();
+	$('#content-'+tab_tail).remove();
+	var index = toyIDs.indexOf(tabID);			
+	toyIDs.splice(index, 1);
+	trackedToys--;
+	if (tabID === currentTabNumber) {
+		alert(true);
+		console.log(sibling.attr('id'));
+		switchTab(sibling.attr('id'));
 	}
 }
 
