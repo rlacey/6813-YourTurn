@@ -9,16 +9,42 @@
  var cart=[];
  var activeName=null;
  var activePhoto=null;
+ var toys=[];
 
 $(document).ready(function(){
-	var toy1= new toy(1,'abc','1-4','new',['cat1','cat2'],'desc',"images/original.png");
-	var toy2= new toy(1,'Toy Name','1-4','new',['cat1','cat2'],'desc',"images/logo_black.png");
-	var toy3= new toy(1,'ghi','1-4','new',['cat1','cat2'],'desc',"images/logo_inverted.png");
+	var toy1= new toy(1,'Super Smash Bros. Melee!','8-12','new',['Video Games'],'Best video game ever!',"images/original.png");
+	var toy2= new toy(1,'Monopoly','4-7','new',['Board Games'],'This board game gave me many hours of enjoyment!',"images/logo_black.png");
+	var toy3= new toy(1,'Stradivarius','13+','new',['Instruments'],'Antique violin',"images/logo_inverted.png");
+	toys.push(toy1);
+	toys.push(toy2);
+	toys.push(toy3);
+	toys.push(toy1);
+	toys.push(toy2);
+	toys.push(toy3);
 	addNewToy(toy1);
 	addNewToy(toy2);
 	addNewToy(toy3);
 	addNewToy(toy1);
 	addNewToy(toy2);
+
+	$(':checked').change(function(){
+		var checkedCats = [];
+		$(':checked').each(function(i){
+			console.log(i)
+			checkedCats.push($(this).val());
+		});
+		console.log(checkedCats);
+		$('#toyWrapper').children().remove();
+		numPerRow={1:0};
+		for (j=0;j<toys.length;j++){
+			for (k=0;k<checkedCats.length;k++){
+				if (toys[j].categories==checkedCats[k]){
+					addNewToy(toys[j]);
+					continue;
+				}
+			}
+		}
+	});
 
 	//Register handler to clean the cart
 	$('#modalCart').on('hidden', function () {
@@ -244,4 +270,18 @@ function requestToy(){
 function clearCheckout(){
 	$('#ownerList').children().remove();
 	$('#ownerMessages').children('.tab-pane').remove();
+}
+
+function checkAllFilters(){
+	$('#categories :checkbox').prop('checked',true);
+	var temp = $('#categories :checked:first');
+	temp.click();
+	temp.click();
+}
+
+function clearAllFilters(){
+	$('#categories :checkbox').prop('checked',false);
+	var temp = $("#categories :checkbox:not(:checked)");
+	temp.click();
+	temp.click();
 }

@@ -103,8 +103,8 @@
 						    	<ul class='nav nav-list'>
 						    		<li class='nav-header'></li>
 						    		<li> <div class='row-fluid'>
-						    			<button class='btn btn-mini btn-primary' style='margin-right:0.5em' onclick="$(':checkbox').prop('checked',true);">Check Filters</button>
-						    			<button class='btn btn-mini btn-warning' onclick="$(':checkbox').prop('checked',false);">Clear Filters</button>
+						    			<button class='btn btn-mini btn-primary' style='margin-right:0.5em' onclick="checkAllFilters();">Check Filters</button>
+						    			<button class='btn btn-mini btn-warning' onclick="clearAllFilters();">Clear Filters</button>
 						    		 </div></li>
 						    		<li class='divider'></li>
 
@@ -122,15 +122,20 @@
 									<li> <input id='ageFrom' class="input-mini" type="text" style='margin-right:1em'> to <input id='ageTo' class="input-mini" type="text" style='margin-left:1em'> </li>
 									<li class='divider'></li>
 									<li class='nav-header'>Categories</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='actionFigures'> Action Figures</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='bikes'> Bikes</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='boardGames'> Board Games</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='dolls'> Dolls</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='instruments'> Instruments</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='toyCars'> Toy Cars</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='tradingCards'> Trading Cards</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='puzzles'> Puzzles</li>
-									<li> <label class='checkbox'> <input type='checkbox' value='' id='videoGames'> Video Games</li>									
+									<div id='categories'>
+										<li> <label class='checkbox'> <input type='checkbox' value='Action Figures & Dolls' id='actionFiguresDolls' checked> Action Figures & Dolls</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Bikes, Boards & Scooters' id='bikesBoardsScooters' checked> Bikes, Boards & Scooters</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Building Sets' id='buildingSets' checked> Building Sets</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Collectibles' id='collectibles' checked> Collectibles</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Games & Puzzles' id='gamesPuzzles' checked> Games & Puzzles</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Learning Toys' id='learningToys' checked> Learning Toys</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Musical Instruments' id='musicalInstruments' checked> Musical Instruments</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Remote Control' id='remoteControl' checked> Remote Control</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Sports Equipment' id='sportsEquipment' checked> Sports Equipment</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Toy Cars' id='toyCars' checked> Toy Cars</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Trading Cards' id='tradingCards' checked> Trading Cards</li>
+										<li> <label class='checkbox'> <input type='checkbox' value='Video Games' id='videoGames' checked> Video Games</li>	
+									</div>							
 								</ul>
 
 					    	</div>
@@ -190,7 +195,7 @@
 	    			</div>
 	    			<div class='modal-footer'>
 	    				<a href='#' onclick="$('#modalToy').modal('hide')" class='btn'>Cancel</a>
-	    				<a href='#' class='btn'>Message Owner</a>
+	    				<a href='messages.html' class='btn'>Message Owner</a>
 	    				<a href='#' onclick='addToCart()' class='btn'>Add to Cart</a>
 					</div>
 				</div>
