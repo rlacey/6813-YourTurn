@@ -57,7 +57,7 @@
 	</head>
 
 	<body>
-		<div id="wrapepr">
+		<div id="wrapper">
 			<div id="content">
 				<!-- =================================================
 
@@ -110,120 +110,38 @@
 				CONTACTS PANE
 
 			    ================================================== -->
-			    <div class="row-fluid">
-				    <div id="contacts-pane" class="span2 offset3">
-				    	<ul>
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>
-							<li>
-						    	<div id="default-contact" class="contact selected">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-				    		<hr>											
-							<li>
-						    	<div id="default-contact" class="contact">
-						    		<h4 class"center">Name</h4>
-						    		This is the message preview.
-					    		</div>
-							</li>
-											
-						</ul>				    	
-				    </div>
-				    <div id="messages-pane" class="span4">
-				    	<div id="message">
-				    		<h4>Other Guy</h4>
-				    		This is the message content. This is the message content.  This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content.  This is the message content. This is the message content. This is the message content. 
-				    		<hr>
-				    	</div>
-				    	<div id="message">
-				    		<h4>You</h4>
-				    		This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. 
-				    		<hr>
-				    	</div>
-				    	<div id="reply-pane">
-				    		<textarea id="reply" class="text-form" style="width:100%; height:80px;"></textarea>
-				    		<button id="submit-reply" class="btn" onClick="">Reply</button>
-				    	</div>
-				    </div>
-
-		    </div><!-- content -->
+				<div class="row-fluid">
+					<div class="well tabbable tabs-left span6 offset3">
+						<ul class="nav nav-tabs" id="tab-labels">
+							<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">Default User</a></li>
+							<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">User 2</a></li>
+							<!-- <li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li> -->
+						</ul>	   
+						<div class="tab-content" id="tab-content">
+							<div class="tab-pane active" id="content-toy">
+								<div class="row-fluid">
+									<div id="messages-pane" class="span11" style = "background-color: transparent;">
+										<div id="message">
+											<h4>Other Guy</h4>
+											This is the message content. This is the message content.  This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content.  This is the message content. This is the message content. This is the message content. 
+											<hr>
+										</div>
+										<div id="message">
+											<h4>You</h4>
+											This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. 
+											<hr>
+										</div>
+										<div id="reply-pane">
+											<textarea id="reply" class="text-form" style="width:100%; height:80px;"></textarea>
+											<button id="submit-reply" class="btn" onClick="">Reply</button>
+										</div>
+									</div>
+								</div> <!-- /row-fluid -->
+							</div> <!-- /tab pane -->
+						</div> <!-- /tab content -->
+						
+					</div> <!-- /tabbable -->
+				</div> <!-- /row-fluid-->
 
 
 			<!-- =================================================

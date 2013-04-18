@@ -39,7 +39,8 @@ function addAnotherToy() {
 	var tab = defaultTab.clone();
 	var tabID = defaultTab.attr('id') + numToys;
 	tab.attr('id', tabID);
-	tab.html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button> <a href="#toy" data-toggle="tab">Toy '+ numToys + '</a>');
+	tab.html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
+		+ ' <a href="#toy" data-toggle="tab"><strong>Toy '+ numToys + '</strong></a>');
 
 	// Content is what the tab displays
 	var content = defaultContent.clone();
@@ -112,12 +113,11 @@ function submitToyForms() {
 		var condition = $('#condition'+toyIDs[i]).val();
 		var category = $('#catgory'+toyIDs[i]).val();
 		var description = $('#description'+toyIDs[i]).val();
-		console.log(toyName+ " "+ i);
-		// console.log(toyName);
-		// console.log(ageRange);
-		// console.log(condition);
-		// console.log(category);
-		// console.log(description);
+		console.log(toyName);
+		console.log(ageRange);
+		console.log(condition);
+		console.log(category);
+		console.log(description);
 	}
 	$("#modal-submit-confirmation").modal ("show");
 }
@@ -130,7 +130,8 @@ function submitToyForms() {
 function switchTab(tab) {
 	console.log("running... tabID="+tab);
 	if ($('#toyName'+currentTabNumber).val()!=='') {
-		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button> <a href="#toy" data-toggle="tab">'+ $('#toyName'+currentTabNumber).val() + '</a>');
+		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
+			+ ' <a href="#toy" data-toggle="tab"><strong>'+ $('#toyName'+currentTabNumber).val() + '</strong></a>');
 	}
 
 	var tabID = tab.split("-")[1];
@@ -142,29 +143,46 @@ function switchTab(tab) {
 	// Remove active state from all tab pages and assign clicked tab to be new active tab
 	$('.tab-pane').attr('class', 'tab-pane');
 	$('#content-'+tabID).attr('class', 'tab-pane  active');
-	// Don't display tabs until >1 toys are listed
-	if (trackedToys<=1) {
-		$('.tab-label').hide();
-	} else {
-		$('.tab-label').show();
-	}
+
+	checkTabDisplay();
 }
 
 function closeTab(e, tab) {
 	e.stopPropagation();
-	var sibling = $('#'+tab).prev();
-	console.log(sibling);
+	
+	// Identify which tab to remove
 	var tab_tail = tab.split("-")[1];
 	var tabID = tab_tail.substring(3);
+
+	// Find nearest tab to switch to if current tab is closed
+	var sibling;
+	if (tabID == toyIDs[0]) {
+		sibling = $('#'+tab).next();
+	} else {
+		sibling = $('#'+tab).prev();
+	}	
+
+	// Switch tabs to sibling if current is removed
+	if (tabID === currentTabNumber) {
+		switchTab(sibling.attr('id'));
+	}	
+
+	// Remove selected tab and associated content
 	$('#'+tab).remove();
 	$('#content-'+tab_tail).remove();
 	var index = toyIDs.indexOf(tabID);			
 	toyIDs.splice(index, 1);
 	trackedToys--;
-	if (tabID === currentTabNumber) {
-		alert(true);
-		console.log(sibling.attr('id'));
-		switchTab(sibling.attr('id'));
+
+	checkTabDisplay();
+}
+
+function checkTabDisplay() {
+	// Don't display tabs until >1 toys are listed
+	if (trackedToys<=1) {
+		$('.tab-label').hide();
+	} else {
+		$('.tab-label').show();
 	}
 }
 
