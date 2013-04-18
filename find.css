@@ -22,3 +22,6 @@
 	max-height:300px;
 	overflow-y:auto;
 }
+.modalToyBody{
+	max-height:400px;
+}
