@@ -12,20 +12,36 @@
  var toys=[];
 
 $(document).ready(function(){
-	var toy1= new toy(1,'Super Smash Bros. Melee!','8-12','new',['Video Games'],'Best video game ever!',"images/original.png");
-	var toy2= new toy(1,'Monopoly','4-7','new',['Board Games'],'This board game gave me many hours of enjoyment!',"images/logo_black.png");
-	var toy3= new toy(1,'Stradivarius','13+','new',['Instruments'],'Antique violin',"images/logo_inverted.png");
+	var toy1= new toy(1,'Pony Bike','4-7','New',['Bikes, Boards & Scooters'],"Best young girl's bike ever!","images/toys/kids_bike.jpg");
+	var toy2= new toy(1,'Hot Wheels Collection','4-7','Lightly used',['Toy Cars'],'Great hot wheels collection',"images/toys/car.jpg");
+	var toy3= new toy(1,'Monopoly','8-12','Heavily used',['Games & Puzzles'],'This board game gave me many hours of enjoyment!',"images/toys/monopoly.jpg");
+	var toy4= new toy(1,'Stradivarius','13+','New',['Musical Instruments'],'Antique violin',"images/toys/violin.jpg");
+	var toy5= new toy(1,'Lite Brite Kit','4-7','Heavily used',['Games & Puzzles'],'Kids can make all sorts of cool shapes!',"images/toys/litebrite.jpg");
+	var toy6= new toy(1,'Ferrari Toy Race Car','4-7','Lightly used',['Toy Cars'],'Quality car that can be pulled back to run a short distance upon letting go.',"images/toys/racecar.jpg");
+	var toy7= new toy(1,'Halo Reach','13+','New',['Video Games'],'Cool game where you get to play as a soldier and not a Spartan.',"images/toys/reach.jpg");
+	var toy8= new toy(1,'Etch-A-Sketch','0-3','New',['Learning Toys'],"Great way to get your kid's creativity going!","images/toys/sketch.jpg");
+	var toy9= new toy(1,'Beast action figure','4-7','Heavily used',['Action Figures & Dolls'],"Beast will tear the rest of your action figures to shreds.","images/toys/beast.jpg");
+	var toy10= new toy(1,'Army men action figure set','4-7','Heavily used',['Action Figures & Dolls'],"Manliest of all action figures.","images/toys/army_men.jpg");
+	var toy11= new toy(1,'Atlas bike','8-12','Lightly used',['Bikes, Boards & Scooters'],"Need to get places? This is your bike.","images/toys/new_bikebike.gif");
+	var toy12= new toy(1,'Weird old bike','8-12','New',['Bikes, Boards & Scooters'],"Need to get places? This may not be your bike.","images/toys/old_bike.jpg");
+
+
 	toys.push(toy1);
 	toys.push(toy2);
 	toys.push(toy3);
-	toys.push(toy1);
-	toys.push(toy2);
-	toys.push(toy3);
-	addNewToy(toy1);
-	addNewToy(toy2);
-	addNewToy(toy3);
-	addNewToy(toy1);
-	addNewToy(toy2);
+	toys.push(toy4);
+	toys.push(toy5);
+	toys.push(toy6);
+	toys.push(toy7);
+	toys.push(toy8);
+	toys.push(toy9);
+	toys.push(toy10);
+	toys.push(toy11);
+	toys.push(toy12);
+
+	for (i=0;i<toys.length;i++){
+		addNewToy(toys[i]);
+	}
 
 	$(':checked').change(function(){
 		var checkedCats = [];
