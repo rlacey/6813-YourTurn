@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta name="description" content="">
+		<meta name="author" content="Ryan Lacey">
+
+		<title>YourTurn</title>
+
+		<!-- Load style sheets -->
+	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+	    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+	    <!-- <link href='http://fonts.googleapis.com/css?family=Crafty+Girls' rel='stylesheet' type='text/css'> -->
+	    <!-- <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'> -->
+	    <!-- <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'> -->
+	    <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>	    
+
+	    <style type="text/css">
+		    #toys-background {
+		    	margin-top: 5%;
+		    }
+
+	    </style>
+
+		<!-- Load any supplemental Javascript libraries here -->
+		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	</head>
+
+	<body>	
+		
+		<!-- =================================================
+
+		NAVIGATION BAR
+
+	    ================================================== -->
+	    <div class="navbar-wrapper">
+	    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+	    	<div class="container">
+	    		<div class="navbar navbar-inverse">
+	          		<div class="navbar-inner">
+			            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+			            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+			            </button>
+			            <div class="offset3"><a class="brand" href="index.html">YourTurn</a></div>
+			            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+			            <div class="nav-collapse collapse">
+					        <ul class="nav">
+						        <li class="active"><a href="index.html"><i class="icon-home"></i> Home</a></li>
+						        <li><a href="give.html"><i class="icon-heart"></i> Give</a></li>
+						        <li><a href="find.html"><i class="icon-search"></i> Find</a></li>
+						        <li><a href="about.html"><i class="icon-question-sign"></i> About</a></li>
+					        </ul>
+		            	</div><!--/.nav-collapse -->
+			            <div class="nav-collapse collapse pull-right">
+					        <ul class="nav">
+						        <li><a href="messages.html"><i class="icon-envelope"></i> Messages</a></li>
+						        <li><a href="#"><i class="icon-user"></i> Username</a></li>
+					        </ul>
+		            	</div><!--/.nav-collapse -->		            	
+		        	</div><!-- /.navbar-inner -->
+		    	</div><!-- /.navbar -->
+	        </div> <!-- /.container -->
+	    </div><!-- /.navbar-wrapper -->		
+	    
+
+		<!-- =================================================
+
+		HERO UNIT
+
+	    ================================================== -->
+
+		<div class="container span6 offset3">
+			<div class="hero-unit" style="background-color:white;">
+				<div align="center"><h1>Welcome to YourTurn!</h1></div>
+				<img id="toys-background" src="images\toys-background.jpg" class="img center"style="height:35%;"/>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					<h2>Give</h2>
+					<p>
+						Is your daughter no longer interested in her dolls?
+						Has your son moved on from playing with his old blocks and legos?
+						Is your home getting a bit cluttered with toys your kids no longer want?
+						Donate their old toys to families in need!
+					</p>
+					<p><a class="btn" href="give.html">Donate!</a></p>
+				</div>
+				<div class="span6">
+					<h2>Find</h2>
+					<p> 
+						Looking for a gift for your daughter's upcoming birthday, but money is a bit tight? 
+						How about saving some cash by starting off your son on a used guitar to kickstart his rockstar career? 
+						Search for used toys, instruments, and more!
+					</p>
+					<p><a class="btn" href="find.html">Search!</a></p>
+				</div>
+			</div>
+		</div> <!-- /container -->
+	</body>
+</html>
