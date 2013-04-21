@@ -25,7 +25,6 @@
 			$submit = false;
 		}
 
-
 		// Does username exist in DB?
 		if ($row["COUNT(*)"] != 0) {
 			echo "taken,";
@@ -41,10 +40,5 @@
 			mysql_query($query, $db) or die(mysql_error());
 			$_SESSION['username']=$user;
 		}
-	}	
-
-	// header('HTTP/1.1 303 See Other');
-
-	// header('Location: http://' . $server_dir . 'concert_listing.php');
-
+	}
 ?>

@@ -9,20 +9,6 @@
     if (isset( $_SESSION['username']) &&  $_SESSION['username']!='') {
         $username =  $_SESSION['username'];
         $loggedIn=true;
-    } 
-    // Check if user just submitted log-in information
-    else if (isset($_POST["user_name"]) && isset($_POST["user_pass"])) 
-    {
-        $user = $_POST["user_name"];
-        $pass = sha1($_POST["user_pass"]);
-        $query = "SELECT USER_PASS from users WHERE USER_NAME='" . mysql_real_escape_string($user) . "'";
-        $result = mysql_query($query, $db) or die(mysql_error());
-        $row = mysql_fetch_assoc($result);
-        if ($pass == $row["USER_PASS"]) {
-            $_SESSION['username']=$user;
-            $username =  $_SESSION['username'];
-            $loggedIn=true;
-        }
     } else {
         // User not logged in
         $loggedIn = false;
@@ -95,11 +81,10 @@
 						        <li id="user">
 						        	<?php 
 						        	if(!$loggedIn) { ?>
-						        		<a href="#modal-register" data-toggle="modal"><i class="icon-user"></i> Username</a>
+						        		<a id="label-logout" href="#modal-register" data-toggle="modal">Login / Signup</a>
 						        	<?php } else { ?>
-						        		<a><i class="icon-user"></i> <?php echo " ".$username; ?></a>
-						        	<?php } ?>
-						        	
+						        		<a href="" id="label-logout" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> <?php echo " ".$username; ?></a>
+						        	<?php } ?>						        	
 					        	</li>
 					        </ul>
 		            	</div><!--/.nav-collapse -->		            	
@@ -120,11 +105,13 @@
                 <h3>Join the community!</h3>
             </div>
             <div class="modal-body">
-                <form class="form-signin" action="register.php" method="post">
+                <form class="form-signin">
                     <input id="register-name" type="text" name="register_name" class="input-block-level" placeholder="Username">
                     <input id="register-email" type="text" name="register_email" class="input-block-level" placeholder="Email">
                     <input id="register-password" type="password" name="register_pass" class="input-block-level" placeholder="Password">
                 </form>
+				 Already have an account?
+                <a href="#modal-login" data-toggle="modal" data-dismiss="modal" onClick="switchModal()"> Log in.</a>
     			<div id='register-error-email' class='alert alert-error hide'>
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					<strong>Invalid e-mail!</strong>
@@ -141,7 +128,35 @@
 			<div class="modal-footer">
 				<button class="btn btn-primary" aria-hidden="true" onClick="submitRegistration()">Register</button>
 			</div>                    
-        </div> 	    
+        </div> 	 
+
+
+		<!-- =================================================
+
+		MODAL - LOGIN
+
+	    ================================================== -->
+        <div id="modal-login" class="modal hide fade small-modal" tabindex="-1" role="dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Welcome back!</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-signin">
+                    <input id="login-name" type="text" name="login_name" class="input-block-level" placeholder="Username">
+                    <input id="login-password" type="password" name="login_pass" class="input-block-level" placeholder="Password">
+                </form>
+				 Want to sign up?
+                <a href="#modal-register" data-toggle="modal" data-dismiss="modal" onClick="switchModal()"> Register.</a>
+    			<div id='login-error' class='alert alert-error hide'>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Username and password combination not found. Please check login information.</strong>
+				</div> 
+            </div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" aria-hidden="true" onClick="submitLogin()">Log In</button>
+			</div> 
+        </div>
 	    
 
 		<!-- =================================================

@@ -1,15 +1,33 @@
+/**
+ *
+ *  @author Ryan Lacey
+ */
+
+ $(document).ready(function() {
+
+	$('#user').on({
+	    mouseenter: function() {
+	        $('#label-logout').html('Logout');
+	    },
+	    mouseleave: function() {
+	    	var name = $('#label-logout').attr('name');
+	        $('#label-logout').html('<i class="icon-user"></i> '+name);
+	    }
+	}, ".hover");
+
+});
+
 function displayRegistration() {
 	$("#modal-register").modal ("show");
 }
 
 function submitRegistration() {
-	$('#register-error-email').hide();
-	$('#register-error-username').hide();
+	$('.alert').hide();
 
 	var name = $("#register-name").val();
 	var email = $("#register-email").val();
 	var password = $("#register-password").val();
-	console.log(name+" "+email+" "+password);
+
 	$.post(
 		"register.php",
 		{"register_name" : name, "register_email" : email, "register_pass" : password},
@@ -25,8 +43,46 @@ function submitRegistration() {
 				$('#register-error-username').show();
 				return;
 			}
-			$('#user').html('<a><i class="icon-user"></i> '+name+'</a>');
+	        $('#label-logout').html('<i class="icon-user"></i> '+name);
 			$("#modal-register").modal ("hide");
+		}
+	);
+}
+
+function submitLogin() {
+	$('.alert').hide();
+
+	var name = $("#login-name").val();
+	var password = $("#login-password").val();
+
+	$.post(
+		"login.php",
+		{"user_name" : name, "user_pass" : password},
+		function(data) {
+			if(data==='invalid') {
+				$('#login-error').show();
+				return;
+			}
+	        $('#label-logout').html('<i class="icon-user"></i> '+name);
+			$("#modal-login").modal ("hide");
+		}
+	);
+}
+
+function switchModal() {
+	$('.alert').hide();
+	$('input').val('');
+}
+
+function logout() {
+	console.log("logginh out");
+	var name = $('#label-logout').attr('name');
+
+	$.post(
+		"logout.php",
+		{"user_name" : name},
+		function(data) {
+			// nothing
 		}
 	);
 }
