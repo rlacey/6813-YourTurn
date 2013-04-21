@@ -1,3 +1,35 @@
+<?php 
+
+	session_start();  
+	
+	require("db.php");
+
+    $username = NULL;
+    // Check if user logged in
+    if (isset( $_SESSION['username']) &&  $_SESSION['username']!='') {
+        $username =  $_SESSION['username'];
+        $loggedIn=true;
+    } 
+    // Check if user just submitted log-in information
+    else if (isset($_POST["user_name"]) && isset($_POST["user_pass"])) 
+    {
+        $user = $_POST["user_name"];
+        $pass = sha1($_POST["user_pass"]);
+        $query = "SELECT USER_PASS from users WHERE USER_NAME='" . mysql_real_escape_string($user) . "'";
+        $result = mysql_query($query, $db) or die(mysql_error());
+        $row = mysql_fetch_assoc($result);
+        if ($pass == $row["USER_PASS"]) {
+            $_SESSION['username']=$user;
+            $username =  $_SESSION['username'];
+            $loggedIn=true;
+        }
+    } else {
+        // User not logged in
+        $loggedIn = false;
+    }
+
+?>
+
 <html>
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -30,11 +62,14 @@
 		<script src="bootstrap/js/bootstrap.js"></script>
 
 		<script src='find.js'></script>
+		<script type="text/javascript" src="user_management.js"></script>
 	</head>
 
 	<body>
 		<div id="wrapper">
 			<div id="content">
+
+
 				<!-- =================================================
 
 				NAVIGATION BAR
@@ -51,26 +86,69 @@
 						            <span class="icon-bar"></span>
 						            <span class="icon-bar"></span>
 					            </button>
-					            <div class="offset3"><a class="brand" href="index.html">YourTurn</a></div>
+					            <div class="offset3"><a class="brand" href="index.php">YourTurn</a></div>
 					            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					            <div class="nav-collapse collapse">
 							        <ul class="nav">
-								        <li><a href="index.html"><i class="icon-home"></i> Home</a></li>
-								        <li><a href="give.html"><i class="icon-heart"></i> Give</a></li>
-								        <li class='active'><a href="find.html"><i class="icon-search"></i> Find</a></li>
-								        <li><a href="about.html"><i class="icon-question-sign"></i> About</a></li>
+								        <li><a href="index.php"><i class="icon-home"></i> Home</a></li>
+								        <li><a href="give.php"><i class="icon-heart"></i> Give</a></li>
+								        <li class="active"><a href="find.php"><i class="icon-search"></i> Find</a></li>
+								        <li><a href="about.php"><i class="icon-question-sign"></i> About</a></li>
 							        </ul>
 				            	</div><!--/.nav-collapse -->
 					            <div class="nav-collapse collapse pull-right">
 							        <ul class="nav">
-								        <li><a href="messages.html"><i class="icon-envelope"></i> Messages</a></li>
-								        <li><a href="#"><i class="icon-user"></i> Username</a></li>
+								        <li><a href="messages.php"><i class="icon-envelope"></i> Messages</a></li>
+								        <li id="user">
+								        	<?php 
+								        	if(!$loggedIn) { ?>
+								        		<a href="#modal-register" data-toggle="modal"><i class="icon-user"></i> Username</a>
+								        	<?php } else { ?>
+								        		<a><i class="icon-user"></i> <?php echo " ".$username; ?></a>
+								        	<?php } ?>
+								        	
+							        	</li>
 							        </ul>
 				            	</div><!--/.nav-collapse -->		            	
 				        	</div><!-- /.navbar-inner -->
 				    	</div><!-- /.navbar -->
 			        </div> <!-- /.container -->
-			    </div><!-- /.navbar-wrapper -->		
+			    </div><!-- /.navbar-wrapper -->	
+
+
+				<!-- =================================================
+
+				MODAL - REGISTER
+
+			    ================================================== -->
+		        <div id="modal-register" class="modal hide fade small-modal" tabindex="-1" role="dialog">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                <h3>Join the community!</h3>
+		            </div>
+		            <div class="modal-body">
+		                <form class="form-signin" action="register.php" method="post">
+		                    <input id="register-name" type="text" name="register_name" class="input-block-level" placeholder="Username">
+		                    <input id="register-email" type="text" name="register_email" class="input-block-level" placeholder="Email">
+		                    <input id="register-password" type="password" name="register_pass" class="input-block-level" placeholder="Password">
+		                </form>
+		    			<div id='register-error-email' class='alert alert-error hide'>
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Invalid e-mail!</strong>
+							<br>
+							Enter e-mail address again.
+						</div>  
+		    			<div id='register-error-username' class='alert alert-error hide'>
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Invalid username!</strong>
+							<br>
+							Username already taken. Please choose another username.
+						</div>               
+		            </div>
+					<div class="modal-footer">
+						<button class="btn btn-primary" aria-hidden="true" onClick="submitRegistration()">Register</button>
+					</div>                    
+		        </div> 				    		
 
 				<!-- =================================================
 

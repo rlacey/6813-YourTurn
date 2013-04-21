@@ -6193,3 +6193,8 @@ body {
   position:absolute;
   bottom:0;
 }
+
+.small-modal {
+  width: 300px;
+  margin-left: -150px;
+}
