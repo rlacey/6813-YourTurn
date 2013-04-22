@@ -3,18 +3,8 @@
  *  @author Ryan Lacey
  */
 
- $(document).ready(function() {
-
-	$('#user').on({
-	    mouseenter: function() {
-	        $('#label-logout').html('Logout');
-	    },
-	    mouseleave: function() {
-	    	var name = $('#label-logout').attr('name');
-	        $('#label-logout').html('<i class="icon-user"></i> '+name);
-	    }
-	}, ".hover");
-
+$(document).ready(function() {
+ 	hovering();
 });
 
 function displayRegistration() {
@@ -43,8 +33,9 @@ function submitRegistration() {
 				$('#register-error-username').show();
 				return;
 			}
-	        $('#label-logout').html('<i class="icon-user"></i> '+name);
+	        $('#user').html('<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> '+name+'</a>');
 			$("#modal-register").modal ("hide");
+			hovering();
 		}
 	);
 }
@@ -63,8 +54,9 @@ function submitLogin() {
 				$('#login-error').show();
 				return;
 			}
-	        $('#label-logout').html('<i class="icon-user"></i> '+name);
+	        $('#user').html('<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> '+name+'</a>');
 			$("#modal-login").modal ("hide");
+			hovering();			
 		}
 	);
 }
@@ -85,4 +77,18 @@ function logout() {
 			// nothing
 		}
 	);
+}
+
+function hovering() {	
+	var name = $('#label-logout').attr('name');
+
+	$('#user').on({
+    mouseenter: function() {
+        $('#label-logout').html('Logout');
+    },
+    mouseleave: function() {
+    	var name = $('#label-logout').attr('name');
+        $('#label-logout').html('<i class="icon-user"></i> '+name);
+    }
+	}, ".hover");
 }

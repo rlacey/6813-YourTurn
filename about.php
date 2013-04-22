@@ -103,18 +103,17 @@
 						        <li id="user">
 						        	<?php 
 						        	if(!$loggedIn) { ?>
-						        		<a href="#modal-register" data-toggle="modal"><i class="icon-user"></i> Username</a>
+						        		<a href="#modal-register" data-toggle="modal">Login / Signup</a>
 						        	<?php } else { ?>
-						        		<a><i class="icon-user"></i> <?php echo " ".$username; ?></a>
-						        	<?php } ?>
-						        	
+						        		<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> <?php echo " ".$username; ?></a>
+						        	<?php } ?>						        	
 					        	</li>
 					        </ul>
 		            	</div><!--/.nav-collapse -->		            	
 		        	</div><!-- /.navbar-inner -->
 		    	</div><!-- /.navbar -->
 	        </div> <!-- /.container -->
-	    </div><!-- /.navbar-wrapper -->	
+	    </div><!-- /.navbar-wrapper -->		
 
 
 		<!-- =================================================
@@ -128,11 +127,13 @@
                 <h3>Join the community!</h3>
             </div>
             <div class="modal-body">
-                <form class="form-signin" action="register.php" method="post">
+                <form class="form-signin">
                     <input id="register-name" type="text" name="register_name" class="input-block-level" placeholder="Username">
                     <input id="register-email" type="text" name="register_email" class="input-block-level" placeholder="Email">
                     <input id="register-password" type="password" name="register_pass" class="input-block-level" placeholder="Password">
                 </form>
+				 Already have an account?
+                <a href="#modal-login" data-toggle="modal" data-dismiss="modal" onClick="switchModal()"> Log in.</a>
     			<div id='register-error-email' class='alert alert-error hide'>
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					<strong>Invalid e-mail!</strong>
@@ -149,7 +150,35 @@
 			<div class="modal-footer">
 				<button class="btn btn-primary" aria-hidden="true" onClick="submitRegistration()">Register</button>
 			</div>                    
-        </div> 		    		
+        </div> 	 
+
+
+		<!-- =================================================
+
+		MODAL - LOGIN
+
+	    ================================================== -->
+        <div id="modal-login" class="modal hide fade small-modal" tabindex="-1" role="dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>Welcome back!</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-signin">
+                    <input id="login-name" type="text" name="login_name" class="input-block-level" placeholder="Username">
+                    <input id="login-password" type="password" name="login_pass" class="input-block-level" placeholder="Password">
+                </form>
+				 Want to sign up?
+                <a href="#modal-register" data-toggle="modal" data-dismiss="modal" onClick="switchModal()"> Register.</a>
+    			<div id='login-error' class='alert alert-error hide'>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Username and password combination not found. Please check login information.</strong>
+				</div> 
+            </div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" aria-hidden="true" onClick="submitLogin()">Log In</button>
+			</div> 
+        </div>		    		
 	    
 
 		<!-- =================================================
