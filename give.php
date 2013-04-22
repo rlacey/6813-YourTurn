@@ -194,7 +194,7 @@
 
 			    ================================================== -->
 			    <h1 id="page-title">Donate used toys!</h1>
-
+			    <div class="hide" id="owner" name=<?php echo $username; ?> ></div>
 
 				<!-- =================================================
 
@@ -338,7 +338,7 @@
 						You will now be taken back to the YourTurn homepage.
 					</div>
 					<div class="modal-footer">
-						<a href="index.html" class="btn btn-primary" onclick="closeModal(this.parentNode.parentNode.id)">OK</a>
+						<a href="index.php" class="btn btn-primary" onclick="closeModal(this.parentNode.parentNode.id)">OK</a>
 					</div>
 				</div>				
 
@@ -350,6 +350,8 @@
 			    ================================================== -->
 
 			    <button class="btn btn-large btn-primary center" id="submit-toys" onClick="submitToyForms()">Submit</button>
+
+
 			</div> <!-- content -->
 
 			<!-- =================================================

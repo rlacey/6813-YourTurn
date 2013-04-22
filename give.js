@@ -86,7 +86,7 @@ function linkToPhotoSubmit(modalID) {
 	// Update picture from user input]
 	photo.attr('src', input.val());
 	// Clear input field
-	input.val("");
+	// input.val("");
 
 	closeModal(modalID);
 }
@@ -106,18 +106,26 @@ function uploadPhotoPrompt() {
 }
 
 function submitToyForms() {
-	console.log(toyIDs);
+	var owner = $('#owner').attr('name');
+	console.log("My owner: "+owner);
 	for (var i=0; i<toyIDs.length; i++) {
 		var toyName = $('#toyName'+toyIDs[i]).val();
 		var ageRange = $('#ageRange'+toyIDs[i]).val();
 		var condition = $('#condition'+toyIDs[i]).val();
-		var category = $('#catgory'+toyIDs[i]).val();
+		var category = $('#category'+toyIDs[i]).val();
 		var description = $('#description'+toyIDs[i]).val();
-		console.log(toyName);
-		console.log(ageRange);
-		console.log(condition);
-		console.log(category);
-		console.log(description);
+		var photo = $('#photo-url-input').val();
+		$.post(
+			"addToy.php",
+			{"owner" : owner, "toy_name" : toyName, "toy_age_range" : ageRange, "toy_condition" : condition,
+			 "toy_category" : category, "toy_description" : description, "toy_photo" : photo},
+			function(data) {
+				// if(data==='invalid') {
+				// 	$('#login-error').show();
+				// 	return;
+				console.log(data);
+			}
+		);
 	}
 	$("#modal-submit-confirmation").modal ("show");
 }
@@ -128,7 +136,6 @@ function submitToyForms() {
  *  Tabs only shown if more than one toy in listing. 
  */
 function switchTab(tab) {
-	console.log("running... tabID="+tab);
 	if ($('#toyName'+currentTabNumber).val()!=='') {
 		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
 			+ ' <a href="#toy" data-toggle="tab"><strong>'+ $('#toyName'+currentTabNumber).val() + '</strong></a>');

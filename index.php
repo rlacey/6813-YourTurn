@@ -93,6 +93,7 @@
 	        </div> <!-- /.container -->
 	    </div><!-- /.navbar-wrapper -->		
 
+		<div class="hide" id="owner" name=<?php echo $username; ?> ></div>
 
 		<!-- =================================================
 

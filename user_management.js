@@ -34,6 +34,7 @@ function submitRegistration() {
 				return;
 			}
 	        $('#user').html('<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> '+name+'</a>');
+	        $('#owner').attr('name', name);
 			$("#modal-register").modal ("hide");
 			hovering();
 		}
@@ -55,6 +56,7 @@ function submitLogin() {
 				return;
 			}
 	        $('#user').html('<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> '+name+'</a>');
+	        $('#owner').attr('name', name);
 			$("#modal-login").modal ("hide");
 			hovering();			
 		}
@@ -69,6 +71,7 @@ function switchModal() {
 function logout() {
 	console.log("logginh out");
 	var name = $('#label-logout').attr('name');
+	$('#owner').attr('name', '');
 
 	$.post(
 		"logout.php",

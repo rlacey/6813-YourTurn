@@ -185,6 +185,8 @@
 
 			    ================================================== -->
 			    <h1 id="page-title">Search for a toy!</h1><br>
+			    <div class="hide" id="owner" name=<?php echo $username; ?> ></div>
+			    
 			    <div class='row-fluid'>
 			    	<div class='span8 offset2'>
 			    		<div class='row-fluid'>
