@@ -80,9 +80,8 @@
 	</head>
 
 	<body>
-		<div id="wrapper">
-			<div id="content">
-		
+		<div id="wrap">
+			<div id="main">		
 
 				<!-- =================================================
 
@@ -354,19 +353,18 @@
 			    <button class="btn btn-large btn-primary center" id="submit-toys" onClick="submitToyForms()">Submit</button>
 
 
-			</div> <!-- content -->
+			</div> <!-- main -->
+		</div> <!-- wrap -->
 
-			<!-- =================================================
+		<!-- =================================================
 
-			FOOTER
+		FOOTER
 
-		    ================================================== -->
-		    <div id="footer">
-				<footer>
-					<hr>
-					<img src="images\original.png" class="img center" style="height:50px;"/>
-				</footer>
-			</div> <!-- footer -->
-		</div> <!-- wrapper -->
+	    ================================================== -->
+		<div id="footer">
+			<hr>
+			<img src="images\original.png" class="img center" style="height:50px;"/>
+		</div> <!-- footer -->
+		
 	</body>
 </html>
