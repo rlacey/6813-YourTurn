@@ -30,10 +30,14 @@ $(document).ready(function() {
  *  Adds new tab with blank form.
  *  Assigns a toy number to relevant fields so data can be tracked with respect to a specific toy.
  */
-function addAnotherToy() {
+function addAnotherToy(e) {	
+	e.preventDefault();
+	
 	numToys++;
 	trackedToys++;
 	toyIDs.push(numToys.toString());
+
+	console.log("add toy      toy#"+numToys+"    tracked="+trackedToys);
 
 	// Tab is the label that a user clicks
 	var tab = defaultTab.clone();
@@ -136,6 +140,7 @@ function submitToyForms() {
  *  Tabs only shown if more than one toy in listing. 
  */
 function switchTab(tab) {
+	console.log("switch tab: "+tab)
 	if ($('#toyName'+currentTabNumber).val()!=='') {
 		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
 			+ ' <a href="#toy" data-toggle="tab"><strong>'+ $('#toyName'+currentTabNumber).val() + '</strong></a>');
@@ -155,6 +160,7 @@ function switchTab(tab) {
 }
 
 function closeTab(e, tab) {
+	console.log("close tab: "+tab);
 	e.stopPropagation();
 	
 	// Identify which tab to remove
@@ -185,6 +191,7 @@ function closeTab(e, tab) {
 }
 
 function checkTabDisplay() {
+	console.log("check tab count...");
 	// Don't display tabs until >1 toys are listed
 	if (trackedToys<=1) {
 		$('.tab-label').hide();

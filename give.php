@@ -61,15 +61,21 @@
 		    }	
 
 		    .img-polaroid {
-		    	max-width: 90%;
-		    	width: auto
-		    }	  
+		    	width: auto;
+		    	max-width: 95%;		    	
+		    }	  	
 
+			.form-horizontal .control-label {
+			    width: 80px;
+			}
 
-		    .remove {
-		    	margin-left: 8px;
-		    	margin-right: 5px;
-		    }
+			.form-horizontal .controls {
+			    margin-left: 95px;
+			}
+
+			.form-horizontal button {
+				margin-left: 100px;
+			}
 	    </style>
 	</head>
 
@@ -202,7 +208,7 @@
 
 			    ================================================== -->
 			    <div class="row-fluid" style="overflow: auto;">
-					<div class="well tabbable tabs-left span6 offset3">
+					<div class="well tabbable tabs-left span8 offset2">
 						<ul class="nav nav-tabs" id="tab-labels">
 							<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)">
 								<button type="button" class="close" >&times;</button> <a href="#toy" data-toggle="tab">Default Toy</a>
@@ -212,81 +218,78 @@
 							<div class="tab-pane active" id="content-toy">
 								<div class="row-fluid">
 
-									<div class="span4">
-
-										<!-- Text input-->
-										<div class="control-group">
-											<label class="control-label"><strong>Toy Name</strong></label>
-											<div class="controls">
-												<input id="toyName" type="text" placeholder="" class="input-large text-form" required="">
+									<div class="span6">
+										<form class="form-horizontal">
+											<!-- Text input-->
+											<div class="control-group">
+												<label class="control-label"><strong>Toy Name</strong></label>
+												<div class="controls">
+													<input id="toyName" type="text" placeholder="" class="input-large text-form" required="">
+												</div>
 											</div>
-										</div>
 
-										<!-- Select Basic -->
-										<div class="control-group">
-											<label class="control-label"><strong>Age Range</strong></label>
-											<div class="controls">
-												<select id="ageRange" class="input-xlarge" style="width:auto;">
-													<option>All ages</option>
-													<option>0 - 3</option>
-													<option>4 - 7</option>
-													<option>8 - 12</option>
-													<option>13 +</option>
-												</select>
+											<!-- Select Basic -->
+											<div class="control-group">
+												<label class="control-label"><strong>Age Range</strong></label>
+												<div class="controls">
+													<select id="ageRange" class="input-large">
+														<option>All ages</option>
+														<option>0 - 3</option>
+														<option>4 - 7</option>
+														<option>8 - 12</option>
+														<option>13 +</option>
+													</select>
+												</div>
 											</div>
-										</div>
 
-										<!-- Select Basic -->
-										<div class="control-group">
-											<label class="control-label"><strong>Condition</strong></label>
-											<div class="controls">
-												<select id="condition" class="input-xlarge" style="width:auto;">
-													<option>New</option>
-													<option>Lightly used</option>
-													<option>Heavily used</option>
-												</select>
+											<!-- Select Basic -->
+											<div class="control-group">
+												<label class="control-label"><strong>Condition</strong></label>
+												<div class="controls">
+													<select id="condition" class="input-large">
+														<option>New</option>
+														<option>Lightly used</option>
+														<option>Heavily used</option>
+													</select>
+												</div>
 											</div>
-										</div>
 
-										<!-- Select Basic -->
-										<div class="control-group">
-											<label class="control-label"><strong>Category</strong></label>
-											<div class="controls">
-												<select id="category" class="input-xlarge" style="width:auto;">
-													<option>Action Figures & Dolls</option>
-													<option>Bikes, Boards & Scooters</option>
-													<option>Building Sets</option>													
-													<option>Collectibles</option>													
-													<option>Games & Puzzles</option>													
-													<option>Learning Toys</option>
-													<option>Musical Instruments</option>													
-													<option>Remote Control</option>													
-													<option>Sports Equipment</option>													
-													<option>Toy Cars</option>
-													<option>Trading Cards</option>
-													<option>Video Games</option>
-												</select>
+											<!-- Select Basic -->
+											<div class="control-group">
+												<label class="control-label"><strong>Category</strong></label>
+												<div class="controls">
+													<select id="category" class="input-large">
+														<option>Other</option>
+														<option>Action Figures & Dolls</option>
+														<option>Bikes, Boards & Scooters</option>
+														<option>Building Sets</option>													
+														<option>Collectibles</option>													
+														<option>Games & Puzzles</option>													
+														<option>Learning Toys</option>
+														<option>Musical Instruments</option>													
+														<option>Remote Control</option>													
+														<option>Sports Equipment</option>													
+														<option>Toy Cars</option>
+														<option>Trading Cards</option>
+														<option>Video Games</option>
+													</select>
+												</div>
+											</div>	
+
+											<!-- Textarea -->
+											<div class="control-group">
+												<label class="control-label"><strong>Description</strong></label>
+												<div class="controls">                     
+													<textarea id="description" class="text-form input-large"></textarea>
+												</div>
 											</div>
-										</div>	
+											<!-- Button -->
+											<button id="addToy" class="btn" onClick="addAnotherToy(event)">Add another toy</button>	
+										</form>					
+									</div> <!-- /span6 -->
 
-										<!-- Textarea -->
-										<div class="control-group">
-											<label class="control-label"><strong>Description</strong></label>
-											<div class="controls">                     
-												<textarea id="description" class="text-form"></textarea>
-											</div>
-										</div>
-
-										<!-- Button -->
-										<div class="control-group">
-											<div class="controls">
-												<button id="addToy" class="btn" onClick="addAnotherToy()">Add another toy</button>
-											</div>
-										</div>						
-									</div> <!-- /span4 -->
-
-									<div class="span6 offset2">
-						                
+									<div class="span6">
+						                <img id="toy-image" src="images\toys-background.jpg" class="img-polaroid">
 										<div class="control-group">
 											<label class="control-label"></label>
 											<div class="controls">
@@ -294,8 +297,7 @@
 												<button class="btn" id="button-photo-upload" onClick="uploadPhotoPrompt()">Upload a Photo</button>
 											</div> <!-- /controls -->
 										</div> <!-- /control group -->
-										<img id="toy-image" src="images\original.png" class="img-polaroid">
-									</div> <!-- /span7 -->
+									</div> <!-- /span6 -->
 
 								</div> <!-- /row-fluid -->
 							</div> <!-- /tab pane -->
