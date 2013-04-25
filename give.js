@@ -5,7 +5,7 @@
 
 var numToys = 0;
 var trackedToys = 0;
-var currentTabNumber = 0;
+var currentTabNumber = 1;
 var toyIDs = new Array();
 var defaultTab;
 var defaultContent;
@@ -31,13 +31,14 @@ $(document).ready(function() {
  *  Assigns a toy number to relevant fields so data can be tracked with respect to a specific toy.
  */
 function addAnotherToy(e) {	
-	e.preventDefault();
+
+	if (numToys>0) {
+		e.preventDefault();
+	}
 	
 	numToys++;
 	trackedToys++;
 	toyIDs.push(numToys.toString());
-
-	console.log("add toy      toy#"+numToys+"    tracked="+trackedToys);
 
 	// Tab is the label that a user clicks
 	var tab = defaultTab.clone();
@@ -75,75 +76,18 @@ function addAnotherToy(e) {
 }
 
 /*
- *  Display prompt to enter photo URL
- */
-function linkToPhotoPrompt() {
-	$("#modal-photo-url").modal ("show");
-}
-
-/*
- * Parse url and close prompt
- */
-function linkToPhotoSubmit(modalID) {
-	var input = $('#photo-url-input');
-	var photo = $("#toy-image"+currentTabNumber);
-	// Update picture from user input]
-	photo.attr('src', input.val());
-	// Clear input field
-	// input.val("");
-
-	closeModal(modalID);
-}
-
-/* 
- *  Close model with specified ID
- */
-function closeModal(modalID) {
-	$("#"+modalID).modal ('hide'); 
-};
-
-/*
- *  Upload photo from file on user's computer.
- */
-function uploadPhotoPrompt() {
-	alert('This function is not yet implemented. Sorry!');
-}
-
-function submitToyForms() {
-	var owner = $('#owner').attr('name');
-	console.log("My owner: "+owner);
-	for (var i=0; i<toyIDs.length; i++) {
-		var toyName = $('#toyName'+toyIDs[i]).val();
-		var ageRange = $('#ageRange'+toyIDs[i]).val();
-		var condition = $('#condition'+toyIDs[i]).val();
-		var category = $('#category'+toyIDs[i]).val();
-		var description = $('#description'+toyIDs[i]).val();
-		var photo = $('#photo-url-input').val();
-		$.post(
-			"addToy.php",
-			{"owner" : owner, "toy_name" : toyName, "toy_age_range" : ageRange, "toy_condition" : condition,
-			 "toy_category" : category, "toy_description" : description, "toy_photo" : photo},
-			function(data) {
-				// if(data==='invalid') {
-				// 	$('#login-error').show();
-				// 	return;
-				console.log(data);
-			}
-		);
-	}
-	$("#modal-submit-confirmation").modal ("show");
-}
-
-/*
  *  Called when a tab is clicked. 
  *  Selected tab becomes active and its content is displyed.
  *  Tabs only shown if more than one toy in listing. 
  */
 function switchTab(tab) {
-	console.log("switch tab: "+tab)
 	if ($('#toyName'+currentTabNumber).val()!=='') {
+		var toyName = $('#toyName'+currentTabNumber).val();
+		if (toyName.length >10) {
+			toyName = toyName.substring(0,10) + "...";
+		}
 		$('#tab-toy'+currentTabNumber).html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
-			+ ' <a href="#toy" data-toggle="tab"><strong>'+ $('#toyName'+currentTabNumber).val() + '</strong></a>');
+			+ ' <a href="#toy" data-toggle="tab"><strong>'+ toyName + '</strong></a>');
 	}
 
 	var tabID = tab.split("-")[1];
@@ -159,8 +103,10 @@ function switchTab(tab) {
 	checkTabDisplay();
 }
 
+/*
+ *  Remove tab and all associated content from listing.
+ */
 function closeTab(e, tab) {
-	console.log("close tab: "+tab);
 	e.stopPropagation();
 	
 	// Identify which tab to remove
@@ -190,8 +136,10 @@ function closeTab(e, tab) {
 	checkTabDisplay();
 }
 
+/*
+ *  If only one tab is open, then hide tab labels.
+ */
 function checkTabDisplay() {
-	console.log("check tab count...");
 	// Don't display tabs until >1 toys are listed
 	if (trackedToys<=1) {
 		$('.tab-label').hide();
@@ -200,3 +148,89 @@ function checkTabDisplay() {
 	}
 }
 
+/*
+ *  Display prompt to enter photo URL
+ */
+function linkToPhotoPrompt() {
+	$("#modal-photo-url").modal ("show");
+}
+
+/*
+ * Parse url and close prompt
+ */
+function linkToPhotoSubmit(modalID) {
+	var input = $('#photo-url-input');
+	var photo = $("#toy-image"+currentTabNumber);
+	// Update picture from user input]
+	photo.attr('src', input.val());
+	// Clear input field
+	input.val("");
+
+	closeModal(modalID);
+}
+
+/* 
+ *  Close model with specified ID
+ */
+function closeModal(modalID) {
+	$("#"+modalID).modal ('hide'); 
+};
+
+/*
+ *  Upload photo from file on user's computer.
+ */
+function uploadPhotoPrompt() {
+	alert('This function is not yet implemented. Sorry!');
+}
+
+function submitToyForms() {
+	$('#error-toy-name').hide();
+	$('#error-toy-description').hide();
+	$('#error-toy-photo').hide();
+
+	var validated = true;
+
+	// Validate form entries
+	for (var i=0; i<toyIDs.length; i++) {
+		var toyName = $('#toyName'+toyIDs[i]).val();
+		if (toyName==='') {
+			validated = false;
+			$('#error-toy-name').show();
+		}
+		var description = $('#description'+toyIDs[i]).val();
+		if (description==='') {
+			validated = false;
+			$('#error-toy-description').show();
+		}
+		var photo = $('#toy-image'+toyIDs[i]).attr('src');
+		console.log(photo);
+		if (photo==="images\\toys-background.jpg") {
+			validated = false;
+			$('#error-toy-photo').show();
+		}
+	}
+
+	if (validated) {
+		// Get username
+		var owner = $('#owner').attr('name');	
+		// Retrieve form data
+		for (var i=0; i<toyIDs.length; i++) {
+			var toyName = $('#toyName'+toyIDs[i]).val();
+			var ageRange = $('#ageRange'+toyIDs[i]).val();
+			var condition = $('#condition'+toyIDs[i]).val();
+			var category = $('#category'+toyIDs[i]).val();
+			var description = $('#description'+toyIDs[i]).val();
+			var photo = $('#toy-image'+toyIDs[i]).attr('src');
+			// Send entries to DB
+			$.post(
+				"addToy.php",
+				{"owner" : owner, "toy_name" : toyName, "toy_age_range" : ageRange, "toy_condition" : condition,
+				 "toy_category" : category, "toy_description" : description, "toy_photo" : photo},
+				function(data) {
+					// console.log(data);
+				}
+			);
+		}
+		$("#modal-submit-confirmation").modal ("show");
+	} 
+}

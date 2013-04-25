@@ -346,11 +346,24 @@
 
 				<!-- =================================================
 
-				SUBMIT ALL FORMS
+				SUBMIT ALL FORMS & ERROR REPORTING
 
 			    ================================================== -->
 
 			    <button class="btn btn-large btn-primary center" id="submit-toys" onClick="submitToyForms()">Submit</button>
+			    <br>
+    			<div id='error-toy-name' class='alert alert-error hide' style="width: 20%%; margin-left: auto; margin-right: auto;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Please enter a name for all donations.</strong>
+				</div> 
+    			<div id='error-toy-description' class='alert alert-error hide' style="width: 20%%; margin-left: auto; margin-right: auto;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Please enter a description for all donations.</strong>
+				</div> 
+    			<div id='error-toy-photo' class='alert alert-error hide' style="width: 20%%; margin-left: auto; margin-right: auto;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Please attach an image to all donations.</strong>
+				</div> 
 
 
 			</div> <!-- main -->
@@ -365,6 +378,6 @@
 			<hr>
 			<img src="images\original.png" class="img center" style="height:50px;"/>
 		</div> <!-- footer -->
-		
+
 	</body>
 </html>
