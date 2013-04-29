@@ -17,7 +17,7 @@
 
 	if ($valid) 
 	{
-		$query = "INSERT INTO toys VALUES ('$owner', '$toy_name', '$toy_age_range', '$toy_condition', '$toy_category', '$toy_description', '$toy_photo')";
+		$query = "INSERT INTO toys VALUES ('$owner', 0, '$toy_name', '$toy_age_range', '$toy_condition', '$toy_category', '$toy_description', '$toy_photo')";
 		mysql_query($query, $db) or die(mysql_error());
 		echo $toy_name . "added!";
 	} else {

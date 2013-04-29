@@ -223,7 +223,7 @@
 											<div class="control-group">
 												<label class="control-label"><strong>Toy Name</strong></label>
 												<div class="controls">
-													<input id="toyName" type="text" placeholder="" class="input-large text-form" required="">
+													<input id="toyName" type="text" placeholder="" class="input-large text-form" required autofocus>
 												</div>
 											</div>
 
@@ -279,7 +279,7 @@
 											<div class="control-group">
 												<label class="control-label"><strong>Description</strong></label>
 												<div class="controls">                     
-													<textarea id="description" class="text-form input-large"></textarea>
+													<textarea id="description" class="text-form input-large" required></textarea>
 												</div>
 											</div>
 											<!-- Button -->
@@ -316,7 +316,7 @@
 						<h3>Enter the URL of a photo of your toy.</h3>
 					</div>
 					<div class="modal-body">				
-						<input id="photo-url-input" type="text" placeholder="http://www.mit.edu/img/BackImage.jpg" style="width:100%">
+						<input id="photo-url-input" type="text" placeholder="http://www.mit.edu/img/BackImage.jpg" style="width:100%" autofocus>
 					</div>
 					<div class="modal-footer">
 						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
