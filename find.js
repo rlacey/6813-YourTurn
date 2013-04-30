@@ -9,61 +9,36 @@
  var cart=[];
  var activeName=null;
  var activePhoto=null;
- var toys=[];
+ var activeID=null;
+ var loadedToys=[];
 
 $(document).ready(function(){
-	var toy1= new toy(1,'Pony Bike','4-7','New',['Bikes, Boards & Scooters'],"Best young girl's bike ever!","images/toys/kids_bike.jpg");
-	var toy2= new toy(1,'Hot Wheels Collection','4-7','Lightly used',['Toy Cars'],'Great hot wheels collection',"images/toys/car.jpg");
-	var toy3= new toy(1,'Monopoly','8-12','Heavily used',['Games & Puzzles'],'This board game gave me many hours of enjoyment!',"images/toys/monopoly.jpg");
-	var toy4= new toy(1,'Stradivarius','13+','New',['Musical Instruments'],'Antique violin',"images/toys/violin.jpg");
-	var toy5= new toy(1,'Lite Brite Kit','4-7','Heavily used',['Games & Puzzles'],'Kids can make all sorts of cool shapes!',"images/toys/litebrite.jpg");
-	var toy6= new toy(1,'Ferrari Toy Race Car','4-7','Lightly used',['Toy Cars'],'Quality car that can be pulled back to run a short distance upon letting go.',"images/toys/racecar.jpg");
-	var toy7= new toy(1,'Halo Reach','13+','New',['Video Games'],'Cool game where you get to play as a soldier and not a Spartan.',"images/toys/reach.jpg");
-	var toy8= new toy(1,'Etch-A-Sketch','0-3','New',['Learning Toys'],"Great way to get your kid's creativity going!","images/toys/sketch.jpg");
-	var toy9= new toy(1,'Beast action figure','4-7','Heavily used',['Action Figures & Dolls'],"Beast will tear the rest of your action figures to shreds.","images/toys/beast.jpg");
-	var toy10= new toy(1,'Army men action figure set','4-7','Heavily used',['Action Figures & Dolls'],"Manliest of all action figures.","images/toys/army_men.jpg");
-	var toy11= new toy(1,'Atlas bike','8-12','Lightly used',['Bikes, Boards & Scooters'],"Need to get places? This is your bike.","images/toys/new_bikebike.gif");
-	var toy12= new toy(1,'Weird old bike','8-12','New',['Bikes, Boards & Scooters'],"Need to get places? This may not be your bike.","images/toys/old_bike.jpg");
-
-	//Add toys to the array of toys
-	toys.push(toy1);
-	toys.push(toy2);
-	toys.push(toy3);
-	toys.push(toy4);
-	toys.push(toy5);
-	toys.push(toy6);
-	toys.push(toy7);
-	toys.push(toy8);
-	toys.push(toy9);
-	toys.push(toy10);
-	toys.push(toy11);
-	toys.push(toy12);
-	//Add the toys to the page on page load
-	for (i=0;i<toys.length;i++){
-		addNewToy(toys[i]);
-	}
+	populateToys();
 	//Function to filter displayed toys whenever a checkbox is clicked
 	$(':checked').change(function(){
-		var checkedCats = [];
-		//Get all checked categories
-		$(':checked').each(function(i){
-			//Add the category name to an array
-			checkedCats.push($(this).val());
-		});
-		//Remove all current displayed toys
-		$('#toyWrapper').children().remove();
-		//Reset number of toys per row
-		numPerRow={1:0};
-		for (j=0;j<toys.length;j++){
-			for (k=0;k<checkedCats.length;k++){
-				//If the toy has a category that matches the selected categories display it
-				if (toys[j].categories==checkedCats[k]){
-					addNewToy(toys[j]);
-					continue;
-				}
-			}
+		populateToys();
+	});
+
+	$('#ageRangeFilter').change(function(){
+		populateToys();
+	});
+
+	$('#searchForm').submit(function(e){
+		e.preventDefault();
+		populateToys();
+	});
+
+	$('#modifyCart').click(function(){
+		if($('#modifyCart').text()=='Add to Cart'){
+			console.log('adding to cart');
+			addToCart();
+		}
+		else{
+			console.log('item was already in the cart');
+			removeFromCart(activeID);
 		}
 	});
+
 
 	//Register handler to clean the cart modal
 	$('#modalCart').on('hidden', function () {
@@ -126,12 +101,23 @@ function moreDetails(e){
 	toy=e.data.toy;
 	$('#modalToyImage').attr('src',toy.photo);
 	$('#modalToyTitle').html(toy.name);
-	$('#modalToyCats').html('<strong>Categories: </strong>'+toy.categories.join());
+	$('#modalToyCats').html('<strong>Category: </strong>'+toy.categories);
 	$('#modalToyCondition').html('<strong>Condition: </strong>'+toy.condition);
 	$('#modalToyDesc').html('<strong>Description: </strong>'+toy.description);
+	if (isInCart(toy.id)){
+		$('#modifyCart').removeClass('btn-primary');
+		$('#modifyCart').addClass('btn-warning');
+		$('#modifyCart').text('Remove from Cart');
+	}
+	else{
+		$('#modifyCart').text('Add to Cart');
+		$('#modifyCart').removeClass('btn-warning');
+		$('#modifyCart').addClass('btn-primary');
+	}
 	$('#modalToy').modal({});
 	activePhoto=toy.photo;
 	activeName=toy.name;
+	activeID=toy.id;
 }
 //Adds the item that was being looked at in the toy detail modal to the cart
 function addToCart(){
@@ -139,7 +125,7 @@ function addToCart(){
 	$('#finalCheckoutConfirmation').hide();
 	//If there are less than 5 toys allow the toy to be added to the cart
 	if (cart.length<5){
-		cart.push({name:activeName,photo:activePhoto});
+		cart.push({name:activeName,photo:activePhoto,id:activeID});
 		$('#cartConfirmation').show();
 	}
 	//Otherwise notify the user that only 5 toys may be in the cart
@@ -165,7 +151,7 @@ function viewCart(){
 		$('#checkoutButton').attr("disabled", false);
 		//Create a row in the cart modal for each toy with the picture, the name, and an x to remove it
 		for (i=0;i<cart.length;i++){
-			var newEntry=$('<li>',{id:'cart'+cart[i].name.replace(/\s/g, '')});
+			var newEntry=$('<li>',{id:'cart'+cart[i].id});
 			var newRow=$('<div>',{class:'row-fluid'});
 			//Fill picture column
 			var picCol =$('<div>',{class:'span2'});
@@ -183,7 +169,7 @@ function viewCart(){
 			var xbutton = $('<button>',{type:"button",class:"close",html:'&times'}); //data-dismiss:"alert", 
 			buttonCol.append(xbutton);
 			newRow.append(buttonCol);
-			xbutton.click(assignClick(cart[i].name, i));
+			xbutton.click(assignClick(cart[i].id, i));
 			//put row in li entry
 			newEntry.append(newRow);
 			//Put li in UL
@@ -201,17 +187,17 @@ function viewCart(){
 
 
 //Click helper
-function assignClick(toyName,i){
+function assignClick(id,i){
 	return function(event){
-		removeFromCart(toyName,i);
+		removeFromCart(id,i);
 	}
 }
 //Removes an item from the cart and removes the respective row in the cart modal
-function removeFromCart(toyName,row){
+function removeFromCart(id,row){
 	cartSize=cart.length;
-	var rowToDelete=$('#cart'+toyName.replace(/\s/g, ''));
+	var rowToDelete=$('#cart'+id);
 	if (row != cartSize-1){
-		$('#cart'+toyName.replace(/\s/g, '') +'~ .divider:first').remove();
+		$('#cart'+id +'~ .divider:first').remove();
 	}
 	//remove list entry with toy
 	rowToDelete.remove();
@@ -309,14 +295,53 @@ function clearCheckout(){
 //Check all checkbox filters and trigger filter
 function checkAllFilters(){
 	$('#categories :checkbox').prop('checked',true);
-	var temp = $('#categories :checked:first');
-	temp.click();
-	temp.click();
+	populateToys();
 }
 //Clear all checkbox filters and trigger filter
 function clearAllFilters(){
 	$('#categories :checkbox').prop('checked',false);
-	var temp = $("#categories :checkbox:not(:checked)");
-	temp.click();
-	temp.click();
+	populateToys();
+}
+
+var a;
+
+function populateToys(){
+	//Remove all current displayed toys
+	$('#toyWrapper').children().remove();
+	//Reset number of toys per row
+	numPerRow={1:0};
+	$.post(
+		'getToys.php',
+		{'searchFilter':$('#searchFilter').val(),'ageFilter':$('#ageRangeFilter').val(),'cats':getCheckedCats()},
+		function(data){
+			var parsed=JSON.parse(data);
+			a= parsed;
+			console.log(parsed);
+			for (i=0;i<parsed.length;i++){
+				var newToy = new toy(parsed[i]['toy_id'],parsed[i]['toy_name'],parsed[i]['toy_age_range'],parsed[i]['toy_condition'],
+					parsed[i]['toy_category'],parsed[i]['toy_description'],parsed[i]['toy_photo']);
+				console.log(newToy);
+				addNewToy(newToy);
+			}
+		}
+	);
+}
+
+function getCheckedCats(){
+	var checkedCats = [];
+	//Get all checked categories
+	$('#categories :checked').each(function(i){
+		//Add the category name to an array
+		checkedCats.push($(this).val());
+	});
+	return checkedCats;
+}
+
+function isInCart(id){
+	for (i=0;i<cart.length;i++){
+		if (id==cart[i]['id']){
+			return true;
+		}
+	}
+	return false;
 }

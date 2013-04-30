@@ -217,16 +217,25 @@
 
 						    		<li class='nav-header'></li>
 					    			<li> 
-					    				<form class="form-search">
+					    				<form id ='searchForm' class="form-search">
 											<div class="input-prepend">
-											<button id='searchSubmit' type="submit" class="btn">Search</button>
-											<input id='searchFilter' type="text" class="span5 search-query">
+												<button id='searchSubmit' type="submit" class="btn">Search</button>
+												<input id='searchFilter' type="text" class="span5 search-query">
 											</div>
 										</form>
 									</li>
 									<li class='divider'></li>
 									<li class='nav-header'>Toy Age Range</li>
-									<li> <input id='ageFrom' class="input-mini" type="text" style='margin-right:1em'> to <input id='ageTo' class="input-mini" type="text" style='margin-left:1em'> </li>
+									<li> 
+										<select id="ageRangeFilter" style='width:100px'>
+											<option></option>
+											<option>All ages</option>
+						    				<option>0 - 3</option>
+							    			<option>4 - 7</option>
+							    			<option>8 - 12</option>
+							    			<option>13 +</option>
+										</select>
+									</li>
 									<li class='divider'></li>
 									<li class='nav-header'>Categories</li>
 									<div id='categories'>
@@ -242,6 +251,8 @@
 										<li> <label class='checkbox'> <input type='checkbox' value='Toy Cars' id='toyCars' checked> Toy Cars</li>
 										<li> <label class='checkbox'> <input type='checkbox' value='Trading Cards' id='tradingCards' checked> Trading Cards</li>
 										<li> <label class='checkbox'> <input type='checkbox' value='Video Games' id='videoGames' checked> Video Games</li>	
+										<li> <label class='checkbox'> <input type='checkbox' value='Other' id='other' checked> Other</li>	
+
 									</div>							
 								</ul>
 
@@ -311,7 +322,7 @@
 	    			<div class='modal-footer'>
 	    				<a href='#' onclick="$('#modalToy').modal('hide')" class='btn'>Cancel</a>
 	    				<a href='messages.html' class='btn'>Message Owner</a>
-	    				<a href='#' onclick='addToCart()' class='btn'>Add to Cart</a>
+	    				<a href='#' id='modifyCart' class='btn btn-primary'>Add to Cart</a>
 					</div>
 				</div>
 
