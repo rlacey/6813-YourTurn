@@ -5,25 +5,42 @@
 	$searchFilter = strip_tags(mysql_real_escape_string($_POST['searchFilter']));
 	$ageFilter = strip_tags(mysql_real_escape_string($_POST['ageFilter']));
 	$cats = $_POST['cats'];
-	$query = 'SELECT * FROM toys WHERE ';
+	$pageNum=$_POST['pageNum'];
+	$numPerPage=$_POST['numPerPage'];
+	$queryHeader1 = 'SELECT * FROM toys WHERE ';
+	$queryHeader2 = 'SELECT COUNT(toy_id) FROM toys WHERE ';
+	$queryBody = '';
 	for ($i=0;$i<count($cats);$i++){
 		if ($i==0){
-			$query .= "(toy_category ='" . $cats[$i] ."'";
+			$queryBody .= "(toy_category ='" . $cats[$i] ."'";
 		}
 		else{
-			$query .=" OR toy_category='" . $cats[$i] ."'";
+			$queryBody .=" OR toy_category='" . $cats[$i] ."'";
 		}
 		if ($i==count($cats)-1){
-			$query .=')';
+			$queryBody .=')';
 		}
 	}
 	if ($ageFilter!=''){
-		$query.= " AND (toy_age_range='".$ageFilter."')";
+		$queryBody.= " AND (toy_age_range='".$ageFilter."')";
 	}
 	if ($searchFilter!=''){
-		$query.=" AND (toy_name like '%" . $searchFilter. "%')";
+		$queryBody.=" AND (toy_name like '%" . $searchFilter. "%')";
 	}
-	$result = mysql_query($query, $db) or die(mysql_error());
+	$queryBody.=" ORDER BY toy_name";
+	//Count num pages in matching set
+	if($pageNum==-1){
+		$queryHeader2 .= $queryBody;
+		echo $queryHeader2
+		;
+		$totalRecords = mysql_query($queryHeader2,$db) or die(mysql_error());
+		while($row=mysql_fetch_assoc($totalRecords)){
+			$pageNum= floor($row['COUNT(toy_id)'] /$numPerPage);
+		}
+	}
+	$queryBody .= ' LIMIT '. strval(($pageNum-1)*$numPerPage) .', '. strval($numPerPage).';';
+	//echo $queryHeader1.$queryBody;
+	$result = mysql_query($queryHeader1.$queryBody, $db) or die(mysql_error());
 	$arr=array();
 	while($row=mysql_fetch_assoc($result)){
 		$arr[]= $row;
