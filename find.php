@@ -290,8 +290,8 @@
 
 				<div class="pagination" style='text-align:center'>
   					<ul>
-    					<li id='firstPagingButton' class='disabled'><a href="#">First</a></li>
-					    <li id ='lastPagingButton' class='disabled'><a href="#">Last</a></li>
+    					<li id='firstPagingButton' class='disabled endPaging'><a href="#">First</a></li>
+					    <li id ='lastPagingButton' class='disabled endPaging'><a href="#">Last</a></li>
   					</ul>
 				</div>
 			<!-- ================================================

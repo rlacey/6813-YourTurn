@@ -27,7 +27,13 @@
 	//Count num pages in matching set
 	$totalRecords = mysql_query($query,$db) or die(mysql_error());
 	while($row=mysql_fetch_assoc($totalRecords)){
-		$numPages= floor($row['COUNT(toy_id)'] /$numPerPage)+1;
+		$roughNumPages= $row['COUNT(toy_id)'] /$numPerPage;
+		if($roughNumPages == floor($roughNumPages)){
+			$numPages=$roughNumPages;
+		}
+		else{
+			$numPages= floor()+1;
+		}
 	}
 	echo $numPages;
 ?>
