@@ -272,6 +272,7 @@
 									    <form class='form-inline' id="numPerPageForm">
 							    			<label class='control-label' for='numPer'> Results Per Page:</label>
 								    		<select id="numPer" style='width:75px'>
+								    			<option>2</option>
 								    			<option>12</option>
 								    			<option>20</Date>
 								    			<option>40</option>
@@ -289,9 +290,8 @@
 
 				<div class="pagination" style='text-align:center'>
   					<ul>
-    					<li class='disabled'><a href="#">&laquo;</a></li>
-					    <li class='active'><a href="#">1</a></li>
-					    <li class='disabled'><a href="#">&raquo;</a></li>
+    					<li id='firstPagingButton' class='disabled'><a href="#">First</a></li>
+					    <li id ='lastPagingButton' class='disabled'><a href="#">Last</a></li>
   					</ul>
 				</div>
 			<!-- ================================================

@@ -11,30 +11,33 @@
  var activePhoto=null;
  var activeID=null;
  var loadedToys=[];
+ var totalPages;
 
 $(document).ready(function(){
+	updatePaging();
 	populateToys();
 	//Function to filter displayed toys whenever a checkbox is clicked
-	$(':checked').change(function(){
+	$('#categories :checked').change(function(){
+		updatePaging();
 		populateToys();
 	});
 
 	$('#ageRangeFilter').change(function(){
+		updatePaging();
 		populateToys();
 	});
 
 	$('#searchForm').submit(function(e){
 		e.preventDefault();
+		updatePaging();
 		populateToys();
 	});
 
 	$('#modifyCart').click(function(){
 		if($('#modifyCart').text()=='Add to Cart'){
-			console.log('adding to cart');
 			addToCart();
 		}
 		else{
-			console.log('item was already in the cart');
 			removeFromCart(activeID);
 		}
 	});
@@ -49,6 +52,15 @@ $(document).ready(function(){
 	$('#modalCheckout').on('hidden', function () {
     	clearCheckout();
 	});
+
+
+	//Register change listener on numPerPage select box
+	$('#numPer').change(function(){
+		updatePaging();
+		populateToys();
+	});
+	//Register the paging buttons click
+	registerPagingClick();
 });
 //Adds a new toy to the find page
 function addNewToy(toy){
@@ -260,7 +272,6 @@ function requestToy(){
 	if ($('#ownerList li').length!=1){
 		//is it the first tab in the row
 		if (tabNum==$('#ownerList li:first a').attr('href').split('message')[1]){
-			console.log('first tab');
 			//Set next tab to active
 			$('#ownerList li.active').next().addClass('active');
 			//Set next tab body to active
@@ -295,34 +306,94 @@ function clearCheckout(){
 //Check all checkbox filters and trigger filter
 function checkAllFilters(){
 	$('#categories :checkbox').prop('checked',true);
+	updatePaging();
 	populateToys();
 }
 //Clear all checkbox filters and trigger filter
 function clearAllFilters(){
 	$('#categories :checkbox').prop('checked',false);
-	populateToys();
-}
-
-var a;
-
-function populateToys(){
 	//Remove all current displayed toys
 	$('#toyWrapper').children().remove();
-	//Reset number of toys per row
-	numPerRow={1:0};
-	$.post(
-		'getToys.php',
-		{'searchFilter':$('#searchFilter').val(),'ageFilter':$('#ageRangeFilter').val(),'cats':getCheckedCats()},
-		function(data){
-			var parsed=JSON.parse(data);
-			a= parsed;
-			console.log(parsed);
-			for (i=0;i<parsed.length;i++){
-				var newToy = new toy(parsed[i]['toy_id'],parsed[i]['toy_name'],parsed[i]['toy_age_range'],parsed[i]['toy_condition'],
-					parsed[i]['toy_category'],parsed[i]['toy_description'],parsed[i]['toy_photo']);
-				console.log(newToy);
-				addNewToy(newToy);
+	$('#firstPagingButton').nextUntil('#lastPagingButton').remove();
+	$('#firstPagingButton').addClass('.disabled');
+	$('#lastPagingButton').addClass('disabled');
+}
+
+
+function populateToys(){
+	var cats=getCheckedCats();
+	var pageNum=$('.pagination li.active a').html();
+	if (typeof pageNum =='undefined'){
+		pageNum=1;
+	}
+	if (pageNum=="First"){
+		pageNum=1;
+	}
+	else if (pageNum=="Last"){
+		pageNum=-1;
+	}
+	if (cats.length==0){
+		$('#toyWrapper').children().remove();
+	}
+	else{
+		$.post(
+			'getToys.php',
+			{'searchFilter':$('#searchFilter').val(),'ageFilter':$('#ageRangeFilter').val(),'cats':cats,'numPerPage':$('#numPer').val(),'pageNum':pageNum},
+			function(data){
+				// console.log(data);
+				//Remove all current displayed toys
+				$('#toyWrapper').children().remove();
+				//Reset number of toys per row
+				numPerRow={1:0};
+				var parsed=JSON.parse(data);
+				//console.log(parsed);
+				for (i=0;i<parsed.length;i++){
+					var newToy = new toy(parsed[i]['toy_id'],parsed[i]['toy_name'],parsed[i]['toy_age_range'],parsed[i]['toy_condition'],parsed[i]['toy_category'],parsed[i]['toy_description'],parsed[i]['toy_photo']);
+					// console.log(newToy);
+					addNewToy(newToy);
+				}
+				//Update the paging button labels
+
+
 			}
+		);
+	}
+}
+
+
+function updatePaging(){
+	var cats=getCheckedCats();
+	$.post(
+		'updateFindPaging.php',
+		{'searchFilter':$('#searchFilter').val(),'ageFilter':$('#ageRangeFilter').val(),'cats':cats,'numPerPage':$('#numPer').val()},
+		function(data){
+			console.log(data);
+			liarray=[];
+			var li = $('<li>');
+			var a = $('<a>');
+			$('#firstPagingButton').nextUntil('#lastPagingButton').remove();
+			if(data==1){
+				$('#lastPagingButton').addClass('disabled');
+			}
+			else{
+				$('#lastPagingButton').removeClass('disabled');
+			}
+			//Create paging buttons
+			for (i=1;i<=Math.min(data,3);i++){
+				var liClone=li.clone();
+				var aClone=a.clone();
+				if (i==1){
+					liClone.addClass('active');
+				}
+				aClone.text(i);
+				liClone.append(aClone);
+				liarray.push(liClone);
+			}
+			for (i=0;i<liarray.length;i++){
+				liarray[i].insertBefore('#lastPagingButton');
+			}
+			totalPages=data;
+			registerPagingClick();
 		}
 	);
 }
@@ -344,4 +415,18 @@ function isInCart(id){
 		}
 	}
 	return false;
+}
+
+function registerPagingClick(){
+	//Register pagination click handling
+	$('.pagination li').click(function(e){
+		if ($(this).hasClass('active') || $(this).hasClass('disabled')){
+			alert('active or disabled');
+			return;
+		}
+
+		$('.pagination li.active').removeClass('active');
+		$(this).addClass('active');
+		populateToys();
+	});
 }
