@@ -31,15 +31,19 @@
 	//Count num pages in matching set
 	if($pageNum==-1){
 		$queryHeader2 .= $queryBody;
-		echo $queryHeader2
-		;
 		$totalRecords = mysql_query($queryHeader2,$db) or die(mysql_error());
 		while($row=mysql_fetch_assoc($totalRecords)){
-			$pageNum= floor($row['COUNT(toy_id)'] /$numPerPage);
+			$roughNumPages= $row['COUNT(toy_id)'] /$numPerPage;
+			if($roughNumPages == floor($roughNumPages)){
+				$pageNum=$roughNumPages;
+			}
+			else{
+				$pageNum= floor($roughNumPages)+1;
+			}
 		}
 	}
 	$queryBody .= ' LIMIT '. strval(($pageNum-1)*$numPerPage) .', '. strval($numPerPage).';';
-	//echo $queryHeader1.$queryBody;
+	// echo $queryHeader1.$queryBody;
 	$result = mysql_query($queryHeader1.$queryBody, $db) or die(mysql_error());
 	$arr=array();
 	while($row=mysql_fetch_assoc($result)){
