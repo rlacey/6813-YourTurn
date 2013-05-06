@@ -55,6 +55,11 @@
 		    #page-title {
 		    	text-align: center;
 		    }
+
+		    .logout-content {
+		    	padding-top: 5%;
+		    	text-align: center;
+		    }
 	    </style>
 
 		<!-- Load any supplemental Javascript libraries here -->
@@ -178,6 +183,7 @@
 					</div> 
 		        </div>				    		
 
+				
 				<!-- =================================================
 
 				TITLE
@@ -185,210 +191,218 @@
 			    ================================================== -->
 			    <h1 id="page-title">Search for a toy!</h1><br>
 			    <div class="hide" id="owner" name=<?php echo $username; ?> ></div>
-			    
-			    <div class='row-fluid'>
-			    	<div class='span8 offset2'>
-			    		<div class='row-fluid'>
-			    			<div style='float:right'>
-			    				<a id='cart' href='#' class='btn btn-link' style='font-size:medium' onclick='viewCart()'>View Cart <i class='icon-shopping-cart'></i></a>
+
+			    <div class="login-content">
+				    
+				    <div class='row-fluid'>
+				    	<div class='span8 offset2'>
+				    		<div class='row-fluid'>
+				    			<div style='float:right'>
+				    				<a id='cart' href='#' class='btn btn-link' style='font-size:medium' onclick='viewCart()'>View Cart <i class='icon-shopping-cart'></i></a>
+			    				</div>
+			    			</div>
+			    			<div id='cartConfirmation' class='alert alert-success notifs' style='display:none'>
+		    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  <strong>Congratulations!</strong> Your cart has been updated.
 		    				</div>
-		    			</div>
-		    			<div id='cartConfirmation' class='alert alert-success notifs' style='display:none'>
-	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Congratulations!</strong> Your cart has been updated.
-	    				</div>
-	    				<div id='removedFromCart' class='alert alert-info notifs' style='display:none'>
-	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Item removed from your cart</strong>
-	    				</div>
-	    				<div id='cartFullAlert' class='alert alert-error notifs' style='display:none'>
-	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Sorry!</strong> You can only have five items in your cart :(.
-	    				</div>
-	    				<div id='finalCheckoutConfirmation' class='alert alert-info notifs' style='display:none'>
-	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Last request has been sent!</strong>
-	    				</div>
-			    		<div class='row-fluid'>
-					    	<div class='span3'>
-						    	<ul class='nav nav-list'>
-						    		<li class='nav-header'></li>
-					    			<li> 
-					    				<form id ='searchForm' class="form-search">
-											<div class="input-prepend row-fluid">
-												<button id='searchSubmit' type="submit" class="btn span5">Search</button>
-												<input id='searchFilter' type="text" class="span7 search-query">
-											</div>
-										</form>
-									</li>
-									<li class='divider'></li>
-									<li class='nav-header'>Toy Age Range</li>
-									<li> 
-										<select id="ageRangeFilter" style='width:100px'>
-											<option></option>
-											<option>All ages</option>
-						    				<option>0 - 3</option>
-							    			<option>4 - 7</option>
-							    			<option>8 - 12</option>
-							    			<option>13 +</option>
-										</select>
-									</li>
-									<li class='divider'></li>
-						    		<li class='nav-header'></li>
-							    		<li> <div class='row-fluid'>
-							    			<button class='btn btn-mini btn-primary span5' onclick="checkAllFilters();">Check Filters</button>
-							    			<button class='btn btn-mini btn-warning offset1 span5' onclick="clearAllFilters();">Clear Filters</button>
-							    		 </div></li>
-
-									<li class='nav-header'>Categories</li>
-									<div id='categories'>
-										<li> <label class='checkbox'> <input type='checkbox' value='Action Figures & Dolls' id='actionFiguresDolls' checked> Action Figures & Dolls</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Bikes, Boards & Scooters' id='bikesBoardsScooters' checked> Bikes, Boards & Scooters</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Building Sets' id='buildingSets' checked> Building Sets</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Collectibles' id='collectibles' checked> Collectibles</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Games & Puzzles' id='gamesPuzzles' checked> Games & Puzzles</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Learning Toys' id='learningToys' checked> Learning Toys</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Musical Instruments' id='musicalInstruments' checked> Musical Instruments</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Remote Control' id='remoteControl' checked> Remote Control</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Sports Equipment' id='sportsEquipment' checked> Sports Equipment</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Toy Cars' id='toyCars' checked> Toy Cars</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Trading Cards' id='tradingCards' checked> Trading Cards</li>
-										<li> <label class='checkbox'> <input type='checkbox' value='Video Games' id='videoGames' checked> Video Games</li>	
-										<li> <label class='checkbox'> <input type='checkbox' value='Other' id='other' checked> Other</li>	
-
-									</div>							
-								</ul>
-
-					    	</div>
-					    	<div class='span9'>
-					    		<div class='row-fluid'>
-							    	<div style='float:right'>
-									    <form class='form-inline' id="numPerPageForm">
-							    			<label class='control-label' for='numPer'> Results Per Page:</label>
-								    		<select id="numPer" style='width:75px'>
-								    			<option>2</option>
-								    			<option>12</option>
-								    			<option>20</Date>
-								    			<option>40</option>
+		    				<div id='removedFromCart' class='alert alert-info notifs' style='display:none'>
+		    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  <strong>Item removed from your cart</strong>
+		    				</div>
+		    				<div id='cartFullAlert' class='alert alert-error notifs' style='display:none'>
+		    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  <strong>Sorry!</strong> You can only have five items in your cart :(.
+		    				</div>
+		    				<div id='finalCheckoutConfirmation' class='alert alert-info notifs' style='display:none'>
+		    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  <strong>Last request has been sent!</strong>
+		    				</div>
+				    		<div class='row-fluid'>
+						    	<div class='span3'>
+							    	<ul class='nav nav-list'>
+							    		<li class='nav-header'></li>
+						    			<li> 
+						    				<form id ='searchForm' class="form-search">
+												<div class="input-prepend row-fluid">
+													<button id='searchSubmit' type="submit" class="btn span5">Search</button>
+													<input id='searchFilter' type="text" class="span7 search-query">
+												</div>
+											</form>
+										</li>
+										<li class='divider'></li>
+										<li class='nav-header'>Toy Age Range</li>
+										<li> 
+											<select id="ageRangeFilter" style='width:100px'>
+												<option></option>
+												<option>All ages</option>
+							    				<option>0 - 3</option>
+								    			<option>4 - 7</option>
+								    			<option>8 - 12</option>
+								    			<option>13 +</option>
 											</select>
-								    	</form>
-									</div>
-								</div>
-								<div class='row-fluid' id='toyWrapper'>
+										</li>
+										<li class='divider'></li>
+							    		<li class='nav-header'></li>
+								    		<li> <div class='row-fluid'>
+								    			<button class='btn btn-mini btn-primary span5' onclick="checkAllFilters();">Check Filters</button>
+								    			<button class='btn btn-mini btn-warning offset1 span5' onclick="clearAllFilters();">Clear Filters</button>
+								    		 </div></li>
 
+										<li class='nav-header'>Categories</li>
+										<div id='categories'>
+											<li> <label class='checkbox'> <input type='checkbox' value='Action Figures & Dolls' id='actionFiguresDolls' checked> Action Figures & Dolls</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Bikes, Boards & Scooters' id='bikesBoardsScooters' checked> Bikes, Boards & Scooters</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Building Sets' id='buildingSets' checked> Building Sets</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Collectibles' id='collectibles' checked> Collectibles</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Games & Puzzles' id='gamesPuzzles' checked> Games & Puzzles</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Learning Toys' id='learningToys' checked> Learning Toys</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Musical Instruments' id='musicalInstruments' checked> Musical Instruments</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Remote Control' id='remoteControl' checked> Remote Control</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Sports Equipment' id='sportsEquipment' checked> Sports Equipment</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Toy Cars' id='toyCars' checked> Toy Cars</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Trading Cards' id='tradingCards' checked> Trading Cards</li>
+											<li> <label class='checkbox'> <input type='checkbox' value='Video Games' id='videoGames' checked> Video Games</li>	
+											<li> <label class='checkbox'> <input type='checkbox' value='Other' id='other' checked> Other</li>	
+
+										</div>							
+									</ul>
+
+						    	</div>
+						    	<div class='span9'>
+						    		<div class='row-fluid'>
+								    	<div style='float:right'>
+										    <form class='form-inline' id="numPerPageForm">
+								    			<label class='control-label' for='numPer'> Results Per Page:</label>
+									    		<select id="numPer" style='width:75px'>
+									    			<option>2</option>
+									    			<option>12</option>
+									    			<option>20</Date>
+									    			<option>40</option>
+												</select>
+									    	</form>
+										</div>
+									</div>
+									<div class='row-fluid' id='toyWrapper'>
+
+									</div>
 								</div>
 							</div>
 						</div>
+					</div> <!--row fluid> -->
+
+					<div class="pagination" style='text-align:center'>
+	  					<ul>
+	    					<li id='firstPagingButton' class='disabled endPaging'><a>First</a></li>
+						    <li id ='lastPagingButton' class='disabled endPaging'><a>Last</a></li>
+	  					</ul>
 					</div>
-				</div> <!--row fluid> -->
+				<!-- ================================================
 
-				<div class="pagination" style='text-align:center'>
-  					<ul>
-    					<li id='firstPagingButton' class='disabled endPaging'><a>First</a></li>
-					    <li id ='lastPagingButton' class='disabled endPaging'><a>Last</a></li>
-  					</ul>
-				</div>
-			<!-- ================================================
+				TOY DETAILS MODAL
 
-			TOY DETAILS MODAL
+				===================================================== -->
 
-			===================================================== -->
-
-				<div id="modalToy" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
-					<div class="modal-header">
-					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					    <h3 id='modalToyTitle'></h3>
-				    </div>
-				    <div class='modal-body modalToyBody'>
-				    	<div id='modalToyImageWrapper' class='text-center' style='height:300px'>
-				    		<img id='modalToyImage' style='height:100%'></img>
-			    		</div>
-			    		<div>
-			    			<p id='modalToyCats'></p>
-		    			</div>
-		    			<div>
-			    			<p id='modalToyCondition'></p>
-		    			</div>
-		    			<div>
-			    			<p id='modalToyDesc'></p>
-		    			</div>
-	    			</div>
-	    			<div class='modal-footer'>
-	    				<a href='#' onclick="$('#modalToy').modal('hide')" class='btn'>Cancel</a>
-	    				<a href='messages.html' class='btn'>Message Owner</a>
-	    				<a href='#' id='modifyCart' class='btn btn-primary'>Add to Cart</a>
-					</div>
-				</div>
-
-
-
-
-			<!-- ================================================
-
-			Cart Modal
-
-			===================================================== -->
-
-				<div id="modalCart" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
-					<div class="modal-header">
-					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-					    <h3 id='Cart'>Your Cart</h3>
-				    </div>
-				    <div class='modal-body'>
-				    	<div id='emptyCart' style='display:none'>Your cart is empty. Find some toys to add!</div>
-			    		<ul id='cartList' class='nav nav-list'>
-			    		</ul>
-	    			</div>
-	    			<div class='modal-footer'>
-	    				<a href='#' onclick="$('#modalCart').modal('hide');" class='btn'>Cancel</a>
-	    				<button id='checkoutButton' onclick='checkout();' class='btn'>Checkout</a>
-					</div>
-				</div>
-
-
-
-			<!-- ================================================
-
-			Checkout Modal
-
-			===================================================== -->
-
-				<div id="modalCheckout" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
-					<div class="modal-header">
-					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-					    <h3>Message the toy owners</h3>
-				    </div>
-				    <div class='modal-body'>
-		    			<div id='checkoutMessageConfirmation' class='alert alert-info' style='display:none'>
-	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Your message has been sent!</strong>
-	    				</div>
-				    	<div class='tabbable tabs-left'>
-			    			<ul id='ownerList' class='nav nav-tabs'>
-			    				<!-- <li class='active'><a href='#1A' data-toggle='tab'> tab 1</a></li>
-			    				<li><a href='#2A' data-toggle='tab'> tab 2</a></li>
-			    				<li><a href='#3A' data-toggle='tab'> tab 3</a></li>
-			    				<li><a href='#4A' data-toggle='tab'> tab 4</a></li>
-			    				<li><a href='#5A' data-toggle='tab'> tab 5</a></li> -->
-			    			</ul>
-			    			<div id='ownerMessages'class='tab-content' style='position:relative'>
-			    				<!-- <div class='tab-pane active' id='1A'>
-			    					<textarea style="width:28em; height:14em"></textarea>
-			    				</div> -->
-				    			<div class='row-fluid' id='checkoutButtonRow'>
-				    				<div class='span1 offset6'>
-					    				<button type='button' class='btn' onclick="$('#modalCheckout').modal('hide')">Cancel</button>
-				    				</div>
-				    				<div class='span1 offset2'>
-				    					<button type='button' class='btn btn-primary' onclick='requestToy();'>Send</button>
-				    				</div>
-			    				</div>
+					<div id="modalToy" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
+						<div class="modal-header">
+						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						    <h3 id='modalToyTitle'></h3>
+					    </div>
+					    <div class='modal-body modalToyBody'>
+					    	<div id='modalToyImageWrapper' class='text-center' style='height:300px'>
+					    		<img id='modalToyImage' style='height:100%'></img>
+				    		</div>
+				    		<div>
+				    			<p id='modalToyCats'></p>
 			    			</div>
+			    			<div>
+				    			<p id='modalToyCondition'></p>
+			    			</div>
+			    			<div>
+				    			<p id='modalToyDesc'></p>
+			    			</div>
+		    			</div>
+		    			<div class='modal-footer'>
+		    				<a href='#' onclick="$('#modalToy').modal('hide')" class='btn'>Cancel</a>
+		    				<a href='messages.html' class='btn'>Message Owner</a>
+		    				<a href='#' id='modifyCart' class='btn btn-primary'>Add to Cart</a>
+						</div>
+					</div>
 
-			    		</div>
-	    			</div>
-				</div>
 
+
+
+				<!-- ================================================
+
+				Cart Modal
+
+				===================================================== -->
+
+					<div id="modalCart" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
+						<div class="modal-header">
+						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+						    <h3 id='Cart'>Your Cart</h3>
+					    </div>
+					    <div class='modal-body'>
+					    	<div id='emptyCart' style='display:none'>Your cart is empty. Find some toys to add!</div>
+				    		<ul id='cartList' class='nav nav-list'>
+				    		</ul>
+		    			</div>
+		    			<div class='modal-footer'>
+		    				<a href='#' onclick="$('#modalCart').modal('hide');" class='btn'>Cancel</a>
+		    				<button id='checkoutButton' onclick='checkout();' class='btn'>Checkout</a>
+						</div>
+					</div>
+
+
+
+				<!-- ================================================
+
+				Checkout Modal
+
+				===================================================== -->
+
+					<div id="modalCheckout" class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby="toy" aria-hidden='true'>
+						<div class="modal-header">
+						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+						    <h3>Message the toy owners</h3>
+					    </div>
+					    <div class='modal-body'>
+			    			<div id='checkoutMessageConfirmation' class='alert alert-info' style='display:none'>
+		    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  <strong>Your message has been sent!</strong>
+		    				</div>
+					    	<div class='tabbable tabs-left'>
+				    			<ul id='ownerList' class='nav nav-tabs'>
+				    				<!-- <li class='active'><a href='#1A' data-toggle='tab'> tab 1</a></li>
+				    				<li><a href='#2A' data-toggle='tab'> tab 2</a></li>
+				    				<li><a href='#3A' data-toggle='tab'> tab 3</a></li>
+				    				<li><a href='#4A' data-toggle='tab'> tab 4</a></li>
+				    				<li><a href='#5A' data-toggle='tab'> tab 5</a></li> -->
+				    			</ul>
+				    			<div id='ownerMessages'class='tab-content' style='position:relative'>
+				    				<!-- <div class='tab-pane active' id='1A'>
+				    					<textarea style="width:28em; height:14em"></textarea>
+				    				</div> -->
+					    			<div class='row-fluid' id='checkoutButtonRow'>
+					    				<div class='span1 offset6'>
+						    				<button type='button' class='btn' onclick="$('#modalCheckout').modal('hide')">Cancel</button>
+					    				</div>
+					    				<div class='span1 offset2'>
+					    					<button type='button' class='btn btn-primary' onclick='requestToy();'>Send</button>
+					    				</div>
+				    				</div>
+				    			</div>
+
+				    		</div>
+		    			</div>
+					</div>
+				</div> <!-- login content -->
+
+				<div class='logout-content'>					
+					Please <a href="#modal-login" data-toggle="modal" data-dismiss="modal" onClick="switchModal()"> log in</a>
+					or <a href="#modal-register" data-toggle="modal" data-dismiss="modal" onClick="switchModal()"> register</a>
+					to search for a toy.  					
+				</div> <!-- logout content -->
 			</div> <!-- main -->
 		</div> <!-- wrap -->
 
