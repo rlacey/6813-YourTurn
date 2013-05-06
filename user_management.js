@@ -4,6 +4,14 @@
  */
 
 $(document).ready(function() {
+	loginText = $('#user').text().trim();
+	if (loginText === "Login / Signup") {
+		$('.login-content').hide();
+		$('.logout-content').show();
+	} else {
+		$('.login-content').show();
+		$('.logout-content').hide();
+	}
  	hovering();
 });
 
@@ -37,6 +45,8 @@ function submitRegistration() {
 	        $('#owner').attr('name', name);
 			$("#modal-register").modal ("hide");
 			hovering();
+			$('.login-content').show();
+			$('.logout-content').hide();
 		}
 	);
 }
@@ -58,7 +68,9 @@ function submitLogin() {
 	        $('#user').html('<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> '+name+'</a>');
 	        $('#owner').attr('name', name);
 			$("#modal-login").modal ("hide");
-			hovering();			
+			hovering();		
+			$('.login-content').show();
+			$('.logout-content').hide();	
 		}
 	);
 }
@@ -77,7 +89,8 @@ function logout() {
 		"logout.php",
 		{"user_name" : name},
 		function(data) {
-			// nothing
+			$('login-content').hide();
+			$('.logout-content').show();
 		}
 	);
 }
