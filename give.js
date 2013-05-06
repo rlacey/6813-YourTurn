@@ -176,13 +176,6 @@ function closeModal(modalID) {
 	$("#"+modalID).modal ('hide'); 
 };
 
-/*
- *  Upload photo from file on user's computer.
- */
-function uploadPhotoPrompt() {
-	alert('This function is not yet implemented. Sorry!');
-}
-
 function submitToyForms() {
 	$('#error-toy-name').hide();
 	$('#error-toy-description').hide();
@@ -212,7 +205,11 @@ function submitToyForms() {
 
 	if (validated) {
 		// Get username
-		var owner = $('#owner').attr('name');	
+		var owner = $('#owner').attr('name');
+		if (owner==''){
+			alert("Please login or register before donating.");
+			return;
+		}
 		// Retrieve form data
 		for (var i=0; i<toyIDs.length; i++) {
 			var toyName = $('#toyName'+toyIDs[i]).val();

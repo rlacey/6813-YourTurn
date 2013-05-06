@@ -193,15 +193,19 @@
 			    				<a id='cart' href='#' class='btn btn-link' style='font-size:medium' onclick='viewCart()'>View Cart <i class='icon-shopping-cart'></i></a>
 		    				</div>
 		    			</div>
-		    			<div id='cartConfirmation' class='alert alert-success' style='display:none'>
+		    			<div id='cartConfirmation' class='alert alert-success notifs' style='display:none'>
 	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Congratulations!</strong> Your cart has been updated.
 	    				</div>
-	    				<div id='cartFullAlert' class='alert alert-error' style='display:none'>
+	    				<div id='removedFromCart' class='alert alert-info notifs' style='display:none'>
+	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Item removed from your cart</strong>
+	    				</div>
+	    				<div id='cartFullAlert' class='alert alert-error notifs' style='display:none'>
 	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Sorry!</strong> You can only have five items in your cart :(.
 	    				</div>
-	    				<div id='finalCheckoutConfirmation' class='alert alert-info' style='display:none'>
+	    				<div id='finalCheckoutConfirmation' class='alert alert-info notifs' style='display:none'>
 	    				  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Last request has been sent!</strong>
 	    				</div>
@@ -209,18 +213,11 @@
 					    	<div class='span3'>
 						    	<ul class='nav nav-list'>
 						    		<li class='nav-header'></li>
-						    		<li> <div class='row-fluid'>
-						    			<button class='btn btn-mini btn-primary' style='margin-right:0.5em' onclick="checkAllFilters();">Check Filters</button>
-						    			<button class='btn btn-mini btn-warning' onclick="clearAllFilters();">Clear Filters</button>
-						    		 </div></li>
-						    		<li class='divider'></li>
-
-						    		<li class='nav-header'></li>
 					    			<li> 
 					    				<form id ='searchForm' class="form-search">
-											<div class="input-prepend">
-												<button id='searchSubmit' type="submit" class="btn">Search</button>
-												<input id='searchFilter' type="text" class="span5 search-query">
+											<div class="input-prepend row-fluid">
+												<button id='searchSubmit' type="submit" class="btn span5">Search</button>
+												<input id='searchFilter' type="text" class="span7 search-query">
 											</div>
 										</form>
 									</li>
@@ -237,6 +234,12 @@
 										</select>
 									</li>
 									<li class='divider'></li>
+						    		<li class='nav-header'></li>
+							    		<li> <div class='row-fluid'>
+							    			<button class='btn btn-mini btn-primary span5' onclick="checkAllFilters();">Check Filters</button>
+							    			<button class='btn btn-mini btn-warning offset1 span5' onclick="clearAllFilters();">Clear Filters</button>
+							    		 </div></li>
+
 									<li class='nav-header'>Categories</li>
 									<div id='categories'>
 										<li> <label class='checkbox'> <input type='checkbox' value='Action Figures & Dolls' id='actionFiguresDolls' checked> Action Figures & Dolls</li>
@@ -259,15 +262,6 @@
 					    	</div>
 					    	<div class='span9'>
 					    		<div class='row-fluid'>
-							    	<div class='span4'>
-									    <form class='form-inline' id="sortByForm">
-							    			<label class='control-label' for='sortBy'> Sort By:</label>
-								    		<select id="sortBy" style='width:100px'>
-								    			<option>Name</option>
-								    			<option>Date</option>
-											</select>
-								    	</form>
-							    	</div>
 							    	<div style='float:right'>
 									    <form class='form-inline' id="numPerPageForm">
 							    			<label class='control-label' for='numPer'> Results Per Page:</label>
@@ -290,8 +284,8 @@
 
 				<div class="pagination" style='text-align:center'>
   					<ul>
-    					<li id='firstPagingButton' class='disabled endPaging'><a href="#">First</a></li>
-					    <li id ='lastPagingButton' class='disabled endPaging'><a href="#">Last</a></li>
+    					<li id='firstPagingButton' class='disabled endPaging'><a>First</a></li>
+					    <li id ='lastPagingButton' class='disabled endPaging'><a>Last</a></li>
   					</ul>
 				</div>
 			<!-- ================================================

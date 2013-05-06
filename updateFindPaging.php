@@ -32,7 +32,7 @@
 			$numPages=$roughNumPages;
 		}
 		else{
-			$numPages= floor()+1;
+			$numPages= floor($roughNumPages)+1;
 		}
 	}
 	echo $numPages;
