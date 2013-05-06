@@ -292,8 +292,7 @@
 										<div class="control-group">
 											<label class="control-label"></label>
 											<div class="controls">
-												<button class="btn" id="button-photo-url" onclick="linkToPhotoPrompt()">Link to Photo</button>
-												<button class="btn" id="button-photo-upload" onClick="uploadPhotoPrompt()">Upload a Photo</button>
+												<button class="btn center" id="button-photo-url" onclick="linkToPhotoPrompt()">Link to Photo</button>
 											</div> <!-- /controls -->
 										</div> <!-- /control group -->
 									</div> <!-- /span6 -->

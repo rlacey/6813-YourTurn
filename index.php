@@ -186,7 +186,7 @@
 								Is your home getting a bit cluttered with toys your kids no longer want?
 								Donate their old toys to families in need!
 							</p>
-							<p><a class="btn" href="give.html">Donate!</a></p>
+							<p><a class="btn btn-primary" href="give.html">Donate!</a></p>
 						</div>
 						<div class="span6">
 							<h2>Find</h2>
@@ -195,7 +195,7 @@
 								How about saving some cash by kickstarting your son's rockstar career on a used guitar? 
 								Search for used toys, instruments, and more!
 							</p>
-							<p><a class="btn" href="find.html">Search!</a></p>
+							<p><a class="btn btn-primary" href="find.html">Search!</a></p>
 						</div>
 					</div>
 				</div> <!-- /container -->       
