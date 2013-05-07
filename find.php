@@ -236,8 +236,8 @@
 									<li class='divider'></li>
 						    		<li class='nav-header'></li>
 							    		<li> <div class='row-fluid'>
-							    			<button class='btn btn-mini btn-primary span5' onclick="checkAllFilters();">Check Filters</button>
-							    			<button class='btn btn-mini btn-warning offset1 span5' onclick="clearAllFilters();">Clear Filters</button>
+							    			<button class='btn btn-mini btn-primary span5' onclick="checkAllFilters();">Check All</button>
+							    			<button class='btn btn-mini btn-warning offset1 span5' onclick="clearAllFilters();">Clear All</button>
 							    		 </div></li>
 
 									<li class='nav-header'>Categories</li>
