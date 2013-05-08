@@ -189,7 +189,8 @@
 				TITLE
 
 			    ================================================== -->
-			    <div class="marker"><h1 id="page-title">A little bit on YourTurn</h1></div>
+			    
+			    <div class="marker"><h1 id="page-title">A Little Bit on YourTurn</h1></div>
 
 			    <div class="span6 offset3">
 			    	<br>

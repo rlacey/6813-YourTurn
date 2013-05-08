@@ -96,6 +96,31 @@ function addConversation(toy_id){
 	
 }
 
+function addMessage(toy_id,message){
+	// Update data structure
+	//userList.push(username);
+	//conversations.push(new Array());
+	console.log(toy_id);
+	var owner = "";
+	$.post("getOwner.php", {"id" : toy_id}, function(data){
+		var parsed=JSON.parse(data);
+		owner = parsed['owner'];
+		console.log(owner);
+	var user = $('#owner').attr('name');
+	console.log(user);
+	$.post(
+		"addMessage.php",
+		{"user_from":user, "user_to":owner, "message": message }
+	);
+	})
+	
+	// TODO: How will they be on the messages page from the find page? - switch tab, display conversations?
+	
+	
+}
+
+
+
 //Adds a new toy to the find page
 function addNewToy(toy){
 	//Is there room for another toy on the lowest row
@@ -272,11 +297,11 @@ function checkout(){
 	for(i=0;i<cart.length;i++){
 		//Create the tab. If the first tab make it active
 		if (i==0){
-			var ownerEntry= $('<li>',{class:'active'});
+			var ownerEntry= $('<li>',{class:'active',id:cart[i].toy_id});
 		}
 		//Otherwise just make it and don't classify it as active
 		else{
-			var ownerEntry= $('<li>');
+			var ownerEntry= $('<li>',{id:cart[i].toy_id});
 		}
 		//Create the link containing the toy name for the tab
 		var owner = $('<a>',{href:'#message'+i,text:cart[i].toy_name});
@@ -287,10 +312,10 @@ function checkout(){
 		//Create message body
 		//If the first tab-pane then force it active. Otherwise do not.
 		if (i==0){
-			var tabPane=$('<div>',{class:'tab-pane active',id:'message'+i});
+			var tabPane=$('<div>',{class:'tab-pane active message',id:'message'+i});
 		}
 		else{
-			var tabPane=$('<div>',{class:'tab-pane',id:'message'+i});
+			var tabPane=$('<div>',{class:'tab-pane message',id:'message'+i});
 		}
 		//Create the field where the users can write a message to the toy owner
 		var message = $('<textarea>', {style:"width:28em;height:13em", id:'messageText'+i});
@@ -305,6 +330,12 @@ function requestToy(){
 	var tabBodyID = $('ul#ownerList li.active a').attr('href');
 	var activeTabBody= $(tabBodyID);
 	var tabNum = tabBodyID.split('message')[1];
+
+
+	//Content for message
+	var toyID = $('#ownerList li.active').attr('id');
+	var message = $('.message.tab-pane.active textarea').val();
+	addMessage(toyID,message);
 
 	if ($('#ownerList li').length!=1){
 		//is it the first tab in the row
