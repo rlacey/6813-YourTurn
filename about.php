@@ -189,7 +189,7 @@
 				TITLE
 
 			    ================================================== -->
-			    <h1 id="page-title">A little bit on YourTurn</h1>
+			    <h1 id="page-title">A Little Bit on YourTurn</h1>
 
 			    			    <div class="span6 offset3">
 			    	<br>
