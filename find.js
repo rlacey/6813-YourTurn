@@ -358,6 +358,7 @@ function clearAllFilters(){
 
 
 function populateToys(pageNum){
+	console.log('in populate toys')
 	var cats=getCheckedCats();
 	if (cats.length==0){
 		$('#toyWrapper').children().remove();
@@ -379,8 +380,8 @@ function populateToys(pageNum){
 					console.log(newToy);
 					addNewToy(newToy);
 				}
-				console.log('total pages: '+totalPages);
-				console.log('pageNum: '+pageNum);
+				// console.log('total pages: '+totalPages);
+				// console.log('pageNum: '+pageNum);
 				//Update the paging button labels
 				$('#firstPagingButton').nextUntil('#lastPagingButton').remove();
 				if (pageNum==-1 || pageNum==totalPages){
@@ -460,7 +461,7 @@ function getCheckedCats(){
 	//Get all checked categories
 	$('#categories :checked').each(function(i){
 		//Add the category name to an array
-		checkedCats.push($(this).val());
+		checkedCats.push($(this).parent().text().trim());
 	});
 	return checkedCats;
 }

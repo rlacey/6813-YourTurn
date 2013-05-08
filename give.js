@@ -45,7 +45,7 @@ function addAnotherToy(e) {
 	var tabID = defaultTab.attr('id') + numToys;
 	tab.attr('id', tabID);
 	tab.html('<button type="button" class="close" onClick="closeTab(event, this.parentNode.id)">&times;</button>'
-		+ ' <a href="#toy" data-toggle="tab"><strong>Toy '+ numToys + '</strong></a>');
+		+ ' <a href="#toy" data-toggle="tab"><strong>New Toy</strong></a>');
 
 	// Content is what the tab displays
 	var content = defaultContent.clone();
