@@ -108,7 +108,7 @@
 								        <li id="user">
 								        	<?php 
 								        	if(!$loggedIn) { ?>
-								        		<a href="#modal-register" data-toggle="modal">Login / Signup</a>
+								        		<a href="#modal-login" data-toggle="modal">Login / Signup</a>
 								        	<?php } else { ?>
 								        		<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> <?php echo " ".$username; ?></a>
 								        	<?php } ?>						        	

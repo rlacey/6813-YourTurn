@@ -120,7 +120,7 @@
 								        <li id="user">
 								        	<?php 
 								        	if(!$loggedIn) { ?>
-								        		<a href="#modal-register" data-toggle="modal">Login / Signup</a>
+								        		<a href="#modal-login" data-toggle="modal">Login / Signup</a>
 								        	<?php } else { ?>
 								        		<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> <?php echo " ".$username; ?></a>
 								        	<?php } ?>						        	
@@ -227,7 +227,7 @@
 											<form class="form-horizontal">
 												<!-- Text input-->
 												<div class="control-group">
-													<label class="control-label"><strong><p>Toy Name</p></strong></label>
+													<label class="control-label"><strong>Toy Name</strong></label>
 													<div class="controls">
 														<input id="toyName" type="text" placeholder="" class="input-large text-form" required autofocus>
 													</div>
@@ -235,7 +235,7 @@
 
 												<!-- Select Basic -->
 												<div class="control-group">
-													<label class="control-label"><strong><p>Age Range</p></strong></label>
+													<label class="control-label"><strong>Age Range</strong></label>
 													<div class="controls">
 														<select id="ageRange" class="input-large">
 															<option>All ages</option>
@@ -249,7 +249,7 @@
 
 												<!-- Select Basic -->
 												<div class="control-group">
-													<label class="control-label"><strong><p>Condition</p></strong></label>
+													<label class="control-label"><strong>Condition</strong></label>
 													<div class="controls">
 														<select id="condition" class="input-large">
 															<option>New</option>
@@ -261,7 +261,7 @@
 
 												<!-- Select Basic -->
 												<div class="control-group">
-													<label class="control-label"><strong><p>Category</p></strong></label>
+													<label class="control-label"><strong>Category</strong></label>
 													<div class="controls">
 														<select id="category" class="input-large">
 															<option>Other</option>
@@ -283,7 +283,7 @@
 
 												<!-- Textarea -->
 												<div class="control-group">
-													<label class="control-label"><strong><p>Description</p></strong></label>
+													<label class="control-label"><strong>Description</strong></label>
 													<div class="controls">                     
 														<textarea id="description" class="text-form input-large" required></textarea>
 													</div>
