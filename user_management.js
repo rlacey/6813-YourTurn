@@ -13,6 +13,7 @@ $(document).ready(function() {
 		$('.logout-content').hide();
 	}
  	hovering();
+	checkLastMessage();
 });
 
 function displayRegistration() {
@@ -107,4 +108,37 @@ function hovering() {
         $('#label-logout').html('<i class="icon-user"></i> '+name);
     }
 	}, ".hover");
+}
+
+function checkLastMessage(){
+	//grab user last_message
+	// grab actual last message and compare
+	//if actual > user, append (new) to message tab
+	var owner = $('#owner').attr('name');
+	$.post("checkMessages.php", {"owner": owner}, function(data){
+		console.log(data);
+		parsed = JSON.parse(data);
+		var lastChecked = parsed[0]["last_message"];
+		console.log(lastChecked);
+		messages = parsed[1];
+		var found = false;
+		var i = 0;
+		while (!found){
+			if (messages[i]["message"]!=""){
+				found = true;
+			}
+			else{
+				i++;
+			}
+		}
+		var actualLast = messages.length-i;
+		console.log(actualLast);
+		if (actualLast > lastChecked){
+			console.log("new message!");
+			$('a:contains(Messages)').append(' (new)');
+		}
+		else{
+			//$('a:contains(Messages)').text('<i class="icon-envelope"></i> Messages');
+		}
+	})
 }
