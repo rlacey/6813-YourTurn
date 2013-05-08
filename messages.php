@@ -53,6 +53,7 @@
 		<script src="bootstrap/js/bootstrap.js"></script>
 
 		<script type="text/javascript" src="user_management.js"></script>
+		<script type="text/javascript" src="messages.js"></script>
 
 		<style>
 		    #page-title {
@@ -221,30 +222,30 @@
 				<div class="row-fluid">
 					<div class="well tabbable tabs-left span6 offset3">
 						<ul class="nav nav-tabs" id="tab-labels">
-							<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">Default User</a></li>
-							<li id="tab-toy" class='tab-label' onClick="switchTab(this.id)"><a href="#toy" data-toggle="tab">User 2</a></li>
+							<li id="tab-toy" class='tab-label' onClick="switchTabs(this.id)"><a href="#toy" data-toggle="tab">Default User</a></li>
+							<li id="tab-toy" class='tab-label' onClick="switchTabs(this.id)"><a href="#toy" data-toggle="tab">User 2</a></li>
 							<!-- <li id="toy2-Tab" class='tab-label' onClick="switchTab(this.id)"><a href="#toy2" data-toggle="tab">toy2</a></li> -->
 						</ul>	   
 						<div class="tab-content" id="tab-content">
 							<div class="tab-pane active" id="content-toy">
 								<div class="row-fluid">
-									<div id="messages-pane" class="span11" style = "background-color: transparent;">
-										<div id="message">
+									<div id="messages-pane" class="span11" style = "background-color: transparent;" >
+										<!--<div class="message">
 											<h4>Other Guy</h4>
 											This is the message content. This is the message content.  This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content.  This is the message content. This is the message content. This is the message content. 
 											<hr>
 										</div>
-										<div id="message">
+										<div class="message">
 											<h4>You</h4>
 											This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. This is the message content. 
 											<hr>
 										</div>
 										<div id="reply-pane">
-											<textarea id="reply" class="text-form" style="width:100%; height:80px;"></textarea>
+											<textarea id="reply" class="text-form" placeholder = "Enter Message Here." style="width:100%; height:80px;"></textarea>
 											<div id = "reply-button" style = "float:right;">
-											<button id="submit-reply" class="btn" onClick="">Reply</button>
+											<button id="submit-reply" class="btn" onClick="sendMessage()">Reply</button>
 											</div>
-										</div>
+										</div>-->
 									</div>
 								</div> <!-- /row-fluid -->
 							</div> <!-- /tab pane -->

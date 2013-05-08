@@ -68,6 +68,34 @@ $(document).ready(function(){
 
 	registerPagingForFirstAndLast();
 });
+
+function addConversation(toy_id){
+	// Update data structure
+	//userList.push(username);
+	//conversations.push(new Array());
+	console.log(toy_id);
+	var owner = "";
+	$.post("getOwner.php", {"id" : toy_id}, function(data){
+		var parsed=JSON.parse(data);
+		owner = parsed['owner'];
+		console.log(owner);
+	var user = $('#owner').attr('name');
+	console.log(user);
+	$.post(
+		"addMessage.php",
+		{"user_from":user, "user_to":owner, "message": "" },
+		function(data){
+			console.log('hi'+data);
+			window.location.href = "messages.php";
+		}
+	);
+	})
+	
+	// TODO: How will they be on the messages page from the find page? - switch tab, display conversations?
+	
+	
+}
+
 //Adds a new toy to the find page
 function addNewToy(toy){
 	//Is there room for another toy on the lowest row

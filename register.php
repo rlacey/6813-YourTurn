@@ -36,7 +36,7 @@
 		if($submit) {
 			$pass = sha1(mysql_real_escape_string($_POST["register_pass"]));
 			$email = mysql_real_escape_string($_POST["register_email"]);
-			$query = "INSERT INTO users VALUES ('$user', '$pass', '$email')";
+			$query = "INSERT INTO users VALUES ('$user', '$pass', '$email','NULL')";
 			mysql_query($query, $db) or die(mysql_error());
 			$_SESSION['username']=$user;
 		}

@@ -66,8 +66,8 @@
 		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>
 
-		<script src='find.js'></script>
 		<script type="text/javascript" src="user_management.js"></script>
+		<script type="text/javascript" src="find.js"></script>
 	</head>
 
 	<body>
@@ -322,7 +322,7 @@
 		    			</div>
 		    			<div class='modal-footer'>
 		    				<a href='#' onclick="$('#modalToy').modal('hide')" class='btn'>Cancel</a>
-		    				<a href='messages.html' class='btn'>Message Owner</a>
+		    				<div class='btn' onclick = 'addConversation(activeID)'>Message Owner</div>
 		    				<a href='#' id='modifyCart' class='btn btn-primary'>Add to Cart</a>
 						</div>
 					</div>
