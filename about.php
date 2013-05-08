@@ -45,8 +45,8 @@
 
 	    <!-- <link href='http://fonts.googleapis.com/css?family=Crafty+Girls' rel='stylesheet' type='text/css'> -->
 	    <!-- <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'> -->
-	    <!-- <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'> -->
-	    <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>	    
+	    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+	    <!-- <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>	     -->
 
 	    <style type="text/css">
 	    .media {
@@ -82,7 +82,7 @@
 			    <div class="navbar-wrapper">
 			    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
 			    	<div class="container">
-			    		<div class="navbar navbar-inverse">
+			    		<div class="navbar navbar-inverse marker">
 			          		<div class="navbar-inner">
 					            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
 					            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -189,9 +189,9 @@
 				TITLE
 
 			    ================================================== -->
-			    <h1 id="page-title">A little bit on YourTurn</h1>
+			    <div class="marker"><h1 id="page-title">A little bit on YourTurn</h1></div>
 
-			    			    <div class="span6 offset3">
+			    <div class="span6 offset3">
 			    	<br>
 			    	YourTurn is a student website created for the class User Interface Design and Implementation. 
 			    	We were challenged to go through the iterative design process necessary to create a product with an 
@@ -204,7 +204,7 @@
 
 				<hr class="span6 offset3">
 			    
-			    <div class="span4 offset3"><h2>Designers</h2></div>
+			    <div class="span4 offset3 marker"><h2>Designers</h2></div>
 
 				<div class="media span6 offset3">
 					<a class="pull-left" href="#">

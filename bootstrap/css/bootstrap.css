@@ -6167,8 +6167,9 @@ a.badge:focus {
 body {
   /*font-family: 'Crafty Girls', cursive;*/
   /*font-family: 'The Girl Next Door', cursive;*/
-  font-family: 'Permanent Marker', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
   /*font-family: 'Rock Salt', cursive;*/
+  font-family: Helvetica;
 }
 
 .small-modal {
@@ -6221,6 +6222,11 @@ p {
   font-family: Helvetica;
 }
 
+.marker {
+  font-family: 'Permanent Marker';
+  /*font-family: 'Rock Salt';*/
+  /*font-family: 'The Girl Next Door', cursive;*/
+}
 /* IMPORTANT
 
 You also need to include this conditional style in the <head> of your HTML file to feed this style to IE 6 and lower and 8 and higher.

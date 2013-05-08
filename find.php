@@ -44,6 +44,8 @@
 	    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	    <link href="find.css" rel="stylesheet">
 
+	    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+
 
 	    <style type="text/css">
 		    .center {
@@ -82,7 +84,7 @@
 			    <div class="navbar-wrapper">
 			    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
 			    	<div class="container">
-			    		<div class="navbar navbar-inverse">
+			    		<div class="navbar navbar-inverse marker">
 			          		<div class="navbar-inner">
 					            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
 					            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -189,7 +191,7 @@
 				TITLE
 
 			    ================================================== -->
-			    <h1 id="page-title">Search for a toy!</h1><br>
+			    <div class="marker"><h1 id="page-title">Search for a toy!</h1><br></div>
 			    <div class="hide" id="owner" name=<?php echo $username; ?> ></div>
 
 			    <div class="login-content">

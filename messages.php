@@ -45,8 +45,8 @@
 
 	    <!-- <link href='http://fonts.googleapis.com/css?family=Crafty+Girls' rel='stylesheet' type='text/css'> -->
 	    <!-- <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'> -->
-	    <!-- <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'> -->
-	    <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>	    
+	    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+	    <!-- <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>	     -->
 
 		<!-- Load any supplemental Javascript libraries here -->
 		<script type="text/javascript" src="external_js/jquery-1.9.0.min.js"></script>
@@ -63,13 +63,13 @@
 
 			#contacts-pane {
 				background-color: white;
-				height: 70%;
+				height: 60%;
 				overflow: auto;				
 			}
 
 			#messages-pane {
 				background-color: white;
-				height: 70%;
+				height: 60%;
 				overflow: auto;				
 			}		
 
@@ -103,7 +103,7 @@
 			    <div class="navbar-wrapper">
 			    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
 			    	<div class="container">
-			    		<div class="navbar navbar-inverse">
+			    		<div class="navbar navbar-inverse marker">
 			          		<div class="navbar-inner">
 					            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
 					            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -210,7 +210,7 @@
 				TITLE
 
 			    ================================================== -->
-			    <h1 id="page-title">Messages</h1>
+			    <div class="marker"><h1 id="page-title">Messages</h1></div>
 			    <div class="hide" id="owner" name=<?php echo $username; ?> ></div>
 
 

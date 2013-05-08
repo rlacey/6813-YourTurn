@@ -63,7 +63,7 @@
 			    <div class="navbar-wrapper">
 			    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
 			    	<div class="container">
-			    		<div class="navbar navbar-inverse">
+			    		<div class="navbar navbar-inverse marker">
 			          		<div class="navbar-inner">
 					            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
 					            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -87,7 +87,7 @@
 								        <li id="user">
 								        	<?php 
 								        	if(!$loggedIn) { ?>
-								        		<a href="#modal-register" data-toggle="modal">Login / Signup</a>
+								        		<a href="#modal-login" data-toggle="modal">Login / Signup</a>
 								        	<?php } else { ?>
 								        		<a id="label-logout" href="" name="<?php echo $username; ?>" class="hover" onClick="logout()"><i class="icon-user"></i> <?php echo " ".$username; ?></a>
 								        	<?php } ?>						        	
@@ -174,12 +174,12 @@
 
 				<div class="container span6 offset3">
 					<div class="hero-unit" style="background-color:white;">
-						<div align="center"><h1>Welcome to YourTurn!</h1></div>
+						<div class="marker" align="center"><h1>Welcome to YourTurn!</h1></div>
 						<img id="toys-background" src="images\toys-background.jpg" class="img center"style="height:35%;"/>
 					</div>
 					<div class="row-fluid">
 						<div class="span6">
-							<h2>Give</h2>
+							<div class="marker"><h2>Give</h2></div>
 							<p>
 								Is your daughter no longer interested in her dolls?
 								Has your son moved on from playing with his old blocks and legos?
@@ -189,7 +189,7 @@
 							<p><a class="btn btn-primary" href="give.html">Donate!</a></p>
 						</div>
 						<div class="span6">
-							<h2>Find</h2>
+							<div class="marker"><h2>Find</h2></div>
 							<p> 
 								Looking for a gift for your daughter's upcoming birthday, but money is a bit tight? 
 								How about saving some cash by kickstarting your son's rockstar career on a used guitar? 
