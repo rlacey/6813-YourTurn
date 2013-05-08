@@ -230,7 +230,7 @@
 											</form>
 										</li>
 										<li class='divider'></li>
-										<li class='nav-header'>Toy Age Range</li>
+										<li class='nav-header'>Age Range</li>
 										<li> 
 											<select id="ageRangeFilter" style='width:100px'>
 												<option></option>
@@ -244,8 +244,8 @@
 										<li class='divider'></li>
 							    		<li class='nav-header'></li>
 								    		<li> <div class='row-fluid'>
-								    			<button class='btn btn-mini btn-primary span5' onclick="checkAllFilters();">Check Filters</button>
-								    			<button class='btn btn-mini btn-warning offset1 span5' onclick="clearAllFilters();">Clear Filters</button>
+								    			<button class='btn btn-mini btn-primary span5' onclick="checkAllFilters();"><strong>Check All</strong></button>
+								    			<button class='btn btn-mini btn-warning offset1 span5' onclick="clearAllFilters();"><strong>Clear All</strong></button>
 								    		 </div></li>
 
 										<li class='nav-header'>Categories</li>
@@ -274,7 +274,6 @@
 										    <form class='form-inline' id="numPerPageForm">
 								    			<label class='control-label' for='numPer'> Results Per Page:</label>
 									    		<select id="numPer" style='width:75px'>
-									    			<option>2</option>
 									    			<option>12</option>
 									    			<option>20</Date>
 									    			<option>40</option>
